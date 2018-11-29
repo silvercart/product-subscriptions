@@ -106,6 +106,27 @@ class ShoppingCartPositionExtension extends DataExtension
     }
     
     /**
+     * Returns the tax amount of the position's consequential costs.
+     *
+     * @param boolean $forSingleProduct Indicates wether the price for the total
+     *                                  quantity of products should be returned
+     *                                  or for one product only.
+     * 
+     * @return float
+     */
+    public function getTaxAmountConsequentialCosts($forSingleProduct = false) {
+        if (SilvercartConfig::PriceType() == 'gross') {
+            $taxRate = $this->owner->getPriceConsequentialCosts($forSingleProduct)->getAmount() -
+                       ($this->owner->getPriceConsequentialCosts($forSingleProduct)->getAmount() /
+                        (100 + $this->owner->SilvercartProduct()->getTaxRate()) * 100); 
+        } else {
+            $taxRate = $this->owner->getPriceConsequentialCosts($forSingleProduct)->getAmount() *
+                       ($this->owner->SilvercartProduct()->getTaxRate() / 100);
+        }
+        return $taxRate;
+    }
+    
+    /**
      * Returns whether this shopping cart position reflects a product with 
      * subscription.
      * 

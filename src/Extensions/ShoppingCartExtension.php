@@ -291,7 +291,11 @@ class ShoppingCartExtension extends DataExtension
                 ]));
             }
             $taxSection = $taxesByBillingPeriod[$product->BillingPeriod]->find('Rate', $taxRate);
-            $taxSection->AmountRaw += $position->getTaxAmount();
+            if ($position->hasConsequentialCosts()) {
+                $taxSection->AmountRaw += $position->getTaxAmountConsequentialCosts();
+            } else {
+                $taxSection->AmountRaw += $position->getTaxAmount();
+            }
         }
         foreach ($taxesByBillingPeriod as $taxes) {
             foreach ($taxes as $tax) {
