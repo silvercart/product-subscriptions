@@ -202,6 +202,29 @@ class ShoppingCartExtension extends DataExtension
     }
     
     /**
+     * Returns the positions with a one time price (includes positions having 
+     * both, a one time price and consequential costs).
+     * 
+     * @return ArrayList
+     * 
+     * @author Sebastian Diel <sdiel@pixeltricks.de>
+     * @since 10.12.2018
+     */
+    public function PositionsWithOneTimePrice()
+    {
+        $positionsWithOneTimePrice = ArrayList::create();
+        foreach ($this->owner->SilvercartShoppingCartPositions() as $position) {
+            if (!$position->SilvercartProduct()->IsSubscription
+             || ($position->SilvercartProduct()->IsSubscription
+              && $position->SilvercartProduct()->HasConsequentialCosts)
+            ) {
+                $positionsWithOneTimePrice->push($position);
+            }
+        }
+        return $positionsWithOneTimePrice;
+    }
+    
+    /**
      * Returns the subscription positions grouped by billing period.
      * 
      * @return ArrayList
