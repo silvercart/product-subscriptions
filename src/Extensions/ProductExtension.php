@@ -39,7 +39,7 @@ class ProductExtension extends DataExtension
         'SubscriptionDurationPeriod'   => 'Enum(",months,years","")',
     ];
     /**
-     * DB attributes.
+     * Defaults for DB attributes.
      *
      * @var array
      */

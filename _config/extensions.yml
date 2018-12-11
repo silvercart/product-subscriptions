@@ -1,6 +1,12 @@
 ---
 Name: silvercart-product-subscriptions-extensions
 ---
+SilvercartOrder:
+  extensions:
+    - SilverCart\Subscriptions\Extensions\OrderExtension
+SilvercartOrderPosition:
+  extensions:
+    - SilverCart\Subscriptions\Extensions\OrderPositionExtension
 SilvercartProduct:
   extensions:
     - SilverCart\Subscriptions\Extensions\ProductExtension

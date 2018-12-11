@@ -1,4 +1,11 @@
 de:
+    SilverCart:
+        Once: "einmalig"
+    SilverCart\Subscriptions\Extensions\OrderPositionExtension:
+        PriceConsequentialCosts: "Preis Folgekosten (einzeln)"
+        PriceTotalConsequentialCosts: "Preis Folgekosten (gesamt)"
+        TaxConsequentialCosts: "Steuer Folgekosten (einzeln)"
+        TaxTotalConsequentialCosts: "Steuer Folgekosten (gesamt)"
     SilverCart\Subscriptions\Extensions\ProductExtension:
         BillingPeriod: "Abrechnungszeitraum"
         BillingPeriodDesc: ""
