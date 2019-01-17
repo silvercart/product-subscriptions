@@ -108,9 +108,9 @@ class ShoppingCartExtension extends DataExtension
     /**
      * Updates the taxable amount with the given context.
      * 
-     * @param float                          &$amount   Amount to update
-     * @param SilvercartShoppingCartPosition $positions Positions
-     * @param string                         $priceType Price type net or gross
+     * @param float     &$amount   Amount to update
+     * @param ArrayList $positions Positions
+     * @param string    $priceType Price type net or gross
      * 
      * @return void
      * 
