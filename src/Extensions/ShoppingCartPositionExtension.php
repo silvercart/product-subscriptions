@@ -2,9 +2,9 @@
 
 namespace SilverCart\Subscriptions\Extensions;
 
-use DataExtension;
-use Money;
-use SilvercartConfig;
+use SilverCart\Admin\Model\Config;
+use SilverCart\ORM\FieldType\DBMoney;
+use SilverStripe\ORM\DataExtension;
 
 /**
  * Extension for SilverCart ShoppingCartPosition.
@@ -30,7 +30,7 @@ class ShoppingCartPositionExtension extends DataExtension
      */
     public function updatePriceNice(&$priceNice, $forSingleProduct = false)
     {
-        $product = $this->owner->SilvercartProduct();
+        $product = $this->owner->Product();
         if ($product->IsSubscription) {
             $billingPeriodUCF = ucfirst($product->BillingPeriod);
             $billingPeriod    = $product->fieldLabel("BillingPeriod{$billingPeriodUCF}");
@@ -43,14 +43,14 @@ class ShoppingCartPositionExtension extends DataExtension
                             'ContextPrice'            => $this->owner->getPrice($forSingleProduct),
                             'PriceConsequentialCosts' => $this->owner->getPriceConsequentialCosts($forSingleProduct),
                         ])
-                        ->renderWith('SilvercartSubscriptionsPrice_ShoppingCartHasConsequentialCosts');
+                        ->renderWith(self::class . 'Price_ShoppingCartHasConsequentialCosts');
             } else {
                 $priceNice = $this->owner
                         ->customise([
                             'BillingPeriodNice' => $billingPeriod,
                             'ContextPrice'      => $this->owner->getPrice($forSingleProduct),
                         ])
-                        ->renderWith('SilvercartSubscriptionsPrice_ShoppingCart');
+                        ->renderWith(self::class . 'Price_ShoppingCart');
             }
         }
     }
@@ -78,14 +78,14 @@ class ShoppingCartPositionExtension extends DataExtension
      *                                  or for one product only.
      * @param boolean $priceType        'gross' or 'net'. If undefined it'll be automatically chosen.
      * 
-     * @return Money the price sum
+     * @return DBMoney
      * 
      * @author Sebastian Diel <sdiel@pixeltricks.de>
      * @since 23.11.2018
      */
     public function getPriceConsequentialCosts($forSingleProduct = false, $priceType = false)
     {
-        $product = $this->owner->SilvercartProduct();
+        $product = $this->owner->Product();
         $price   = 0;
 
         if ($product
@@ -98,9 +98,9 @@ class ShoppingCartPositionExtension extends DataExtension
             }
         }
 
-        $priceObj = Money::create();
+        $priceObj = DBMoney::create();
         $priceObj->setAmount($price);
-        $priceObj->setCurrency(SilvercartConfig::DefaultCurrency());
+        $priceObj->setCurrency(Config::DefaultCurrency());
 
         return $priceObj;
     }
@@ -115,13 +115,13 @@ class ShoppingCartPositionExtension extends DataExtension
      * @return float
      */
     public function getTaxAmountConsequentialCosts($forSingleProduct = false) {
-        if (SilvercartConfig::PriceType() == 'gross') {
+        if (Config::PriceType() == 'gross') {
             $taxRate = $this->owner->getPriceConsequentialCosts($forSingleProduct)->getAmount() -
                        ($this->owner->getPriceConsequentialCosts($forSingleProduct)->getAmount() /
-                        (100 + $this->owner->SilvercartProduct()->getTaxRate()) * 100); 
+                        (100 + $this->owner->Product()->getTaxRate()) * 100); 
         } else {
             $taxRate = $this->owner->getPriceConsequentialCosts($forSingleProduct)->getAmount() *
-                       ($this->owner->SilvercartProduct()->getTaxRate() / 100);
+                       ($this->owner->Product()->getTaxRate() / 100);
         }
         return $taxRate;
     }
@@ -137,7 +137,7 @@ class ShoppingCartPositionExtension extends DataExtension
      */
     public function isSubscription()
     {
-        return $this->owner->SilvercartProduct()->IsSubscription;
+        return $this->owner->Product()->IsSubscription;
     }
     
     /**
@@ -151,6 +151,6 @@ class ShoppingCartPositionExtension extends DataExtension
      */
     public function hasConsequentialCosts()
     {
-        return $this->owner->SilvercartProduct()->HasConsequentialCosts;
+        return $this->owner->Product()->HasConsequentialCosts;
     }
 }

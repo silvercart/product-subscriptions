@@ -2,11 +2,11 @@
 
 namespace SilverCart\Subscriptions\Extensions;
 
-use ArrayData;
-use ArrayList;
-use DataExtension;
-use Money;
-use SilvercartConfig;
+use SilverCart\Admin\Model\Config;
+use SilverStripe\ORM\ArrayList;
+use SilverStripe\ORM\DataExtension;
+use SilverStripe\ORM\FieldType\DBMoney;
+use SilverStripe\View\ArrayData;
 
 /**
  * Extension for SilverCart Order.
@@ -24,8 +24,8 @@ class OrderExtension extends DataExtension
      * Called before a single shopping cart position is converted into / saved as
      * a order position.
      * 
-     * @param \SilvercartShoppingCartPosition &$shoppingCartPosition Shopping cart position
-     * @param \SilvercartOrderPosition        &$orderPosition        Order position
+     * @param \SilverCart\Model\Order\ShoppingCartPosition &$shoppingCartPosition Shopping cart position
+     * @param \SilverCart\Model\Order\OrderPosition        &$orderPosition        Order position
      * 
      * @return void
      * 
@@ -51,7 +51,7 @@ class OrderExtension extends DataExtension
                 $orderPosition->TaxConsequentialCosts      = $shoppingCartPosition->getTaxAmount(true);
                 $orderPosition->TaxTotalConsequentialCosts = $shoppingCartPosition->getTaxAmount();
             }
-            $product                                   = $shoppingCartPosition->SilvercartProduct();
+            $product                                   = $shoppingCartPosition->Product();
             $orderPosition->BillingPeriod              = $product->BillingPeriod;
             $orderPosition->SubscriptionDurationValue  = $product->SubscriptionDurationValue;
             $orderPosition->SubscriptionDurationPeriod = $product->SubscriptionDurationPeriod;
@@ -69,7 +69,7 @@ class OrderExtension extends DataExtension
     public function hasSubscriptions()
     {
         $hasSubscriptions = false;
-        foreach ($this->owner->SilvercartOrderPositions() as $position) {
+        foreach ($this->owner->OrderPositions() as $position) {
             if ($position->IsSubscription) {
                 $hasSubscriptions = true;
                 break;
@@ -89,7 +89,7 @@ class OrderExtension extends DataExtension
     public function PositionsWithSubscription()
     {
         $positionsWithSubscription = ArrayList::create();
-        foreach ($this->owner->SilvercartOrderPositions() as $position) {
+        foreach ($this->owner->OrderPositions() as $position) {
             if ($position->IsSubscription) {
                 $positionsWithSubscription->push($position);
             }
@@ -134,11 +134,11 @@ class OrderExtension extends DataExtension
             foreach ($taxRatesByBillingPeriod as $taxRate) {
                 $taxTotal += $taxRate->Amount->getAmount();
             }
-            $amountTotal = Money::create();
+            $amountTotal = DBMoney::create();
             $amountTotal->setAmount($billingPeriod['AmountTotal']);
             $amountTotalWithTax = $amountTotal;
-            if (SilvercartConfig::PriceType() === 'net') {
-                $amountTotalWithTax = Money::create();
+            if (Config::PriceType() === 'net') {
+                $amountTotalWithTax = DBMoney::create();
                 $amountTotalWithTax->setAmount($amountTotal->getAmount() + $taxTotal);
             }
             $billingPeriodsList->push(ArrayData::create([
@@ -182,7 +182,7 @@ class OrderExtension extends DataExtension
         }
         foreach ($taxesByBillingPeriod as $taxes) {
             foreach ($taxes as $tax) {
-                $taxObj = Money::create();
+                $taxObj = DBMoney::create();
                 $taxObj->setAmount($tax->AmountRaw);
                 $tax->Amount = $taxObj;
             }

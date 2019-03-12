@@ -1,0 +1,27 @@
+{
+    "name": "silvercart/product-subscriptions",
+    "type": "silverstripe-module",
+    "description": "Product Subscriptions module for the SilverCart ecommerce module for SilverStripe",
+    "homepage": "http://www.silvercart.org",
+    "license": "LGPL-3.0",
+    "keywords": ["silverstripe", "silvercart", "ecommerce", "shop", "webshop", "online shop", "product subscriptions", "subscriptions"],
+    "authors": [
+        {
+            "name": "SilverCart",
+            "homepage": "http://www.silvercart.org"
+        },
+        {
+            "name": "pixeltricks",
+            "homepage": "http://www.pixeltricks.de"
+        }
+    ],
+    "require": {
+        "composer/installers": "*",
+        "silvercart/silvercart": "~4.1"
+    },
+    "extra": {
+        "expose": [
+            "client"
+        ]
+    }
+}

@@ -2,12 +2,12 @@
 
 namespace SilverCart\Subscriptions\Extensions;
 
-use ArrayData;
-use ArrayList;
-use DataExtension;
-use Money;
-use SilvercartConfig;
+use SilverCart\Admin\Model\Config;
+use SilverCart\ORM\FieldType\DBMoney;
 use SilverCart\Subscriptions\Extensions\ProductExtension;
+use SilverStripe\ORM\ArrayList;
+use SilverStripe\ORM\DataExtension;
+use SilverStripe\View\ArrayData;
 
 /**
  * Extension for SilverCart ShoppingCart.
@@ -44,8 +44,8 @@ class ShoppingCartExtension extends DataExtension
     /**
      * Updates the taxable amount gross without modules.
      * 
-     * @param float                          &$amount   Amount to update
-     * @param SilvercartShoppingCartPosition $positions Positions
+     * @param float                      &$amount   Amount to update
+     * @param \SilverStripe\ORM\DataList $positions Positions
      * 
      * @return void
      * 
@@ -60,8 +60,8 @@ class ShoppingCartExtension extends DataExtension
     /**
      * Updates the taxable amount net without modules.
      * 
-     * @param float                          &$amount   Amount to update
-     * @param SilvercartShoppingCartPosition $positions Positions
+     * @param float                      &$amount   Amount to update
+     * @param \SilverStripe\ORM\DataList $positions Positions
      * 
      * @return void
      * 
@@ -76,8 +76,8 @@ class ShoppingCartExtension extends DataExtension
     /**
      * Updates the taxable amount gross without fees and charges.
      * 
-     * @param float                          &$amount   Amount to update
-     * @param SilvercartShoppingCartPosition $positions Positions
+     * @param float                      &$amount   Amount to update
+     * @param \SilverStripe\ORM\DataList $positions Positions
      * 
      * @return void
      * 
@@ -92,8 +92,8 @@ class ShoppingCartExtension extends DataExtension
     /**
      * Updates the taxable amount net without fees and charges.
      * 
-     * @param float                          &$amount   Amount to update
-     * @param SilvercartShoppingCartPosition $positions Positions
+     * @param float                      &$amount   Amount to update
+     * @param \SilverStripe\ORM\DataList $positions Positions
      * 
      * @return void
      * 
@@ -120,15 +120,16 @@ class ShoppingCartExtension extends DataExtension
     public function updateTaxableAmount(&$amount, $positions, $priceType = null)
     {
         if (is_null($priceType)) {
-            $priceType = SilvercartConfig::DefaultPriceType();
+            $priceType = Config::DefaultPriceType();
         }
         $amount = 0;
         foreach ($positions as $position) {
-            /* @var $position \SilvercartShoppingCartPosition */
-            if ($position->hasMethod('SilvercartProduct')
+            /* @var $position \SilverCart\Model\Order\ShoppingCartPosition */
+            if ($position->hasMethod('Product')
              && $position->hasMethod('isSubscription')
              && $position->isSubscription()
-             && !$position->hasConsequentialCosts()) {
+             && !$position->hasConsequentialCosts()
+            ) {
                 continue;
             }
             $amount += (float) $position->getPrice(false, $priceType)->getAmount();
@@ -138,8 +139,8 @@ class ShoppingCartExtension extends DataExtension
     /**
      * Overwrites the shopping cart position tax rates to use for calculation.
      * 
-     * @param ArrayList     &$taxRates  Tax rate list to overwrite
-     * @param \RelationList &$positions Positions to overwrite
+     * @param ArrayList                      &$taxRates  Tax rate list to overwrite
+     * @param \SilverStripe\ORM\RelationList &$positions Positions to overwrite
      * 
      * @return void
      * 
@@ -150,11 +151,12 @@ class ShoppingCartExtension extends DataExtension
     {
         $newPositions = ArrayList::create();
         foreach ($positions as $position) {
-            /* @var $position \SilvercartShoppingCartPosition */
-            if ($position->hasMethod('SilvercartProduct')
+            /* @var $position \SilverCart\Model\Order\ShoppingCartPosition */
+            if ($position->hasMethod('Product')
              && $position->hasMethod('isSubscription')
              && $position->isSubscription()
-             && !$position->hasConsequentialCosts()) {
+             && !$position->hasConsequentialCosts()
+            ) {
                 continue;
             }
             $newPositions->push($position);
@@ -173,7 +175,7 @@ class ShoppingCartExtension extends DataExtension
     public function hasSubscriptions()
     {
         $hasSubscriptions = false;
-        foreach ($this->owner->SilvercartShoppingCartPositions() as $position) {
+        foreach ($this->owner->ShoppingCartPositions() as $position) {
             if ($position->isSubscription()) {
                 $hasSubscriptions = true;
                 break;
@@ -193,8 +195,8 @@ class ShoppingCartExtension extends DataExtension
     public function PositionsWithSubscription()
     {
         $positionsWithSubscription = ArrayList::create();
-        foreach ($this->owner->SilvercartShoppingCartPositions() as $position) {
-            if ($position->SilvercartProduct()->IsSubscription) {
+        foreach ($this->owner->ShoppingCartPositions() as $position) {
+            if ($position->Product()->IsSubscription) {
                 $positionsWithSubscription->push($position);
             }
         }
@@ -213,10 +215,10 @@ class ShoppingCartExtension extends DataExtension
     public function PositionsWithOneTimePrice()
     {
         $positionsWithOneTimePrice = ArrayList::create();
-        foreach ($this->owner->SilvercartShoppingCartPositions() as $position) {
-            if (!$position->SilvercartProduct()->IsSubscription
-             || ($position->SilvercartProduct()->IsSubscription
-              && $position->SilvercartProduct()->HasConsequentialCosts)
+        foreach ($this->owner->ShoppingCartPositions() as $position) {
+            if (!$position->Product()->IsSubscription
+             || ($position->Product()->IsSubscription
+              && $position->Product()->HasConsequentialCosts)
             ) {
                 $positionsWithOneTimePrice->push($position);
             }
@@ -238,7 +240,7 @@ class ShoppingCartExtension extends DataExtension
         $billingPeriodsList  = ArrayList::create();
         $taxRates            = $this->owner->getBillingPeriodTaxRates();
         foreach ($this->owner->PositionsWithSubscription() as $position) {
-            $product = $position->SilvercartProduct();
+            $product = $position->Product();
             if (!array_key_exists($product->BillingPeriod, $billingPeriodsArray)) {
                 $billingPeriodsArray[$product->BillingPeriod] = [
                     'BillingPeriod'     => $product->BillingPeriod,
@@ -266,11 +268,11 @@ class ShoppingCartExtension extends DataExtension
             foreach ($taxRatesByBillingPeriod as $taxRate) {
                 $taxTotal += $taxRate->Amount->getAmount();
             }
-            $amountTotal = Money::create();
+            $amountTotal = DBMoney::create();
             $amountTotal->setAmount($billingPeriod['AmountTotal']);
             $amountTotalWithTax = $amountTotal;
-            if (SilvercartConfig::PriceType() === 'net') {
-                $amountTotalWithTax = Money::create();
+            if (Config::PriceType() === 'net') {
+                $amountTotalWithTax = DBMoney::create();
                 $amountTotalWithTax->setAmount($amountTotal->getAmount() + $taxTotal);
             }
             $billingPeriodsList->push(ArrayData::create([
@@ -297,14 +299,14 @@ class ShoppingCartExtension extends DataExtension
         $taxesByBillingPeriod = [];
         foreach ($this->owner->PositionsWithSubscription() as $position) {
             
-            $product = $position->SilvercartProduct();
+            $product = $position->Product();
             if (!array_key_exists($product->BillingPeriod, $taxesByBillingPeriod)) {
                 $taxesByBillingPeriod[$product->BillingPeriod] = ArrayList::create();
             }
             
             
-            $taxRate         = $position->SilvercartProduct()->getTaxRate();
-            $originalTaxRate = $position->SilvercartProduct()->getTaxRate(true);
+            $taxRate         = $position->Product()->getTaxRate();
+            $originalTaxRate = $position->Product()->getTaxRate(true);
 
             if (!$taxesByBillingPeriod[$product->BillingPeriod]->find('Rate', $taxRate)) {
                 $taxesByBillingPeriod[$product->BillingPeriod]->push(ArrayData::create([
@@ -322,7 +324,7 @@ class ShoppingCartExtension extends DataExtension
         }
         foreach ($taxesByBillingPeriod as $taxes) {
             foreach ($taxes as $tax) {
-                $taxObj = Money::create();
+                $taxObj = DBMoney::create();
                 $taxObj->setAmount($tax->AmountRaw);
                 $tax->Amount = $taxObj;
             }

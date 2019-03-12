@@ -2,15 +2,17 @@
 
 namespace SilverCart\Subscriptions\Extensions;
 
-use DataExtension;
-use FieldList;
-use LabelField;
-use LiteralField;
-use SilvercartAlertInfoField;
-use SilvercartConfig;
-use SilvercartCustomer;
-use SilvercartFieldGroup;
-use SilvercartTools;
+use SilverCart\Admin\Forms\AlertInfoField;
+use SilverCart\Admin\Model\Config;
+use SilverCart\Dev\Tools;
+use SilverCart\Forms\FormFields\FieldGroup;
+use SilverCart\Model\Customer\Customer;
+use SilverCart\ORM\FieldType\DBMoney;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\LabelField;
+use SilverStripe\Forms\LiteralField;
+use SilverStripe\ORM\DataExtension;
+use SilverStripe\ORM\FieldType\DBInt;
 
 /**
  * Extension for SilverCart Product.
@@ -33,9 +35,9 @@ class ProductExtension extends DataExtension
         'IsSubscription'               => 'Boolean(0)',
         'BillingPeriod'                => 'Enum(",monthly,quarterly,yearly","")',
         'HasConsequentialCosts'        => 'Boolean(0)',
-        'PriceGrossConsequentialCosts' => 'SilvercartMoney',
-        'PriceNetConsequentialCosts'   => 'SilvercartMoney',
-        'SubscriptionDurationValue'    => 'Int',
+        'PriceGrossConsequentialCosts' => DBMoney::class,
+        'PriceNetConsequentialCosts'   => DBMoney::class,
+        'SubscriptionDurationValue'    => DBInt::class,
         'SubscriptionDurationPeriod'   => 'Enum(",months,years","")',
     ];
     /**
@@ -62,7 +64,7 @@ class ProductExtension extends DataExtension
     {
         $labels = array_merge(
                 $labels,
-                SilvercartTools::field_labels_for(self::class),
+                Tools::field_labels_for(self::class),
                 [
                     'BillingPeriodMonthly'             => _t(self::class . ".BillingPeriodMonthly", "monthly"),
                     'BillingPeriodQuarterly'           => _t(self::class . ".BillingPeriodQuarterly", "quarterly"),
@@ -79,7 +81,7 @@ class ProductExtension extends DataExtension
     /**
      * Updates the field group for the product price settings.
      * 
-     * @param SilvercartFieldGroup $pricesGroup Price field group
+     * @param FieldGroup $pricesGroup Price field group
      * @param FieldList            $fields      CMS fields
      * 
      * @return void
@@ -87,7 +89,7 @@ class ProductExtension extends DataExtension
      * @author Sebastian Diel <sdiel@pixeltricks.de>
      * @since 23.11.2018
      */
-    public function updateFieldsForPrices(SilvercartFieldGroup $pricesGroup, FieldList $fields)
+    public function updateFieldsForPrices(FieldGroup $pricesGroup, FieldList $fields)
     {
         $subscriptionDurationPeriodSource = [
             ''       => '',
@@ -102,14 +104,14 @@ class ProductExtension extends DataExtension
         ];
         $fields->dataFieldByName('BillingPeriod')->setSource($billingPeriodSource);
         
-        $info = SilvercartAlertInfoField::create('SubscriptionInfo1', "{$this->owner->fieldLabel('IsSubscriptionDesc')}<br/>{$this->owner->fieldLabel('HasConsequentialCostsDesc')}");
+        $info = AlertInfoField::create('SubscriptionInfo1', Tools::string2html("{$this->owner->fieldLabel('IsSubscriptionDesc')}<br/>{$this->owner->fieldLabel('HasConsequentialCostsDesc')}"));
         
-        $label       = LabelField::create('SubscriptionDurationLabel', $this->owner->fieldLabel('SubscriptionDuration'));
+        $label       = LiteralField::create('SubscriptionDurationLabel', "<label class=\"form__fieldgroup-label\">{$this->owner->fieldLabel('SubscriptionDuration')}</label>");
         $valueField  = $fields->dataFieldByName('SubscriptionDurationValue');
         $periodField = $fields->dataFieldByName('SubscriptionDurationPeriod');
-        $valueField->setAttribute('style', 'width:39%')
+        $valueField->setAttribute('style', 'width:39%; float:left;')
                 ->setValue($this->owner->SubscriptionDurationValue);
-        $periodField->setAttribute('style', 'width:59%')
+        $periodField->setAttribute('style', 'width:59%; float:right;')
                 ->setValue($this->owner->SubscriptionDurationPeriod)
                 ->addExtraClass('has-chzn')
                 ->setSource($subscriptionDurationPeriodSource);
@@ -167,13 +169,13 @@ class ProductExtension extends DataExtension
                             'Then'              => $this->owner->fieldLabel('Then'),
                             'BillingPeriodNice' => $this->owner->getBillingPeriodNice(),
                         ])
-                        ->renderWith('SilvercartSubscriptionsPrice_HasConsequentialCosts');
+                        ->renderWith(self::class . 'Price_HasConsequentialCosts');
             } else {
                 $priceNice = $this->owner
                         ->customise([
                             'BillingPeriodNice' => $this->owner->getBillingPeriodNice(),
                         ])
-                        ->renderWith('SilvercartSubscriptionsPrice');
+                        ->renderWith(self::class . 'Price');
             }
         }
     }
@@ -204,7 +206,7 @@ class ProductExtension extends DataExtension
     public function getPriceConsequentialCosts($priceType = '', $ignoreTaxExemption = false)
     {
         if (empty($priceType)) {
-            $priceType = SilvercartConfig::PriceType();
+            $priceType = Config::PriceType();
         }
         
         if ($priceType == "net") {
@@ -215,7 +217,7 @@ class ProductExtension extends DataExtension
             $price = clone $this->owner->PriceGrossConsequentialCosts;
         }
         
-        $member = SilvercartCustomer::currentUser();
+        $member = Customer::currentUser();
         if (!$ignoreTaxExemption
          && !$this->owner->ignoreTaxExemption
          && $member instanceof Member
@@ -244,14 +246,14 @@ class ProductExtension extends DataExtension
     public function getTaxAmountForConsequentialCosts()
     {
         $showPricesGross = false;
-        $member          = SilvercartCustomer::currentUser();
+        $member          = Customer::currentUser();
 
         if ($member) {
             if ($member->showPricesGross(true)) {
                 $showPricesGross = true;
             }
         } else {
-            $defaultPriceType = SilvercartConfig::DefaultPriceType();
+            $defaultPriceType = Config::DefaultPriceType();
 
             if ($defaultPriceType == 'gross') {
                 $showPricesGross = true;

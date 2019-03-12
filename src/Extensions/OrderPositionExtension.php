@@ -2,9 +2,12 @@
 
 namespace SilverCart\Subscriptions\Extensions;
 
-use DataExtension;
-use SilvercartTools;
+use SilverCart\Dev\Tools;
+use SilverCart\ORM\FieldType\DBMoney;
 use SilverCart\Subscriptions\Extensions\ProductExtension;
+use SilverStripe\ORM\DataExtension;
+use SilverStripe\ORM\FieldType\DBFloat;
+use SilverStripe\ORM\FieldType\DBInt;
 
 /**
  * Extension for SilverCart OrderPosition.
@@ -26,11 +29,11 @@ class OrderPositionExtension extends DataExtension
     private static $db = [
         'IsSubscription'               => 'Boolean(0)',
         'BillingPeriod'                => 'Enum(",monthly,quarterly,yearly","")',
-        'PriceConsequentialCosts'      => 'SilvercartMoney',
-        'PriceTotalConsequentialCosts' => 'SilvercartMoney',
-        'TaxConsequentialCosts'        => 'Float',
-        'TaxTotalConsequentialCosts'   => 'Float',
-        'SubscriptionDurationValue'    => 'Int',
+        'PriceConsequentialCosts'      => DBMoney::class,
+        'PriceTotalConsequentialCosts' => DBMoney::class,
+        'TaxConsequentialCosts'        => DBFloat::class,
+        'TaxTotalConsequentialCosts'   => DBFloat::class,
+        'SubscriptionDurationValue'    => DBInt::class,
         'SubscriptionDurationPeriod'   => 'Enum(",months,years","")',
     ];
     /**
@@ -56,8 +59,8 @@ class OrderPositionExtension extends DataExtension
     {
         $labels = array_merge(
                 $labels,
-                SilvercartTools::field_labels_for(self::class),
-                SilvercartTools::field_labels_for(ProductExtension::class),
+                Tools::field_labels_for(self::class),
+                Tools::field_labels_for(ProductExtension::class),
                 [
                     'BillingPeriodMonthly'             => _t(ProductExtension::class . ".BillingPeriodMonthly", "monthly"),
                     'BillingPeriodQuarterly'           => _t(ProductExtension::class . ".BillingPeriodQuarterly", "quarterly"),

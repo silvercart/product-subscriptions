@@ -1,18 +1,18 @@
 ---
 Name: silvercart-product-subscriptions-extensions
 ---
-SilvercartOrder:
+SilverCart\Model\Order\Order:
   extensions:
     - SilverCart\Subscriptions\Extensions\OrderExtension
-SilvercartOrderPosition:
+SilverCart\Model\Order\OrderPosition:
   extensions:
     - SilverCart\Subscriptions\Extensions\OrderPositionExtension
-SilvercartProduct:
+SilverCart\Model\Product\Product:
   extensions:
     - SilverCart\Subscriptions\Extensions\ProductExtension
-SilvercartShoppingCart:
+SilverCart\Model\Order\ShoppingCart:
   extensions:
     - SilverCart\Subscriptions\Extensions\ShoppingCartExtension
-SilvercartShoppingCartPosition:
+SilverCart\Model\Order\ShoppingCartPosition:
   extensions:
     - SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension
