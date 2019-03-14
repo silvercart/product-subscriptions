@@ -18,10 +18,5 @@
     "require": {
         "composer/installers": "*",
         "silvercart/silvercart": "~4.1"
-    },
-    "extra": {
-        "expose": [
-            "client"
-        ]
     }
 }
