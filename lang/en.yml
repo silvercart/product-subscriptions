@@ -9,6 +9,7 @@ en:
     SilverCart\Subscriptions\Extensions\ProductExtension:
         BillingPeriod: "Billing period"
         BillingPeriodDesc: ""
+        BillingPeriodOnce: "once"
         BillingPeriodMonthly: "monthly"
         BillingPeriodQuarterly: "quarterly"
         BillingPeriodYearly: "yearly"

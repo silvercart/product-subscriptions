@@ -9,7 +9,6 @@ use SilverCart\Forms\FormFields\FieldGroup;
 use SilverCart\Model\Customer\Customer;
 use SilverCart\ORM\FieldType\DBMoney;
 use SilverStripe\Forms\FieldList;
-use SilverStripe\Forms\LabelField;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\ORM\FieldType\DBInt;
@@ -66,6 +65,7 @@ class ProductExtension extends DataExtension
                 $labels,
                 Tools::field_labels_for(self::class),
                 [
+                    'BillingPeriodOnce'                => _t(self::class . ".BillingPeriodOnce", "once"),
                     'BillingPeriodMonthly'             => _t(self::class . ".BillingPeriodMonthly", "monthly"),
                     'BillingPeriodQuarterly'           => _t(self::class . ".BillingPeriodQuarterly", "quarterly"),
                     'BillingPeriodYearly'              => _t(self::class . ".BillingPeriodYearly", "yearly"),
@@ -188,6 +188,9 @@ class ProductExtension extends DataExtension
     public function getBillingPeriodNice()
     {
         $billingPeriod = ucfirst($this->owner->BillingPeriod);
+        if (empty($billingPeriod)) {
+            $billingPeriod = 'Once';
+        }
         return $this->owner->fieldLabel("BillingPeriod{$billingPeriod}");
     }
 
