@@ -1,1 +1,3 @@
+{$BeforePriceNiceContent}
 {$Price.Nice} <small>{$BillingPeriodNice}</small>
+{$AfterPriceNiceContent}
