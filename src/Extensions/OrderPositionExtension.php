@@ -84,4 +84,24 @@ class OrderPositionExtension extends DataExtension
         $billingPeriod = ucfirst($this->owner->BillingPeriod);
         return $this->owner->fieldLabel("BillingPeriod{$billingPeriod}");
     }
+    
+    /**
+     * Returns the TaxConsequentialCosts as a DBMoney object.
+     * 
+     * @return DBMoney
+     */
+    public function getTaxConsequentialCostsMoney() : DBMoney
+    {
+        return DBMoney::create()->setAmount($this->owner->TaxConsequentialCosts)->setCurrency($this->owner->PriceConsequentialCosts->getCurrency());
+    }
+    
+    /**
+     * Returns the TaxTotalConsequentialCosts as a DBMoney object.
+     * 
+     * @return DBMoney
+     */
+    public function getTaxTotalConsequentialCostsMoney() : DBMoney
+    {
+        return DBMoney::create()->setAmount($this->owner->TaxTotalConsequentialCosts)->setCurrency($this->owner->PriceTotalConsequentialCosts->getCurrency());
+    }
 }
