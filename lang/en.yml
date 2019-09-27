@@ -1,30 +1,30 @@
 en:
     SilverCart:
-        Once: "once"
+        Once: once
     SilverCart\Subscriptions\Extensions\OrderPositionExtension:
-        PriceConsequentialCosts: "Price consequential costs (single)"
-        PriceTotalConsequentialCosts: "Price consequential costs (total)"
-        TaxConsequentialCosts: "Tax consequential costs (single)"
-        TaxTotalConsequentialCosts: "Tax consequential costs (total)"
+        PriceConsequentialCosts: 'Price consequential costs (single)'
+        PriceTotalConsequentialCosts: 'Price consequential costs (total)'
+        TaxConsequentialCosts: 'Tax consequential costs (single)'
+        TaxTotalConsequentialCosts: 'Tax consequential costs (total)'
     SilverCart\Subscriptions\Extensions\ProductExtension:
-        BillingPeriod: "Billing period"
-        BillingPeriodDesc: ""
-        BillingPeriodOnce: "once"
-        BillingPeriodMonthly: "monthly"
-        BillingPeriodQuarterly: "quarterly"
-        BillingPeriodYearly: "yearly"
-        HasConsequentialCosts: "Has consequential costs"
-        HasConsequentialCostsDesc: "Activate the function \"Has consequential costs\" if this article has consequential costs together with its onetime purchase price."
-        IsSubscription: "Is subscription"
-        IsSubscriptionDesc: "Activate the function \"Is subscription\" if this article is payed in a frequent interval."
-        Once: "once"
-        PriceGrossConsequentialCosts: "Price consequential costs (gross)"
-        PriceGrossConsequentialCostsDesc: ""
-        PriceNetConsequentialCosts: "Price consequential costs (net)"
-        PriceNetConsequentialCostsDesc: ""
-        SubscriptionDuration: "Subscription duration"
-        SubscriptionDurationValue: ""
-        SubscriptionDurationPeriod: ""
-        SubscriptionDurationPeriodMonths: "Months"
-        SubscriptionDurationPeriodYears: "Years"
-        Then: "then"
+        BillingPeriod: 'Billing period'
+        BillingPeriodDesc: ''
+        BillingPeriodOnce: once
+        BillingPeriodMonthly: monthly
+        BillingPeriodQuarterly: quarterly
+        BillingPeriodYearly: yearly
+        HasConsequentialCosts: 'Has consequential costs'
+        HasConsequentialCostsDesc: 'Activate the function "Has consequential costs" if this article has consequential costs together with its onetime purchase price.'
+        IsSubscription: 'Is subscription'
+        IsSubscriptionDesc: 'Activate the function "Is subscription" if this article is payed in a frequent interval.'
+        Once: once
+        PriceGrossConsequentialCosts: 'Price consequential costs (gross)'
+        PriceGrossConsequentialCostsDesc: ''
+        PriceNetConsequentialCosts: 'Price consequential costs (net)'
+        PriceNetConsequentialCostsDesc: ''
+        SubscriptionDuration: 'Subscription duration'
+        SubscriptionDurationValue: ''
+        SubscriptionDurationPeriod: ''
+        SubscriptionDurationPeriodMonths: Months
+        SubscriptionDurationPeriodYears: Years
+        Then: then
