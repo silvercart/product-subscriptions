@@ -1,0 +1,30 @@
+it:
+    SilverCart:
+        Once: unico
+    SilverCart\Subscriptions\Extensions\OrderPositionExtension:
+        PriceConsequentialCosts: 'Costi accessori (singoli)'
+        PriceTotalConsequentialCosts: 'Costi accessori (totale)'
+        TaxConsequentialCosts: 'Imposta su costi accessori (totale)'
+        TaxTotalConsequentialCosts: 'Imposta su costi accessori (totale)'
+    SilverCart\Subscriptions\Extensions\ProductExtension:
+        BillingPeriod: 'Periodo di fatturazione'
+        BillingPeriodDesc: ''
+        BillingPeriodOnce: unico
+        BillingPeriodMonthly: mensile
+        BillingPeriodQuarterly: trimestrale
+        BillingPeriodYearly: annuale
+        HasConsequentialCosts: 'ha costi accessori'
+        HasConsequentialCostsDesc: 'Attiva la funzione "ha costi accessori", se questo articolo presenta costi accessori oltre al prezzo di acquisto una tantum.'
+        IsSubscription: 'È un abbonamento'
+        IsSubscriptionDesc: 'Attiva la funzione "È abbonamento" se questo articolo viene pagato a intervalli frequenti.'
+        Once: 'una volta'
+        PriceGrossConsequentialCosts: 'Costi accessori (Brutto)'
+        PriceGrossConsequentialCostsDesc: ''
+        PriceNetConsequentialCosts: 'Costi accessori (netto)'
+        PriceNetConsequentialCostsDesc: ''
+        SubscriptionDuration: 'Durata dell''abbonamento'
+        SubscriptionDurationValue: ''
+        SubscriptionDurationPeriod: ''
+        SubscriptionDurationPeriodMonths: Mesi
+        SubscriptionDurationPeriodYears: Anni
+        Then: poi
