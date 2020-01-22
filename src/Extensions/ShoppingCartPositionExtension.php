@@ -40,15 +40,15 @@ class ShoppingCartPositionExtension extends DataExtension
                             'Once'                    => $product->fieldLabel('Once'),
                             'Then'                    => $product->fieldLabel('Then'),
                             'BillingPeriodNice'       => $billingPeriod,
-                            'ContextPrice'            => $this->owner->getPrice($forSingleProduct),
-                            'PriceConsequentialCosts' => $this->owner->getPriceConsequentialCosts($forSingleProduct),
+                            'ContextPrice'            => $this->owner->getPrice((bool) $forSingleProduct),
+                            'PriceConsequentialCosts' => $this->owner->getPriceConsequentialCosts((bool) $forSingleProduct),
                         ])
                         ->renderWith(self::class . 'Price_ShoppingCartHasConsequentialCosts');
             } else {
                 $priceNice = $this->owner
                         ->customise([
                             'BillingPeriodNice' => $billingPeriod,
-                            'ContextPrice'      => $this->owner->getPrice($forSingleProduct),
+                            'ContextPrice'      => $this->owner->getPrice((bool) $forSingleProduct),
                         ])
                         ->renderWith(self::class . 'Price_ShoppingCart');
             }
