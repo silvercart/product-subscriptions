@@ -1,6 +1,6 @@
 {
     "name": "silvercart/product-subscriptions",
-    "type": "silverstripe-module",
+    "type": "silverstripe-vendormodule",
     "description": "Product Subscriptions module for the SilverCart ecommerce module for SilverStripe",
     "homepage": "http://www.silvercart.org",
     "license": "LGPL-3.0",
