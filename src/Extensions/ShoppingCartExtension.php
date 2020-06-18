@@ -255,6 +255,7 @@ class ShoppingCartExtension extends DataExtension
             } else {
                 $amount = $product->getPrice()->getAmount() * $position->Quantity;
             }
+            $position->setDisplayContextBillingPeriod($product->BillingPeriod);
             $billingPeriodsArray[$product->BillingPeriod]['Positions']->push($position);
             $billingPeriodsArray[$product->BillingPeriod]['AmountTotal'] += $amount;
             $billingPeriodsArray[$product->BillingPeriod]['QuantityTotal'] += $position->Quantity;
@@ -283,10 +284,24 @@ class ShoppingCartExtension extends DataExtension
                 'QuantityTotal'      => $billingPeriod['QuantityTotal'],
                 'Positions'          => $billingPeriod['Positions'],
                 'TaxRates'           => $taxRatesByBillingPeriod,
+                'ShoppingCart'       => $this->owner,
             ]));
             
         }
         return $billingPeriodsList;
+    }
+    
+    /**
+     * Returns the given $billingPeriod context label with the given $key.
+     * 
+     * @param string $billingPeriod Billing period
+     * @param string $key           i18n key
+     * 
+     * @return string
+     */
+    public function BillingPeriodLabel(string $billingPeriod, string $key) : string
+    {
+        return _t(self::class . ".{$billingPeriod}{$key}", "{$key} {$billingPeriod}");
     }
     
     /**

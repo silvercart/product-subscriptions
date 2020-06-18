@@ -28,3 +28,12 @@ de:
         SubscriptionDurationPeriodMonths: "Monate"
         SubscriptionDurationPeriodYears: "Jahre"
         Then: "danach"
+    SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
+        oncePayments: "Einmalige Zahlungen"
+        oncePrice: "Preis einmalig"
+        monthlyPayments: "Monatliche Zahlungen"
+        monthlyPrice: "Preis monatlich"
+        quarterlyPayments: "Vierteljährliche Zahlungen"
+        quarterlyPrice: "Preis vierteljährlich"
+        yearlyPayments: "Jährliche Zahlungen"
+        yearlyPrice: "Preis jährlich"
