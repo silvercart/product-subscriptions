@@ -8,13 +8,22 @@ de:
         TaxTotalConsequentialCosts: "Steuer Folgekosten (gesamt)"
     SilverCart\Subscriptions\Extensions\ProductExtension:
         BillingPeriod: "Abrechnungszeitraum"
+        BillingPeriodAdditionSingular: 'im ersten {period}'
+        BillingPeriodAdditionPlural: 'in den ersten {duration} {period}'
         BillingPeriodDesc: ""
         BillingPeriodOnce: "einmalig"
         BillingPeriodMonthly: "monatlich"
+        BillingPeriodMonthlyAbbr: "mtl."
         BillingPeriodQuarterly: "vierteljährlich"
+        BillingPeriodQuarterlyAbbr: "vj."
         BillingPeriodYearly: "jährlich"
+        BillingPeriodYearlyAbbr: "j."
+        DurationPeriodAddPluralMonths: 'Monaten'
+        DurationPeriodAddPluralYears: 'Jahren'
+        DurationPeriodAddSingularMonths: 'Monat'
+        DurationPeriodAddSingularYears: 'Jahr'
         HasConsequentialCosts: "Hat Folgekosten"
-        HasConsequentialCostsDesc: "Aktivieren Sie die Funktion \"Hat Folgekosten\", wenn dieser Artikel neben dem einmaligen Kaufpreis sich wiederholende Folgekosten hat."
+        HasConsequentialCostsDesc: 'Aktivieren Sie die Funktion "Hat Folgekosten", wenn dieser Artikel neben dem Kaufpreis sich wiederholende Folgekosten hat (z.B. "29,99 € einmalig, danach 4,99 € mtl." / "9,99 € mtl. in den ersten 6 Monaten, danach 19,99 € mtl.").'
         IsSubscription: "Ist Abo-Artikel"
         IsSubscriptionDesc: "Aktivieren Sie die Funktion \"Ist Abo-Artikel\", wenn der Artikelpreis in einem bestimmten, regelmäßigen Intervall abgerechnet wird."
         Once: "einmalig"
@@ -37,3 +46,6 @@ de:
         quarterlyPrice: "Preis vierteljährlich"
         yearlyPayments: "Jährliche Zahlungen"
         yearlyPrice: "Preis jährlich"
+    SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
+        BillingPeriodAdditionSingular: 'im ersten {period}, danach {price}'
+        BillingPeriodAdditionPlural: 'in den ersten {duration} {period}, danach {price}'

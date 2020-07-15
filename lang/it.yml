@@ -14,7 +14,7 @@ it:
         BillingPeriodQuarterly: trimestrale
         BillingPeriodYearly: annuale
         HasConsequentialCosts: 'ha costi accessori'
-        HasConsequentialCostsDesc: 'Attiva la funzione "ha costi accessori", se questo articolo presenta costi accessori oltre al prezzo di acquisto una tantum.'
+        HasConsequentialCostsDesc: 'Attiva la funzione "ha costi accessori", se questo articolo presenta costi accessori oltre al prezzo di acquisto.'
         IsSubscription: 'È un abbonamento'
         IsSubscriptionDesc: 'Attiva la funzione "È abbonamento" se questo articolo viene pagato a intervalli frequenti.'
         Once: 'una tantum'

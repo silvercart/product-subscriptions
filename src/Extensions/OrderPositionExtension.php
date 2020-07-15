@@ -3,10 +3,12 @@
 namespace SilverCart\Subscriptions\Extensions;
 
 use SilverCart\Dev\Tools;
+use SilverCart\Model\Order\OrderPosition;
 use SilverCart\ORM\FieldType\DBMoney;
 use SilverCart\Subscriptions\Extensions\ProductExtension;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\ORM\FieldType\DBFloat;
+use SilverStripe\ORM\FieldType\DBHTMLText;
 use SilverStripe\ORM\FieldType\DBInt;
 
 /**
@@ -27,14 +29,17 @@ class OrderPositionExtension extends DataExtension
      * @var array
      */
     private static $db = [
-        'IsSubscription'               => 'Boolean(0)',
-        'BillingPeriod'                => 'Enum(",monthly,quarterly,yearly","")',
-        'PriceConsequentialCosts'      => DBMoney::class,
-        'PriceTotalConsequentialCosts' => DBMoney::class,
-        'TaxConsequentialCosts'        => DBFloat::class,
-        'TaxTotalConsequentialCosts'   => DBFloat::class,
-        'SubscriptionDurationValue'    => DBInt::class,
-        'SubscriptionDurationPeriod'   => 'Enum(",months,years","")',
+        'IsSubscription'                               => 'Boolean(0)',
+        'BillingPeriod'                                => 'Enum(",monthly,quarterly,yearly","")',
+        'BillingPeriodConsequentialCosts'              => 'Enum(",monthly,quarterly,yearly","")',
+        'PriceConsequentialCosts'                      => DBMoney::class,
+        'PriceTotalConsequentialCosts'                 => DBMoney::class,
+        'TaxConsequentialCosts'                        => DBFloat::class,
+        'TaxTotalConsequentialCosts'                   => DBFloat::class,
+        'SubscriptionDurationValue'                    => DBInt::class,
+        'SubscriptionDurationValueConsequentialCosts'  => DBInt::class,
+        'SubscriptionDurationPeriod'                   => 'Enum(",months,years","")',
+        'SubscriptionDurationPeriodConsequentialCosts' => 'Enum(",months,years","")',
     ];
     /**
      * Defaults for DB attributes.
@@ -44,6 +49,55 @@ class OrderPositionExtension extends DataExtension
     private static $defaults = [
         'IsSubscription' => false,
     ];
+    
+    /**
+     * Updates order positions with the old format to the new format.
+     * 
+     * @return void
+     */
+    public function requireDefaultRecords() : void
+    {
+        $oldPositions = OrderPosition::get()
+                ->exclude([
+                    'BillingPeriod'       => '',
+                    'Created:GreaterThan' => '2020-10-01',
+                ])
+                ->filter([
+                    'BillingPeriodConsequentialCosts'           => NULL,
+                    'PriceAmount'                               => 0,
+                    'PriceConsequentialCostsAmount:GreaterThan' => 0,
+                ]);
+        foreach ($oldPositions as $position) {
+            $position->PriceAmount                        = $position->PriceConsequentialCostsAmount;
+            $position->PriceTotalAmount                   = $position->PriceTotalConsequentialCostsAmount;
+            $position->Tax                                = $position->TaxConsequentialCosts;
+            $position->TaxTotal                           = $position->TaxTotalConsequentialCosts;
+            $position->PriceConsequentialCostsAmount      = 0;
+            $position->PriceTotalConsequentialCostsAmount = 0;
+            $position->TaxConsequentialCosts              = 0;
+            $position->TaxTotalConsequentialCosts         = 0;
+            $position->write();
+        }
+        $oldPositionsWithOneTimePrice = OrderPosition::get()
+                ->exclude([
+                    'BillingPeriod'       => '',
+                    'Created:GreaterThan' => '2020-10-01',
+                ])
+                ->filter([
+                    'BillingPeriodConsequentialCosts'           => NULL,
+                    'PriceAmount:GreaterThan'                   => 0,
+                    'PriceConsequentialCostsAmount:GreaterThan' => 0,
+                ]);
+        foreach ($oldPositionsWithOneTimePrice as $positionWithOneTimePrice) {
+            $positionWithOneTimePrice->BillingPeriodConsequentialCosts              = $positionWithOneTimePrice->BillingPeriod;
+            $positionWithOneTimePrice->SubscriptionDurationValueConsequentialCosts  = $positionWithOneTimePrice->SubscriptionDurationValue;
+            $positionWithOneTimePrice->SubscriptionDurationPeriodConsequentialCosts = $positionWithOneTimePrice->SubscriptionDurationPeriod;
+            $positionWithOneTimePrice->BillingPeriod                                = null;
+            $positionWithOneTimePrice->SubscriptionDurationValue                    = 0;
+            $positionWithOneTimePrice->SubscriptionDurationPeriod                   = null;
+            $positionWithOneTimePrice->write();
+        }
+    }
     
     /**
      * Updates the field labels.
@@ -62,6 +116,7 @@ class OrderPositionExtension extends DataExtension
                 Tools::field_labels_for(self::class),
                 Tools::field_labels_for(ProductExtension::class),
                 [
+                    'BillingPeriodOnce'                => _t(ProductExtension::class . ".BillingPeriodOnce", "once"),
                     'BillingPeriodMonthly'             => _t(ProductExtension::class . ".BillingPeriodMonthly", "monthly"),
                     'BillingPeriodQuarterly'           => _t(ProductExtension::class . ".BillingPeriodQuarterly", "quarterly"),
                     'BillingPeriodYearly'              => _t(ProductExtension::class . ".BillingPeriodYearly", "yearly"),
@@ -75,6 +130,94 @@ class OrderPositionExtension extends DataExtension
     }
     
     /**
+     * Updates the products PriceNice property.
+     * 
+     * @param string $priceNice Price to update
+     * 
+     * @return void
+     * 
+     * @author Sebastian Diel <sdiel@pixeltricks.de>
+     * @since 23.11.2018
+     */
+    public function updatePriceNice(&$priceNice, bool $withTax = null, string $template = null) : void
+    {
+        if ($template === null) {
+            $template = 'Price';
+        }
+        if ($this->owner->IsSubscription) {
+            if ($this->owner->PriceTotalConsequentialCosts->getAmount() > 0) {
+                $priceNice = $this->owner
+                        ->customise([
+                            'WithTax'           => (bool) $withTax,
+                            'Once'              => $this->owner->fieldLabel('Once'),
+                            'Then'              => $this->owner->fieldLabel('Then'),
+                            'BillingPeriodNice' => $this->owner->getBillingPeriodNice(),
+                        ])
+                        ->renderWith(self::class . "{$template}_HasConsequentialCosts");
+            } else {
+                $priceNice = $this->owner
+                        ->customise([
+                            'WithTax'           => (bool) $withTax,
+                            'BillingPeriodNice' => $this->owner->getBillingPeriodNice(),
+                        ])
+                        ->renderWith(self::class . $template);
+            }
+        }
+    }
+    
+    /**
+     * Updates the products PriceNice property.
+     * 
+     * @param string $priceNice Price to update
+     * 
+     * @return void
+     * 
+     * @author Sebastian Diel <sdiel@pixeltricks.de>
+     * @since 23.11.2018
+     */
+    public function updatePriceTotalNice(&$priceNice, bool $withTax = null) : void
+    {
+        $this->updatePriceNice($priceNice, $withTax, 'PriceTotal');
+    }
+    
+    /**
+     * Skips this position if it is a subscription without a one time purchase.
+     * 
+     * @return bool
+     */
+    public function skipCalculateAmountTotal() : bool
+    {
+        return $this->owner->IsSubscription
+            && !empty($this->owner->BillingPeriod);
+    }
+
+    /**
+     * returns the orders total amount as string incl. currency.
+     *
+     * @return string
+     */
+    public function getPriceNiceWithTax() : DBHTMLText
+    {
+        $priceNice = $this->owner->renderWith(self::class . '_PriceNiceWithTax');
+        $withTax   = true;
+        $this->owner->extend('updatePriceNice', $priceNice, $withTax);
+        return DBHTMLText::create()->setValue($priceNice);
+    }
+
+    /**
+     * returns the orders total amount as string incl. currency.
+     *
+     * @return string
+     */
+    public function getPriceTotalNiceWithTax() : DBHTMLText
+    {
+        $priceNice = $this->owner->renderWith(self::class . '_PriceTotalNiceWithTax');
+        $withTax   = true;
+        $this->owner->extend('updatePriceTotalNice', $priceNice, $withTax);
+        return DBHTMLText::create()->setValue($priceNice);
+    }
+    
+    /**
      * Returns the billing period i18n.
      * 
      * @return string
@@ -82,7 +225,51 @@ class OrderPositionExtension extends DataExtension
     public function getBillingPeriodNice()
     {
         $billingPeriod = ucfirst($this->owner->BillingPeriod);
+        if (empty($billingPeriod)) {
+            $billingPeriod = 'Once';
+        }
         return $this->owner->fieldLabel("BillingPeriod{$billingPeriod}");
+    }
+    
+    /**
+     * Returns the billing period consequential costs i18n.
+     * 
+     * @return string
+     */
+    public function getBillingPeriodConsequentialCostsNice()
+    {
+        $billingPeriod = ucfirst($this->owner->BillingPeriodConsequentialCosts);
+        if (empty($billingPeriod)) {
+            $billingPeriod = 'Once';
+        }
+        return $this->owner->fieldLabel("BillingPeriod{$billingPeriod}");
+    }
+    
+    /**
+     * Returns the addition text for the billing period if necessary.
+     * 
+     * @return DBHTMLText
+     */
+    public function getBillingPeriodAddition() : DBHTMLText
+    {
+        $addition       = '';
+        $billingPeriod  = ucfirst($this->owner->BillingPeriod);
+        $durationPeriod = ucfirst($this->owner->SubscriptionDurationPeriod);
+        if (!empty($billingPeriod)
+         && $this->owner->PriceTotalConsequentialCosts->getAmount() > 0
+        ) {
+            if ((int) $this->owner->SubscriptionDurationValue === 1) {
+                $addition = '<br/>' . _t(ProductExtension::class . '.BillingPeriodAdditionSingular', 'in the first {period}', [
+                    'period'   => $this->owner->Product()->fieldLabel("DurationPeriodAddSingular{$durationPeriod}"),
+                ]) . ',';
+            } else {
+                $addition = '<br/>' . _t(ProductExtension::class . '.BillingPeriodAdditionPlural', 'in the first {duration} {period}', [
+                    'duration' => $this->owner->SubscriptionDurationValue,
+                    'period'   => $this->owner->Product()->fieldLabel("DurationPeriodAddPlural{$durationPeriod}"),
+                ]) . ',';
+            }
+        }
+        return DBHTMLText::create()->setValue($addition);
     }
     
     /**

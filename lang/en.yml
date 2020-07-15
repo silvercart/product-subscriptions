@@ -8,13 +8,22 @@ en:
         TaxTotalConsequentialCosts: 'Tax consequential costs (total)'
     SilverCart\Subscriptions\Extensions\ProductExtension:
         BillingPeriod: 'Billing period'
+        BillingPeriodAdditionSingular: 'in the first {period}'
+        BillingPeriodAdditionPlural: 'in the first {duration} {period}'
         BillingPeriodDesc: ''
         BillingPeriodOnce: once
         BillingPeriodMonthly: monthly
+        BillingPeriodMonthlyAbbr: mo.
         BillingPeriodQuarterly: quarterly
+        BillingPeriodQuarterlyAbbr: qtr.
         BillingPeriodYearly: yearly
+        BillingPeriodYearlyAbbr: an.
+        DurationPeriodAddPluralMonths: 'months'
+        DurationPeriodAddPluralYears: 'years'
+        DurationPeriodAddSingularMonths: 'month'
+        DurationPeriodAddSingularYears: 'year'
         HasConsequentialCosts: 'Has consequential costs'
-        HasConsequentialCostsDesc: 'Activate the function "Has consequential costs" if this article has consequential costs together with its onetime purchase price.'
+        HasConsequentialCostsDesc: 'Activate the function "Has consequential costs" if this article has consequential costs together with its purchase price (e.g. "€29.99 once, then €4.99 monthly" / "€9.99 monthly for the first 6 months, then €19.99 monthly").'
         IsSubscription: 'Is subscription'
         IsSubscriptionDesc: 'Activate the function "Is subscription" if this article is payed in a frequent interval.'
         Once: once
@@ -28,3 +37,15 @@ en:
         SubscriptionDurationPeriodMonths: Months
         SubscriptionDurationPeriodYears: Years
         Then: then
+    SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
+        oncePayments: 'Single payments'
+        oncePrice: 'Price once'
+        monthlyPayments: 'Monthly payments'
+        monthlyPrice: 'Price monthly'
+        quarterlyPayments: 'Quarterly payments'
+        quarterlyPrice: 'Price quarterly'
+        yearlyPayments: 'Yearly payments'
+        yearlyPrice: 'Price yearly'
+    SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
+        BillingPeriodAdditionSingular: 'in the first {period}, then {price}'
+        BillingPeriodAdditionPlural: 'in the first {duration} {period}, then {price}'

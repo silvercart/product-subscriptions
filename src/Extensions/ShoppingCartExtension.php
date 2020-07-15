@@ -128,7 +128,9 @@ class ShoppingCartExtension extends DataExtension
             if ($position->hasMethod('Product')
              && $position->hasMethod('isSubscription')
              && $position->isSubscription()
-             && !$position->hasConsequentialCosts()
+             && (!$position->hasConsequentialCosts()
+              || ($position->hasConsequentialCosts()
+               && !empty($position->Product()->BillingPeriod)))
             ) {
                 continue;
             }
@@ -155,7 +157,9 @@ class ShoppingCartExtension extends DataExtension
             if ($position->hasMethod('Product')
              && $position->hasMethod('isSubscription')
              && $position->isSubscription()
-             && !$position->hasConsequentialCosts()
+             && (!$position->hasConsequentialCosts()
+              || ($position->hasConsequentialCosts()
+               && !empty($position->Product()->BillingPeriod)))
             ) {
                 continue;
             }
@@ -218,7 +222,8 @@ class ShoppingCartExtension extends DataExtension
         foreach ($this->owner->ShoppingCartPositions() as $position) {
             if (!$position->Product()->IsSubscription
              || ($position->Product()->IsSubscription
-              && $position->Product()->HasConsequentialCosts)
+              && $position->Product()->HasConsequentialCosts
+              && empty($position->Product()->BillingPeriod))
             ) {
                 $positionsWithOneTimePrice->push($position);
             }
@@ -241,24 +246,29 @@ class ShoppingCartExtension extends DataExtension
         $taxRates            = $this->owner->getBillingPeriodTaxRates();
         foreach ($this->owner->PositionsWithSubscription() as $position) {
             $product = $position->Product();
-            if (!array_key_exists($product->BillingPeriod, $billingPeriodsArray)) {
-                $billingPeriodsArray[$product->BillingPeriod] = [
-                    'BillingPeriod'     => $product->BillingPeriod,
-                    'BillingPeriodNice' => $product->getBillingPeriodNice(),
+            if ($product->HasConsequentialCosts
+             && empty($product->BillingPeriod)
+            ) {
+                $amount = $product->getPriceConsequentialCosts()->getAmount() * $position->Quantity;
+                $billingPeriod = $product->BillingPeriodConsequentialCosts;
+                $billingPeriodNice = $product->BillingPeriodConsequentialCostsNice;
+            } else {
+                $amount = $product->getPrice()->getAmount() * $position->Quantity;
+                $billingPeriod = $product->BillingPeriod;
+                $billingPeriodNice = $product->BillingPeriodNice;
+            }
+            if (!array_key_exists($billingPeriod, $billingPeriodsArray)) {
+                $billingPeriodsArray[$billingPeriod] = [
+                    'BillingPeriod'     => $billingPeriod,
+                    'BillingPeriodNice' => $billingPeriodNice,
                     'AmountTotal'       => 0,
                     'QuantityTotal'     => 0,
                     'Positions'         => ArrayList::create(),
                 ];
             }
-            if ($product->HasConsequentialCosts) {
-                $amount = $product->getPriceConsequentialCosts()->getAmount() * $position->Quantity;
-            } else {
-                $amount = $product->getPrice()->getAmount() * $position->Quantity;
-            }
-            $position->setDisplayContextBillingPeriod($product->BillingPeriod);
-            $billingPeriodsArray[$product->BillingPeriod]['Positions']->push($position);
-            $billingPeriodsArray[$product->BillingPeriod]['AmountTotal'] += $amount;
-            $billingPeriodsArray[$product->BillingPeriod]['QuantityTotal'] += $position->Quantity;
+            $billingPeriodsArray[$billingPeriod]['Positions']->push($position);
+            $billingPeriodsArray[$billingPeriod]['AmountTotal'] += $amount;
+            $billingPeriodsArray[$billingPeriod]['QuantityTotal'] += $position->Quantity;
         }
         foreach ($billingPeriodsArray as $billingPeriod) {
             $taxTotal                = 0;
@@ -313,29 +323,30 @@ class ShoppingCartExtension extends DataExtension
     {
         $taxesByBillingPeriod = [];
         foreach ($this->owner->PositionsWithSubscription() as $position) {
-            
             $product = $position->Product();
-            if (!array_key_exists($product->BillingPeriod, $taxesByBillingPeriod)) {
-                $taxesByBillingPeriod[$product->BillingPeriod] = ArrayList::create();
+            if ($product->HasConsequentialCosts
+             && empty($product->BillingPeriod)
+            ) {
+                $amount        = $position->getTaxAmountConsequentialCosts();
+                $billingPeriod = $product->BillingPeriodConsequentialCosts;
+            } else {
+                $amount        = $position->getTaxAmount();
+                $billingPeriod = $product->BillingPeriod;
             }
-            
-            
+            if (!array_key_exists($billingPeriod, $taxesByBillingPeriod)) {
+                $taxesByBillingPeriod[$billingPeriod] = ArrayList::create();
+            }
             $taxRate         = $position->Product()->getTaxRate();
             $originalTaxRate = $position->Product()->getTaxRate(true);
-
-            if (!$taxesByBillingPeriod[$product->BillingPeriod]->find('Rate', $taxRate)) {
-                $taxesByBillingPeriod[$product->BillingPeriod]->push(ArrayData::create([
+            if (!$taxesByBillingPeriod[$billingPeriod]->find('Rate', $taxRate)) {
+                $taxesByBillingPeriod[$billingPeriod]->push(ArrayData::create([
                     'Rate'         => $taxRate,
                     'OriginalRate' => $originalTaxRate,
                     'AmountRaw'    => 0.0,
                 ]));
             }
-            $taxSection = $taxesByBillingPeriod[$product->BillingPeriod]->find('Rate', $taxRate);
-            if ($position->hasConsequentialCosts()) {
-                $taxSection->AmountRaw += $position->getTaxAmountConsequentialCosts();
-            } else {
-                $taxSection->AmountRaw += $position->getTaxAmount();
-            }
+            $taxSection             = $taxesByBillingPeriod[$billingPeriod]->find('Rate', $taxRate);
+            $taxSection->AmountRaw += $amount;
         }
         foreach ($taxesByBillingPeriod as $taxes) {
             foreach ($taxes as $tax) {

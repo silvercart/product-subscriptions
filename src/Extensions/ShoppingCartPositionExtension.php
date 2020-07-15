@@ -4,9 +4,9 @@ namespace SilverCart\Subscriptions\Extensions;
 
 use SilverCart\Admin\Model\Config;
 use SilverCart\Model\Order\ShoppingCartPosition;
-use SilverCart\ORM\FieldType\DBMoney;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\ORM\FieldType\DBHTMLText;
+use SilverStripe\ORM\FieldType\DBMoney;
 
 /**
  * Extension for SilverCart ShoppingCartPosition.
@@ -46,12 +46,21 @@ class ShoppingCartPositionExtension extends DataExtension
         if ($product->IsSubscription) {
             $billingPeriodUCF = ucfirst($product->BillingPeriod);
             $billingPeriod    = $product->fieldLabel("BillingPeriod{$billingPeriodUCF}");
-            if ($product->HasConsequentialCosts) {
+            if ($product->HasConsequentialCosts
+             && empty($product->BillingPeriod)
+            ) {
                 $priceNice = $this->owner
                         ->customise([
                             'Once'                    => $product->fieldLabel('Once'),
                             'Then'                    => $product->fieldLabel('Then'),
-                            'BillingPeriodNice'       => $billingPeriod,
+                            'BillingPeriodNice'       => $product->BillingPeriodConsequentialCostsNice,
+                            'ContextPrice'            => $this->owner->getPrice((bool) $forSingleProduct),
+                            'PriceConsequentialCosts' => $this->owner->getPriceConsequentialCosts((bool) $forSingleProduct),
+                        ])
+                        ->renderWith(self::class . 'Price_ShoppingCartHasConsequentialCostsOnce');
+            } elseif ($product->HasConsequentialCosts) {
+                $priceNice = $this->owner
+                        ->customise([
                             'ContextPrice'            => $this->owner->getPrice((bool) $forSingleProduct),
                             'PriceConsequentialCosts' => $this->owner->getPriceConsequentialCosts((bool) $forSingleProduct),
                         ])
@@ -59,7 +68,7 @@ class ShoppingCartPositionExtension extends DataExtension
             } else {
                 $priceNice = $this->owner
                         ->customise([
-                            'BillingPeriodNice' => $billingPeriod,
+                            'BillingPeriodNice' => $product->BillingPeriodNice,
                             'ContextPrice'      => $this->owner->getPrice((bool) $forSingleProduct),
                         ])
                         ->renderWith(self::class . 'Price_ShoppingCart');
@@ -195,11 +204,58 @@ class ShoppingCartPositionExtension extends DataExtension
      * 
      * @param string $billingPeriod Billing period
      * 
-     * @return ShoppingCartPosition
+     * @return void
      */
-    public function setDisplayContextBillingPeriod(string $billingPeriod) : ShoppingCartPosition
+    public function setDisplayContextBillingPeriod(string $billingPeriod) : void
     {
         $this->displayContextBillingPeriod[$this->owner->ID] = $billingPeriod;
-        return $this->owner;
+    }
+    
+    /**
+     * Returns the price for the current billing period display context.
+     * 
+     * @return DBMoney
+     */
+    public function getDisplayContextBillingPeriodPrice() : DBMoney
+    {
+        $price   = DBMoney::create();
+        $context = $this->getDisplayContextBillingPeriod();
+        if ((string) $this->owner->Product()->BillingPeriod === (string) $context) {
+            $price = $this->owner->getSinglePrice();
+        } else {
+            $price = $this->owner->getSinglePriceConsequentialCosts();
+        }
+        return $price;
+    }
+    
+    /**
+     * Returns the price addition for the current billing period display context.
+     * 
+     * @return DBHTMLText
+     */
+    public function DisplayContextBillingPeriodPriceAddition() : DBHTMLText
+    {
+        $addition       = '';
+        $billingPeriod  = ucfirst($this->getDisplayContextBillingPeriod());
+        $durationPeriod = ucfirst($this->owner->Product()->SubscriptionDurationPeriod);
+        $product        = $this->owner->Product();
+        if (!empty($billingPeriod)
+         && !empty($product->BillingPeriod)
+         && $this->owner->hasConsequentialCosts()
+        ) {
+            if ((int) $product->SubscriptionDurationValue === 1) {
+                $addition = '<br/>' . _t(self::class . '.BillingPeriodAdditionSingular', 'in the first {period}, then {price}', [
+                    'period'   => $product->fieldLabel("DurationPeriodAddSingular{$durationPeriod}"),
+                    'price'    => $this->owner->getSinglePriceConsequentialCosts()->Nice(),
+                ]);
+            } else {
+                $addition = '<br/>' . _t(self::class . '.BillingPeriodAdditionPlural', 'in the first {duration} {period}, then {price}', [
+                    'duration' => $product->SubscriptionDurationValue,
+                    'period'   => $product->fieldLabel("DurationPeriodAddPlural{$durationPeriod}"),
+                    'price'    => $this->owner->getSinglePriceConsequentialCosts()->Nice(),
+                ]);
+            }
+        }
+        return DBHTMLText::create()->setValue($addition);
     }
 }
