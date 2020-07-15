@@ -38,14 +38,18 @@ de:
         SubscriptionDurationPeriodYears: "Jahre"
         Then: "danach"
     SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
-        oncePayments: "Einmalige Zahlungen"
-        oncePrice: "Preis einmalig"
-        monthlyPayments: "Monatliche Zahlungen"
-        monthlyPrice: "Preis monatlich"
-        quarterlyPayments: "Vierteljährliche Zahlungen"
-        quarterlyPrice: "Preis vierteljährlich"
-        yearlyPayments: "Jährliche Zahlungen"
-        yearlyPrice: "Preis jährlich"
+        once: 'Einmalig'
+        oncePayments: 'Einmalige Kosten'
+        oncePrice: 'einmalig'
+        monthly: 'Monatlich'
+        monthlyPayments: 'Monatliche Kosten'
+        monthlyPrice: 'monatlich'
+        quarterly: 'Quartalsweise'
+        quarterlyPayments: 'Vierteljährliche Kosten'
+        quarterlyPrice: 'vierteljährlich'
+        yearly: 'Jährlich'
+        yearlyPayments: 'Jährliche Kosten'
+        yearlyPrice: 'jährlich'
     SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
         BillingPeriodAdditionSingular: 'im ersten {period}, danach {price}'
         BillingPeriodAdditionPlural: 'in den ersten {duration} {period}, danach {price}'

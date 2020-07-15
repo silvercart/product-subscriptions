@@ -38,12 +38,16 @@ en:
         SubscriptionDurationPeriodYears: Years
         Then: then
     SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
+        once: 'Once'
         oncePayments: 'Single payments'
         oncePrice: 'Price once'
+        monthly: 'Monthly'
         monthlyPayments: 'Monthly payments'
         monthlyPrice: 'Price monthly'
+        quarterly: 'Quarterly'
         quarterlyPayments: 'Quarterly payments'
         quarterlyPrice: 'Price quarterly'
+        yearly: 'Yearly'
         yearlyPayments: 'Yearly payments'
         yearlyPrice: 'Price yearly'
     SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
