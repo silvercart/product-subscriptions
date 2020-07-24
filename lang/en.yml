@@ -10,7 +10,6 @@ en:
         BillingPeriod: 'Billing period'
         BillingPeriodAdditionSingular: 'in the first {period}'
         BillingPeriodAdditionPlural: 'in the first {duration} {period}'
-        BillingPeriodDesc: ''
         BillingPeriodOnce: once
         BillingPeriodMonthly: monthly
         BillingPeriodMonthlyAbbr: mo.
@@ -18,36 +17,32 @@ en:
         BillingPeriodQuarterlyAbbr: qtr.
         BillingPeriodYearly: yearly
         BillingPeriodYearlyAbbr: an.
-        DurationPeriodAddPluralMonths: 'months'
-        DurationPeriodAddPluralYears: 'years'
-        DurationPeriodAddSingularMonths: 'month'
-        DurationPeriodAddSingularYears: 'year'
+        DurationPeriodAddPluralMonths: months
+        DurationPeriodAddPluralYears: years
+        DurationPeriodAddSingularMonths: month
+        DurationPeriodAddSingularYears: year
         HasConsequentialCosts: 'Has consequential costs'
-        HasConsequentialCostsDesc: 'Activate the function "Has consequential costs" if this article has consequential costs together with its purchase price (e.g. "€29.99 once, then €4.99 monthly" / "€9.99 monthly for the first 6 months, then €19.99 monthly").'
+        HasConsequentialCostsDesc: 'Activate the function "Has consequential costs" if this article has consequential costs together with its onetime purchase price.'
         IsSubscription: 'Is subscription'
         IsSubscriptionDesc: 'Activate the function "Is subscription" if this article is payed in a frequent interval.'
         Once: once
         PriceGrossConsequentialCosts: 'Price consequential costs (gross)'
-        PriceGrossConsequentialCostsDesc: ''
         PriceNetConsequentialCosts: 'Price consequential costs (net)'
-        PriceNetConsequentialCostsDesc: ''
         SubscriptionDuration: 'Subscription duration'
-        SubscriptionDurationValue: ''
-        SubscriptionDurationPeriod: ''
         SubscriptionDurationPeriodMonths: Months
         SubscriptionDurationPeriodYears: Years
         Then: then
     SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
-        once: 'Once'
+        once: Once
         oncePayments: 'Single payments'
         oncePrice: 'Price once'
-        monthly: 'Monthly'
+        monthly: Monthly
         monthlyPayments: 'Monthly payments'
         monthlyPrice: 'Price monthly'
-        quarterly: 'Quarterly'
+        quarterly: Quarterly
         quarterlyPayments: 'Quarterly payments'
         quarterlyPrice: 'Price quarterly'
-        yearly: 'Yearly'
+        yearly: Yearly
         yearlyPayments: 'Yearly payments'
         yearlyPrice: 'Price yearly'
     SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:

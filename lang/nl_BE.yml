@@ -1,0 +1,50 @@
+nl_BE:
+    SilverCart:
+        Once: eenmalig
+    SilverCart\Subscriptions\Extensions\OrderPositionExtension:
+        PriceConsequentialCosts: 'Prijs Follow-upkosten (individueel)'
+        PriceTotalConsequentialCosts: 'Prijs Follow-upkosten (totaal)'
+        TaxConsequentialCosts: 'BTW Follow-upkosten  (individueel)'
+        TaxTotalConsequentialCosts: 'BTW Follow-upkosten (totaal)'
+    SilverCart\Subscriptions\Extensions\ProductExtension:
+        BillingPeriod: Factureringsperiode
+        BillingPeriodOnce: uniek
+        BillingPeriodMonthly: maandelĳks
+        BillingPeriodQuarterly: driemaandelijks
+        BillingPeriodYearly: jaarlijks
+        HasConsequentialCosts: 'Follow-upkosten zijn van toepassing'
+        HasConsequentialCostsDesc: 'Activeer de functie "Follow-upkosten zijn van toepassing" als voor dat artikel naast de eenmalige aankoopprijs ook herhaalde follow-upkosten van toepassing zijn.'
+        IsSubscription: 'Is abonnementsartikel'
+        IsSubscriptionDesc: 'Activeer de functie "Is abonnementsartikel" als de artikelprijs binnen een bepaald, regelmatig interval wordt gefactureerd.'
+        Once: uniek
+        PriceGrossConsequentialCosts: 'Prijs Follow-upkosten (bruto)'
+        PriceNetConsequentialCosts: 'Prijs Follow-upkosten (netto)'
+        SubscriptionDuration: Factureringstermijn
+        SubscriptionDurationPeriodMonths: Maanden
+        SubscriptionDurationPeriodYears: Jaar
+        Then: daarna
+        BillingPeriodAdditionSingular: 'in de eerste {period}'
+        BillingPeriodAdditionPlural: 'in de eerste {duration} {period}'
+        BillingPeriodMonthlyAbbr: maandelĳks
+        BillingPeriodQuarterlyAbbr: trimestrieel
+        BillingPeriodYearlyAbbr: jaarlijks
+        DurationPeriodAddPluralMonths: Maanden
+        DurationPeriodAddPluralYears: Jaren
+        DurationPeriodAddSingularMonths: Maand
+        DurationPeriodAddSingularYears: Jaar
+    SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
+        oncePayments: 'Eenmalige betalingen'
+        oncePrice: 'Prijs eenmalig'
+        monthlyPayments: 'Maandelijkse betalingen'
+        monthlyPrice: 'Prijs maandelijks'
+        quarterlyPayments: 'Driemaandelijkse betalingen'
+        quarterlyPrice: 'Prijs driemaandelijks'
+        yearlyPayments: 'Jaarlijkse betalingen'
+        yearlyPrice: 'Prijs per jaar'
+        once: eenmalig
+        monthly: maandelĳks
+        quarterly: Driemaandelijks
+        yearly: jaarlijks
+    SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
+        BillingPeriodAdditionSingular: 'in de eerste {period} , daarna {price}'
+        BillingPeriodAdditionPlural: 'in de eerste {duration} {period} , daarna {price}'

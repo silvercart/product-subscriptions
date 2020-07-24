@@ -1,0 +1,50 @@
+fr_BE:
+    SilverCart:
+        Once: unique
+    SilverCart\Subscriptions\Extensions\OrderPositionExtension:
+        PriceConsequentialCosts: 'Prix Frais de suivi (individuel)'
+        PriceTotalConsequentialCosts: 'Prix Frais de suivi (total)'
+        TaxConsequentialCosts: 'Taxes Frais de suivi (individuel)'
+        TaxTotalConsequentialCosts: 'Taxes Frais de suivi (total)'
+    SilverCart\Subscriptions\Extensions\ProductExtension:
+        BillingPeriod: 'Période de facturation'
+        BillingPeriodOnce: unique
+        BillingPeriodMonthly: mensuel
+        BillingPeriodQuarterly: trimestriel
+        BillingPeriodYearly: annuel
+        HasConsequentialCosts: 'Des frais de suivi s''appliquent'
+        HasConsequentialCostsDesc: 'Activez la fonction "Des frais de suivi s''appliquent" si pour cet article des frais de suivi répétitifs sont valides en plus du prix d''achat unique.'
+        IsSubscription: 'Article d''abonnement'
+        IsSubscriptionDesc: 'Activez la fonction "Est article d''abonnement" si le prix de l''article est facturé à un intervalle spécifique et régulier.'
+        Once: unique
+        PriceGrossConsequentialCosts: 'Prix Frais de suivi (brut)'
+        PriceNetConsequentialCosts: 'Prix Frais de suivi (net)'
+        SubscriptionDuration: 'Délai de facturation'
+        SubscriptionDurationPeriodMonths: Mois
+        SubscriptionDurationPeriodYears: Ans
+        Then: puis
+        BillingPeriodAdditionSingular: 'au cours de la première {period}'
+        BillingPeriodAdditionPlural: 'au cours des premières {duration} {period}'
+        BillingPeriodMonthlyAbbr: mensuel
+        BillingPeriodQuarterlyAbbr: trimestriel
+        BillingPeriodYearlyAbbr: annuel
+        DurationPeriodAddPluralMonths: mois
+        DurationPeriodAddPluralYears: Ans
+        DurationPeriodAddSingularMonths: mois
+        DurationPeriodAddSingularYears: An
+    SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
+        oncePayments: 'Paiements uniques'
+        oncePrice: 'Prix unique'
+        monthlyPayments: 'Paiements mensuels'
+        monthlyPrice: 'Prix mensuel'
+        quarterlyPayments: 'Paiements trimestriels'
+        quarterlyPrice: 'Prix trimestriel'
+        yearlyPayments: 'Paiements annuels'
+        yearlyPrice: 'Prix annuel'
+        once: Unique
+        monthly: mensuel
+        quarterly: Trimestriel
+        yearly: annuellement
+    SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
+        BillingPeriodAdditionSingular: 'au cours de la première {period}, puis {price}'
+        BillingPeriodAdditionPlural: 'au cours des premières {duration} {period}, puis {price}'
