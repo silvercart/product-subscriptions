@@ -23,12 +23,28 @@ it:
         SubscriptionDurationPeriodMonths: Mesi
         SubscriptionDurationPeriodYears: Anni
         Then: poi
+        BillingPeriodAdditionSingular: 'nel primo {period}'
+        BillingPeriodAdditionPlural: 'nel primo {duration} {period}'
+        BillingPeriodMonthlyAbbr: mensile
+        BillingPeriodQuarterlyAbbr: trimestrale
+        BillingPeriodYearlyAbbr: annuale
+        DurationPeriodAddPluralMonths: Mesi
+        DurationPeriodAddPluralYears: Anni
+        DurationPeriodAddSingularMonths: Mese
+        DurationPeriodAddSingularYears: Anno
     SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
-        oncePayments: 'Pagamenti una tantum'
-        oncePrice: 'Prezzo unico'
-        monthlyPayments: 'Pagamenti mensili'
-        monthlyPrice: 'Prezzo mensile'
-        quarterlyPayments: 'Pagamenti trimestrali'
-        quarterlyPrice: 'Prezzo trimestrale'
-        yearlyPayments: 'Pagamenti annuali'
-        yearlyPrice: 'Prezzo annuale'
+        oncePayments: 'Costi una tantum'
+        oncePrice: 'Una tantum'
+        monthlyPayments: 'Costi mensili'
+        monthlyPrice: Mensile
+        quarterlyPayments: 'Costi trimestrali'
+        quarterlyPrice: Trimestrale
+        yearlyPayments: 'Costi annuali'
+        yearlyPrice: Annuale
+        once: 'Una tantum'
+        monthly: Mensile
+        quarterly: Trimestrale
+        yearly: Annuale
+    SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
+        BillingPeriodAdditionSingular: 'nel primo {periodo}, poi {prezzo}'
+        BillingPeriodAdditionPlural: 'nel primo {durata} {periodo} {periodo}, poi {prezzo}'
