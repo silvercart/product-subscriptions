@@ -34,7 +34,7 @@ it:
         DurationPeriodAddSingularYears: Anno
     SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
         oncePayments: 'Costi una tantum'
-        oncePrice: 'Una tantum'
+        oncePrice: 'una tantum'
         monthlyPayments: 'Costi mensili'
         monthlyPrice: Mensile
         quarterlyPayments: 'Costi trimestrali'
@@ -46,5 +46,5 @@ it:
         quarterly: Trimestrale
         yearly: Annuale
     SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
-        BillingPeriodAdditionSingular: 'nel primo {periodo}, poi {prezzo}'
-        BillingPeriodAdditionPlural: 'nel primo {durata} {periodo} {periodo}, poi {prezzo}'
+        BillingPeriodAdditionSingular: 'nel primo {period}, poi {price}'
+        BillingPeriodAdditionPlural: 'nel primo {duration} {period}, poi {price}'
