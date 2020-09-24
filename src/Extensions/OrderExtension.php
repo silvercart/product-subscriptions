@@ -93,6 +93,7 @@ class OrderExtension extends DataExtension
                 $currency = $subscriptionPosition->getPrice()->getCurrency();
             }
             $orderPosition = OrderPosition::create();
+            $orderPosition->VoucherCode           = $voucher->code;
             $orderPosition->IsSubscriptionVoucher = true;
             $orderPosition->Title                 = $voucherPosition->SubscriptionTitle;
             $orderPosition->ProductDescription    = $voucherPosition->SubscriptionDescription;
