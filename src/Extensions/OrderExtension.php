@@ -3,6 +3,9 @@
 namespace SilverCart\Subscriptions\Extensions;
 
 use SilverCart\Admin\Model\Config;
+use SilverCart\Model\Order\OrderPosition;
+use SilverCart\Model\Order\ShoppingCartPosition;
+use SilverCart\Voucher\Model\ShoppingCartPosition as VoucherShoppingCartPosition;
 use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\ORM\FieldType\DBMoney;
@@ -24,15 +27,15 @@ class OrderExtension extends DataExtension
      * Called before a single shopping cart position is converted into / saved as
      * a order position.
      * 
-     * @param \SilverCart\Model\Order\ShoppingCartPosition &$shoppingCartPosition Shopping cart position
-     * @param \SilverCart\Model\Order\OrderPosition        &$orderPosition        Order position
+     * @param ShoppingCartPosition &$shoppingCartPosition Shopping cart position
+     * @param OrderPosition        &$orderPosition        Order position
      * 
      * @return void
      * 
      * @author Sebastian Diel <sdiel@pixeltricks.de>
      * @since 10.12.2018
      */
-    public function onBeforeConvertSingleShoppingCartPositionToOrderPosition(&$shoppingCartPosition, &$orderPosition)
+    public function onBeforeConvertSingleShoppingCartPositionToOrderPosition(ShoppingCartPosition &$shoppingCartPosition, OrderPosition &$orderPosition) : void
     {
         $orderPosition->IsSubscription = $shoppingCartPosition->isSubscription();
         if ($shoppingCartPosition->isSubscription()) {
@@ -53,14 +56,69 @@ class OrderExtension extends DataExtension
     }
     
     /**
+     * Checks the converted shopping cart position for a subscription voucher.
+     * 
+     * @param ShoppingCartPosition $shoppingCartPosition Shopping cart position
+     * @param OrderPosition        $orderPosition        Converted order position
+     * 
+     * @return void
+     */
+    public function onAfterConvertSingleShoppingCartPositionToOrderPosition(ShoppingCartPosition &$shoppingCartPosition, OrderPosition &$orderPosition) : void
+    {
+        $voucherPositions = VoucherShoppingCartPosition::get()->filter('SubscriptionPositionID', $shoppingCartPosition->ID);
+        if ($voucherPositions->exists()) {
+            foreach ($voucherPositions as $voucherPosition) {
+                /* @var $voucherPosition VoucherShoppingCartPosition */
+                $this->convertVoucherPositionToOrderPosition($voucherPosition);
+            }
+        }
+    }
+    
+    /**
+     * Converts the subscription voucher position to an order position.
+     * 
+     * @param VoucherShoppingCartPosition $voucherPosition Voucher position to convert data for
+     * 
+     * @return void
+     */
+    public function convertVoucherPositionToOrderPosition(VoucherShoppingCartPosition $voucherPosition) : void
+    {
+        $voucher = $voucherPosition->Voucher();
+        if ($voucher->exists()
+         && $voucher->IsSubscriptionVoucher
+        ) {
+            $currency = Config::DefaultCurrency();
+            $subscriptionPosition = $voucher->getSubscriptionPosition();
+            if ($subscriptionPosition !== null) {
+                $currency = $subscriptionPosition->getPrice()->getCurrency();
+            }
+            $orderPosition = OrderPosition::create();
+            $orderPosition->IsSubscriptionVoucher = true;
+            $orderPosition->Title                 = $voucherPosition->SubscriptionTitle;
+            $orderPosition->ProductDescription    = $voucherPosition->SubscriptionDescription;
+            $orderPosition->TaxRate               = $voucher->Tax()->Rate;
+            $orderPosition->Price->setAmount(0);
+            $orderPosition->Price->setCurrency($currency);
+            $orderPosition->PriceTotal->setAmount(0);
+            $orderPosition->PriceTotal->setCurrency($currency);
+            $orderPosition->Tax                   = 0;
+            $orderPosition->TaxTotal              = 0;
+            $orderPosition->Quantity              = 1;
+            $orderPosition->OrderID               = $this->owner->ID;
+            $orderPosition->write();
+            unset($orderPosition);
+        }
+    }
+    
+    /**
      * Returns whether the order contains products with subscriptions.
      * 
-     * @return boolean
+     * @return bool
      * 
      * @author Sebastian Diel <sdiel@pixeltricks.de>
      * @since 23.11.2018
      */
-    public function hasSubscriptions()
+    public function hasSubscriptions() : bool
     {
         $hasSubscriptions = false;
         foreach ($this->owner->OrderPositions() as $position) {
@@ -80,7 +138,7 @@ class OrderExtension extends DataExtension
      * @author Sebastian Diel <sdiel@pixeltricks.de>
      * @since 10.12.2018
      */
-    public function PositionsWithSubscription()
+    public function PositionsWithSubscription() : ArrayList
     {
         $positionsWithSubscription = ArrayList::create();
         foreach ($this->owner->OrderPositions() as $position) {

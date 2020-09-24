@@ -1,0 +1,1 @@
+<span class="font-weight-bold font-italic">{$valueInPercent}%</span> {$i18n_singular_name} <span class="font-weight-bold">{$code}</span>

@@ -1,7 +1,30 @@
 de:
     SilverCart:
         Once: einmalig
+        DiscountMonthly:
+            one: 'Der erste Monat ist für Sie kostenlos.'
+            other: 'Die ersten {count} Monate sind für Sie kostenlos.'
+        DiscountQuarterly:
+            one: 'Das erste Quartal ist für Sie kostenlos.'
+            other: 'Die ersten {count} Quartale sind für Sie kostenlos.'
+        DiscountYearly:
+            one: 'Das erste Jahr ist für Sie kostenlos.'
+            other: 'Die ersten {count} Jahre sind für Sie kostenlos.'
+        DiscountRelativeMonthly:
+            one: 'Der erste Monat ist für Sie um {amount}% reduziert.'
+            other: 'Die ersten {count} Monate sind für Sie um {amount}% reduziert.'
+        DiscountRelativeQuarterly:
+            one: 'Das erste Quartal ist für Sie um {amount}% reduziert.'
+            other: 'Die ersten {count} Quartale sind für Sie um {amount}% reduziert.'
+        DiscountRelativeYearly:
+            one: 'Das erste Jahr ist für Sie um {amount}% reduziert.'
+            other: 'Die ersten {count} Jahre sind für Sie um {amount}% reduziert.'
+        DiscountMonthlyFirst: 'Der {count}. Monat ist auf {price} reduziert.'
+    SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
+        PeriodCount: 'Abrechnungsperioden'
+        PeriodCountDesc: 'Anzahl der Abrechnungsperioden (Monate/Quartale/Jahre), die rabattiert werden. Für einen unbegrenzten Rabatt 0 (Null) angeben. Nur wirksam, wenn "Auf Abo-Artikel anwenden" aktiviert ist.'
     SilverCart\Subscriptions\Extensions\OrderPositionExtension:
+        IsSubscriptionVoucher: 'Ist Gutschein für Abo-Artikel'
         PriceConsequentialCosts: 'Preis Folgekosten (einzeln)'
         PriceTotalConsequentialCosts: 'Preis Folgekosten (gesamt)'
         TaxConsequentialCosts: 'Steuer Folgekosten (einzeln)'
@@ -48,3 +71,6 @@ de:
     SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
         BillingPeriodAdditionSingular: 'im ersten {period}, danach {price}'
         BillingPeriodAdditionPlural: 'in den ersten {duration} {period}, danach {price}'
+    SilverCart\Voucher\Model\Voucher:
+        IsSubscriptionVoucher: 'Auf Abo-Artikel anwenden'
+        IsSubscriptionVoucherDesc: 'Wenn aktiviert, ist dieser Gutschein ausschließlich auf Abo-Artikel (Abrechnung monatlich, quartalsweise oder jählich) anwendbar. Ansonsten wird der Gutschein auf Festpreis (einmalige Abrechnung) angewandt.'

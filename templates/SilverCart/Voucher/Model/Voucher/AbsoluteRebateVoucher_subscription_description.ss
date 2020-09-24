@@ -1,0 +1,2 @@
+<%t Voucher.ValidFor 'Valid for' %> <u>1x</u> <span class="font-italic">{$SubscriptionProduct.ProductNumberShop}</span> <span class="font-weight-bold">{$SubscriptionProduct.Title}</span>.<br/>
+{$DiscountInfo}

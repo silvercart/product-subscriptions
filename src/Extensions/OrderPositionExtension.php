@@ -30,6 +30,7 @@ class OrderPositionExtension extends DataExtension
      */
     private static $db = [
         'IsSubscription'                               => 'Boolean(0)',
+        'IsSubscriptionVoucher'                        => 'Boolean(0)',
         'BillingPeriod'                                => 'Enum(",monthly,quarterly,yearly","")',
         'BillingPeriodConsequentialCosts'              => 'Enum(",monthly,quarterly,yearly","")',
         'PriceConsequentialCosts'                      => DBMoney::class,
@@ -141,6 +142,10 @@ class OrderPositionExtension extends DataExtension
      */
     public function updatePriceNice(&$priceNice, bool $withTax = null, string $template = null) : void
     {
+        if ($this->owner->IsSubscriptionVoucher) {
+            $priceNice = '';
+            return;
+        }
         if ($template === null) {
             $template = 'Price';
         }

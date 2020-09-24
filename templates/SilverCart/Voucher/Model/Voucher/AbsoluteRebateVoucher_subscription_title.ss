@@ -1,0 +1,1 @@
+{$i18n_singular_name} <span class="font-weight-bold">{$code}</span> ({$fieldLabel('Value')}: <i>{$Value.Nice}</i>{$plus})

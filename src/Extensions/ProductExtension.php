@@ -26,6 +26,9 @@ use SilverStripe\ORM\FieldType\DBInt;
  */
 class ProductExtension extends DataExtension
 {
+    const BILLING_PERIOD_MONTHLY   = 'monthly';
+    const BILLING_PERIOD_QUARTERLY = 'quarterly';
+    const BILLING_PERIOD_YEARLY    = 'yearly';
     /**
      * DB attributes.
      *
