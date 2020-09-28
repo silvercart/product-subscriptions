@@ -2,6 +2,7 @@
 
 namespace SilverCart\Subscriptions\Extensions\Model\Vouchers;
 
+use SilverCart\Admin\Model\Config;
 use SilverCart\Model\Customer\Customer;
 use SilverCart\Model\Order\ShoppingCartPosition;
 use SilverCart\Model\Order\ShoppingCartPositionNotice;
@@ -76,7 +77,9 @@ class VoucherExtension extends DataExtension
             $isValid = false;
             foreach ($shoppingCartPositions as $position) {
                 /* @var $position ShoppingCartPosition */ 
-                if ($position->isSubscription()) {
+                if ($position->isSubscription()
+                 && $position->Product()->getPrice()->getAmount() > 0
+                ) {
                     $isValid = true;
                     break;
                 }
@@ -117,7 +120,11 @@ class VoucherExtension extends DataExtension
             /* @var $shoppingCart \SilverCart\Model\Order\ShoppingCart */
             $voucherPosition = VoucherShoppingCartPosition::getVoucherShoppingCartPosition($shoppingCart->ID, $this->owner->ID);
             if ($voucherPosition instanceof VoucherShoppingCartPosition) {
-                $subscriptionProducts = $this->owner->RestrictToProducts()->filter('IsSubscription', true);
+                $priceType            = ucfirst(strtolower(Config::Pricetype()));
+                $subscriptionProducts = $this->owner->RestrictToProducts()->filter([
+                    'IsSubscription'                      => true,
+                    "Price{$priceType}Amount:GreaterThan" => 0,
+                ]);
                 if ($subscriptionProducts->exists()) {
                     $productIDs      = $shoppingCart->ShoppingCartPositions()->map('ID', 'ProductID')->toArray();
                     $matchingProduct = $subscriptionProducts->filter('ID', $productIDs)->first();
@@ -128,7 +135,9 @@ class VoucherExtension extends DataExtension
                 if ($position === null) {
                     foreach ($shoppingCart->ShoppingCartPositions() as $shoppingCartPosition) {
                         /* @var $shoppingCartPosition ShoppingCartPosition */ 
-                        if ($shoppingCartPosition->isSubscription()) {
+                        if ($shoppingCartPosition->isSubscription()
+                         && $shoppingCartPosition->Product()->getPrice()->getAmount() > 0
+                        ) {
                             $position = $shoppingCartPosition;
                             break;
                         }
