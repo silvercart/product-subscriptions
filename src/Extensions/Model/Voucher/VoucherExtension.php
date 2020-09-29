@@ -71,17 +71,27 @@ class VoucherExtension extends DataExtension
      */
     public function updateIsValidForShoppingCartItems(bool &$isValid, SS_List $shoppingCartPositions) : void
     {
-        if ($isValid
-         && $this->owner->IsSubscriptionVoucher
-        ) {
-            $isValid = false;
-            foreach ($shoppingCartPositions as $position) {
-                /* @var $position ShoppingCartPosition */ 
-                if ($position->isSubscription()
-                 && $position->Product()->getPrice()->getAmount() > 0
-                ) {
-                    $isValid = true;
-                    break;
+        if ($isValid) {
+            if ($this->owner->IsSubscriptionVoucher) {
+                $isValid = false;
+                foreach ($shoppingCartPositions as $position) {
+                    /* @var $position ShoppingCartPosition */ 
+                    if ($position->isSubscription()
+                     && $position->Product()->getPrice()->getAmount() > 0
+                    ) {
+                        $isValid = true;
+                        break;
+                    }
+                }
+            } else {
+                foreach ($shoppingCartPositions as $position) {
+                    /* @var $position ShoppingCartPosition */ 
+                    if ($position->isSubscription()) {
+                        $isValid = false;
+                    } else {
+                        $isValid = true;
+                        break;
+                    }
                 }
             }
         }
