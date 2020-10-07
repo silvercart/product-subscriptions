@@ -61,26 +61,52 @@ class VoucherExtension extends DataExtension
         $fields->dataFieldByName('IsSubscriptionVoucher')->setDescription($this->owner->fieldLabel('IsSubscriptionVoucherDesc'));
     }
     
+    public function updateFieldLabels(&$labels)
+    {
+        $labels = array_merge($labels, [
+            'CantBeCombinedWith' => _t(self::class . '.CantBeCombinedWith', 'This voucher cannot be combined with the voucher which is already in your cart.'),
+        ]);
+    }
+    
     /**
      * Updates the shopping cart items validity check.
      * 
      * @param bool    &$isValid              Result of the original check
      * @param SS_List $shoppingCartPositions Shopping cart positions to check
+     * @param string  &$message              Alternative message to display in cart
      * 
      * @return void
      */
-    public function updateIsValidForShoppingCartItems(bool &$isValid, SS_List $shoppingCartPositions) : void
+    public function updateIsValidForShoppingCartItems(bool &$isValid, SS_List $shoppingCartPositions, string &$message = null) : void
     {
         if ($isValid) {
             if ($this->owner->IsSubscriptionVoucher) {
                 $isValid = false;
                 foreach ($shoppingCartPositions as $position) {
-                    /* @var $position ShoppingCartPosition */ 
+                    /* @var $position ShoppingCartPosition */
                     if ($position->isSubscription()
                      && $position->Product()->getPrice()->getAmount() > 0
                     ) {
                         $isValid = true;
                         break;
+                    }
+                }
+                if ($isValid) {
+                    $customer = Customer::currentUser();
+                    if ($customer instanceof Member) {
+                        $cart = $customer->getCart();
+                        if ($cart instanceof \SilverCart\Model\Order\ShoppingCart) {
+                            foreach ($cart->VoucherPositions() as $voucherPosition) {
+                                /* @var $voucherPosition VoucherShoppingCartPosition */
+                                if ($voucherPosition->SubscriptionPosition()->exists()
+                                 && (int) $voucherPosition->Voucher()->ID !== (int) $this->owner->ID
+                                ) {
+                                    $isValid = false;
+                                    $message = $this->owner->fieldLabel('CantBeCombinedWith');
+                                    break;
+                                }
+                            }
+                        }
                     }
                 }
             } else {

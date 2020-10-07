@@ -23,6 +23,8 @@ de:
     SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
         PeriodCount: 'Abrechnungsperioden'
         PeriodCountDesc: 'Anzahl der Abrechnungsperioden (Monate/Quartale/Jahre), die rabattiert werden. Für einen unbegrenzten Rabatt 0 (Null) angeben. Nur wirksam, wenn "Auf Abo-Artikel anwenden" aktiviert ist.'
+    SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:
+        CantBeCombinedWith: 'Dieser Gutschein ist nicht mit einem anderen Gutschein in Ihrem Warenkorb kombinierbar.'
     SilverCart\Subscriptions\Extensions\OrderPositionExtension:
         IsSubscriptionVoucher: 'Ist Gutschein für Abo-Artikel'
         PriceConsequentialCosts: 'Preis Folgekosten (einzeln)'
