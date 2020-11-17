@@ -106,6 +106,16 @@ class OrderExtension extends DataExtension
             $orderPosition->TaxTotal              = 0;
             $orderPosition->Quantity              = 1;
             $orderPosition->OrderID               = $this->owner->ID;
+            $subscriptionOrderPosition = OrderPosition::get()
+                    ->filter([
+                        'OrderID'       => $this->owner->ID,
+                        'Quantity'      => $subscriptionPosition->Quantity,
+                        'ProductNumber' => $subscriptionPosition->getProductNumberShop(),
+                    ])
+                    ->first();
+            if ($subscriptionOrderPosition !== null) {
+                $orderPosition->SubscriptionPositionID = $subscriptionOrderPosition->ID;
+            }
             $orderPosition->write();
             unset($orderPosition);
         }

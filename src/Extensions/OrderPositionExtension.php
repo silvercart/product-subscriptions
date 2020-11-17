@@ -43,6 +43,22 @@ class OrderPositionExtension extends DataExtension
         'SubscriptionDurationPeriodConsequentialCosts' => 'Enum(",months,years","")',
     ];
     /**
+     * Has one relations.
+     *
+     * @var type 
+     */
+    private static $has_one = [
+        'SubscriptionPosition' => OrderPosition::class,
+    ];
+    /**
+     * Has one back side relations (1:1).
+     *
+     * @var array
+     */
+    private static $belongs_to = [
+        'SubscriptionVoucherPosition' => OrderPosition::class . '.SubscriptionPosition',
+    ];
+    /**
      * Defaults for DB attributes.
      *
      * @var array
