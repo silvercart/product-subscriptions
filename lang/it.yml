@@ -1,15 +1,35 @@
 it:
     SilverCart:
         Once: unico
+        DiscountMonthly:
+            one: 'Per te il primo mese è gratis.'
+            other: 'Per te gratis i primi {count} mesi.'
+        DiscountQuarterly:
+            one: 'Per te gratis i primi tre mesi.'
+            other: 'Per te gratis i primi {count} trimestri.'
+        DiscountYearly:
+            one: 'Per te gratis il primo anno.'
+            other: 'Per te gratis primi  {count}  anni.'
+        DiscountRelativeMonthly:
+            one: 'Il primo mese avrai uno sconto del {amount}%.'
+            other: 'I primi {count} mesi avrai uno sconto del {amount}%.'
+        DiscountRelativeQuarterly:
+            one: 'Il primo trimeste avrai uno sconto del {amount}%.'
+            other: 'I primi {count} trimestri avrai uno sconto del {amount}%.'
+        DiscountRelativeYearly:
+            one: 'Il primo anno avrai uno sconto del {amount}%.'
+            other: 'I primi {count} anni avrai uno sconto del {amount}%.'
+        DiscountMonthlyFirst: 'Il {count} . Il mese è ridotto a {price} .'
     SilverCart\Subscriptions\Extensions\OrderPositionExtension:
         PriceConsequentialCosts: 'Costi accessori (singoli)'
         PriceTotalConsequentialCosts: 'Costi accessori (totale)'
         TaxConsequentialCosts: 'Imposta su costi accessori (totale)'
         TaxTotalConsequentialCosts: 'Imposta su costi accessori (totale)'
+        IsSubscriptionVoucher: 'Coupon per articoli in abbonamento'
     SilverCart\Subscriptions\Extensions\ProductExtension:
         BillingPeriod: 'Periodo di fatturazione'
         BillingPeriodOnce: 'una tantum'
-        BillingPeriodMonthly: mensile
+        BillingPeriodMonthly: 'al mese'
         BillingPeriodQuarterly: trimestrale
         BillingPeriodYearly: annuale
         HasConsequentialCosts: 'ha costi accessori'
@@ -23,9 +43,9 @@ it:
         SubscriptionDurationPeriodMonths: Mesi
         SubscriptionDurationPeriodYears: Anni
         Then: poi
-        BillingPeriodAdditionSingular: 'nel primo {period}'
-        BillingPeriodAdditionPlural: 'nel primo {duration} {period}'
-        BillingPeriodMonthlyAbbr: mensile
+        BillingPeriodAdditionSingular: 'per il primo {period}'
+        BillingPeriodAdditionPlural: 'per i primi {duration} {period}'
+        BillingPeriodMonthlyAbbr: 'al mese'
         BillingPeriodQuarterlyAbbr: trimestrale
         BillingPeriodYearlyAbbr: annuale
         DurationPeriodAddPluralMonths: Mesi
@@ -34,17 +54,25 @@ it:
         DurationPeriodAddSingularYears: Anno
     SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
         oncePayments: 'Costi una tantum'
-        oncePrice: 'una tantum'
+        oncePrice: 'Una tantum'
         monthlyPayments: 'Costi mensili'
-        monthlyPrice: Mensile
+        monthlyPrice: 'al mese'
         quarterlyPayments: 'Costi trimestrali'
         quarterlyPrice: Trimestrale
         yearlyPayments: 'Costi annuali'
         yearlyPrice: Annuale
         once: 'Una tantum'
-        monthly: Mensile
+        monthly: "al mese\n"
         quarterly: Trimestrale
         yearly: Annuale
     SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
-        BillingPeriodAdditionSingular: 'nel primo {period}, poi {price}'
-        BillingPeriodAdditionPlural: 'nel primo {duration} {period}, poi {price}'
+        BillingPeriodAdditionSingular: 'per il primo {period}, successivamente {price}'
+        BillingPeriodAdditionPlural: 'per i primi {duration} {period}, successivamente {price}'
+    SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
+        PeriodCount: 'Periodi di fatturazione'
+        PeriodCountDesc: 'Periodi di fatturazione (mensile/trimestrale/annuale) scontati. Immettere 0 (zero) per uno sconto illimitato. Efficace solamente se attiva la voce "Applica agli articoli in abbonamento".'
+    SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:
+        CantBeCombinedWith: 'Questo coupon non può essere utilizzato insieme ad un altro coupon già presente nel tuo carrello.'
+    SilverCart\Voucher\Model\Voucher:
+        IsSubscriptionVoucher: 'Applicare agli articoli in abbonamento'
+        IsSubscriptionVoucherDesc: 'Se attivo, questo coupon è utilizzabile esclusivamente per gli articoli in abbonamento (fatturazione mensile, trimestrale o annuale). In alternativa il coupon verrà utilizzato per gli articoli a prezzo fisso (fatturazione una tantum).'

@@ -21,7 +21,7 @@ de:
             other: 'Die ersten {count} Jahre sind für Sie um {amount}% reduziert.'
         DiscountMonthlyFirst: 'Der {count}. Monat ist auf {price} reduziert.'
     SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
-        PeriodCount: 'Abrechnungsperioden'
+        PeriodCount: Abrechnungsperioden
         PeriodCountDesc: 'Anzahl der Abrechnungsperioden (Monate/Quartale/Jahre), die rabattiert werden. Für einen unbegrenzten Rabatt 0 (Null) angeben. Nur wirksam, wenn "Auf Abo-Artikel anwenden" aktiviert ist.'
     SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:
         CantBeCombinedWith: 'Dieser Gutschein ist nicht mit einem anderen Gutschein in Ihrem Warenkorb kombinierbar.'

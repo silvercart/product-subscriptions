@@ -1,26 +1,37 @@
 en:
     SilverCart:
         Once: once
+        DiscountMonthly:
+            one: 'The first month is cost free.'
+            other: 'The first {count} monthns are cost free.'
+        DiscountQuarterly:
+            one: 'The first quartal is cost free.'
+            other: 'The first {count} quartals are free.'
+        DiscountYearly:
+            one: 'The first years is cost free for you.'
+            other: 'The first {count} years are cost free for you.'
+        DiscountRelativeMonthly:
+            one: 'The first month is reduced for you by {amount}%.'
+            other: 'The first {count} months are reduced for you by {amount}%.'
+        DiscountRelativeQuarterly:
+            one: 'The first quartal is reduced for you by {amount}%.'
+            other: 'The first {count} quartals are reduced for you by {amount}%.'
+        DiscountRelativeYearly:
+            one: 'The first year is reduced for you by {amount}%.'
+            other: 'The first {count} years are reduced for you by {amount}%.'
+        DiscountMonthlyFirst: 'The {count}. month is reduced to {price}.'
     SilverCart\Subscriptions\Extensions\OrderPositionExtension:
         PriceConsequentialCosts: 'Price consequential costs (single)'
         PriceTotalConsequentialCosts: 'Price consequential costs (total)'
         TaxConsequentialCosts: 'Tax consequential costs (single)'
         TaxTotalConsequentialCosts: 'Tax consequential costs (total)'
+        IsSubscriptionVoucher: 'Is a voucher for subscription articles'
     SilverCart\Subscriptions\Extensions\ProductExtension:
         BillingPeriod: 'Billing period'
-        BillingPeriodAdditionSingular: 'in the first {period}'
-        BillingPeriodAdditionPlural: 'in the first {duration} {period}'
         BillingPeriodOnce: once
         BillingPeriodMonthly: monthly
-        BillingPeriodMonthlyAbbr: mo.
         BillingPeriodQuarterly: quarterly
-        BillingPeriodQuarterlyAbbr: qtr.
         BillingPeriodYearly: yearly
-        BillingPeriodYearlyAbbr: an.
-        DurationPeriodAddPluralMonths: months
-        DurationPeriodAddPluralYears: years
-        DurationPeriodAddSingularMonths: month
-        DurationPeriodAddSingularYears: year
         HasConsequentialCosts: 'Has consequential costs'
         HasConsequentialCostsDesc: 'Activate the function "Has consequential costs" if this article has consequential costs together with its onetime purchase price.'
         IsSubscription: 'Is subscription'
@@ -32,19 +43,36 @@ en:
         SubscriptionDurationPeriodMonths: Months
         SubscriptionDurationPeriodYears: Years
         Then: then
+        BillingPeriodAdditionSingular: 'in the first {period}'
+        BillingPeriodAdditionPlural: 'in the first {duration} {period}'
+        BillingPeriodMonthlyAbbr: mo.
+        BillingPeriodQuarterlyAbbr: qtr.
+        BillingPeriodYearlyAbbr: an.
+        DurationPeriodAddPluralMonths: months
+        DurationPeriodAddPluralYears: years
+        DurationPeriodAddSingularMonths: month
+        DurationPeriodAddSingularYears: year
     SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
-        once: Once
         oncePayments: 'Single payments'
         oncePrice: 'Price once'
-        monthly: Monthly
         monthlyPayments: 'Monthly payments'
         monthlyPrice: 'Price monthly'
-        quarterly: Quarterly
         quarterlyPayments: 'Quarterly payments'
         quarterlyPrice: 'Price quarterly'
-        yearly: Yearly
         yearlyPayments: 'Yearly payments'
         yearlyPrice: 'Price yearly'
+        once: Once
+        monthly: Monthly
+        quarterly: Quarterly
+        yearly: Yearly
     SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
         BillingPeriodAdditionSingular: 'in the first {period}, then {price}'
         BillingPeriodAdditionPlural: 'in the first {duration} {period}, then {price}'
+    SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
+        PeriodCount: 'Accounting periods'
+        PeriodCountDesc: 'Number of accounting periods (months/quarters/years) that are discounted. For an unlimited discount, specify 0 (zero). Only effective if "Apply to subscription items" is activated.'
+    SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:
+        CantBeCombinedWith: 'This voucher cannot be combined with any other voucher in your shopping cart.'
+    SilverCart\Voucher\Model\Voucher:
+        IsSubscriptionVoucher: 'Apply to subscription articles'
+        IsSubscriptionVoucherDesc: 'If activated, this voucher is only applicable to subscription items (billing monthly, quarterly or annually). Otherwise the voucher is applied to fixed price (one-time billing).'

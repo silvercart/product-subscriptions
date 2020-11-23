@@ -1,11 +1,31 @@
 fr_BE:
     SilverCart:
         Once: unique
+        DiscountMonthly:
+            one: 'Le premier mois est gratuit pour vous.'
+            other: 'Les premiers {count} mois sont gratuits pour vous.'
+        DiscountQuarterly:
+            one: 'Le premier trimestre est gratuit pour vous.'
+            other: 'Les premiers {count} trimestres sont gratuits pour vous.'
+        DiscountYearly:
+            one: 'La première année est gratuite pour vous.'
+            other: 'Les premières {count} années sont gratuites pour vous.'
+        DiscountRelativeMonthly:
+            one: 'Le premier mois est réduit de {amount}% pour vous.'
+            other: 'Les premiers {count} mois sont réduits de {amount}% pour vous.'
+        DiscountRelativeQuarterly:
+            one: 'Le premier trimestre est réduit de {amount}% pour vous.'
+            other: 'Les premiers {count} trimestres sont réduits de {amount}% pour vous.'
+        DiscountRelativeYearly:
+            one: 'La première année est réduite de {amount}% pour vous.'
+            other: 'Les premières {count} années sont réduites de {amount}% pour vous.'
+        DiscountMonthlyFirst: 'Le {count} mois est réduit à {price} .'
     SilverCart\Subscriptions\Extensions\OrderPositionExtension:
         PriceConsequentialCosts: 'Prix Frais de suivi (individuel)'
         PriceTotalConsequentialCosts: 'Prix Frais de suivi (total)'
         TaxConsequentialCosts: 'Taxes Frais de suivi (individuel)'
         TaxTotalConsequentialCosts: 'Taxes Frais de suivi (total)'
+        IsSubscriptionVoucher: 'Est un bon pour des articles d''abonnement'
     SilverCart\Subscriptions\Extensions\ProductExtension:
         BillingPeriod: 'Période de facturation'
         BillingPeriodOnce: unique
@@ -48,3 +68,11 @@ fr_BE:
     SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
         BillingPeriodAdditionSingular: 'au cours de la première {period}, puis {price}'
         BillingPeriodAdditionPlural: 'au cours des premières {duration} {period}, puis {price}'
+    SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
+        PeriodCount: 'Périodes de facturation'
+        PeriodCountDesc: 'Nombre de périodes de facturation (mois/trimestres/années) pour lesquelles une réduction est accordée. Pour une réduction illimitée, indiquez 0 (zéro). Fonctionne seulement si "Appliquer aux articles d’abonnement" est activé.'
+    SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:
+        CantBeCombinedWith: 'Ce bon ne peut pas être combiné avec un autre bon dans votre panier.'
+    SilverCart\Voucher\Model\Voucher:
+        IsSubscriptionVoucher: 'Appliquer aux articles d’abonnement'
+        IsSubscriptionVoucherDesc: 'S''il est activé, ce bon n''est applicable qu''aux articles d''abonnement (facturation mensuelle, trimestrielle ou annuelle). Sinon, le bon est appliqué à un prix fixe (facturation unique).'
