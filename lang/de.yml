@@ -21,6 +21,8 @@ de:
             other: 'Die ersten {count} Jahre sind für Sie um {amount}% reduziert.'
         DiscountMonthlyFirst: 'Der {count}. Monat ist auf {price} reduziert.'
     SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
+        CanBeUsedForMultiplePositions: 'Auf mehrere Abo-Artikel anwenden'
+        CanBeUsedForMultiplePositionsDesc: 'Wird diese Option in Kombination mit "Auf Abo-Artikel anwenden" aktiviert, ist der Gutschein auf alle Abo-Artikel, die sich im Warenkorb befinden, gültig. Über den Tab "An Artikel binden" kann diese Option weiter eingeschränkt werden.'
         PeriodCount: Abrechnungsperioden
         PeriodCountDesc: 'Anzahl der Abrechnungsperioden (Monate/Quartale/Jahre), die rabattiert werden. Für einen unbegrenzten Rabatt 0 (Null) angeben. Nur wirksam, wenn "Auf Abo-Artikel anwenden" aktiviert ist.'
     SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:

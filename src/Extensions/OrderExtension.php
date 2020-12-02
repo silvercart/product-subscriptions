@@ -88,36 +88,43 @@ class OrderExtension extends DataExtension
          && $voucher->IsSubscriptionVoucher
         ) {
             $currency = Config::DefaultCurrency();
-            $subscriptionPosition = $voucher->getSubscriptionPosition();
-            if ($subscriptionPosition !== null) {
-                $currency = $subscriptionPosition->getPrice()->getCurrency();
+            if ($voucher->hasMethod('getSubscriptionPositions')) {
+                $subscriptionPositions = $voucher->getSubscriptionPositions();
+            } else {
+                $subscriptionPositions = ArrayList::create();
+                $subscriptionPositions->push($voucher->getSubscriptionPosition());
             }
-            $orderPosition = OrderPosition::create();
-            $orderPosition->VoucherCode           = $voucher->code;
-            $orderPosition->IsSubscriptionVoucher = true;
-            $orderPosition->Title                 = $voucherPosition->SubscriptionTitle;
-            $orderPosition->ProductDescription    = $voucherPosition->SubscriptionDescription;
-            $orderPosition->TaxRate               = $voucher->Tax()->Rate;
-            $orderPosition->Price->setAmount(0);
-            $orderPosition->Price->setCurrency($currency);
-            $orderPosition->PriceTotal->setAmount(0);
-            $orderPosition->PriceTotal->setCurrency($currency);
-            $orderPosition->Tax                   = 0;
-            $orderPosition->TaxTotal              = 0;
-            $orderPosition->Quantity              = 1;
-            $orderPosition->OrderID               = $this->owner->ID;
-            $subscriptionOrderPosition = OrderPosition::get()
-                    ->filter([
-                        'OrderID'       => $this->owner->ID,
-                        'Quantity'      => $subscriptionPosition->Quantity,
-                        'ProductNumber' => $subscriptionPosition->getProductNumberShop(),
-                    ])
-                    ->first();
-            if ($subscriptionOrderPosition !== null) {
-                $orderPosition->SubscriptionPositionID = $subscriptionOrderPosition->ID;
+            foreach ($subscriptionPositions as $subscriptionPosition) {
+                if ($subscriptionPosition !== null) {
+                    $currency = $subscriptionPosition->getPrice()->getCurrency();
+                }
+                $orderPosition = OrderPosition::create();
+                $orderPosition->VoucherCode           = $voucher->code;
+                $orderPosition->IsSubscriptionVoucher = true;
+                $orderPosition->Title                 = $voucherPosition->SubscriptionTitle;
+                $orderPosition->ProductDescription    = (string) $voucher->getVoucherDescription($subscriptionPosition);//$voucherPosition->SubscriptionDescription;
+                $orderPosition->TaxRate               = $voucher->Tax()->Rate;
+                $orderPosition->Price->setAmount(0);
+                $orderPosition->Price->setCurrency($currency);
+                $orderPosition->PriceTotal->setAmount(0);
+                $orderPosition->PriceTotal->setCurrency($currency);
+                $orderPosition->Tax                   = 0;
+                $orderPosition->TaxTotal              = 0;
+                $orderPosition->Quantity              = 1;
+                $orderPosition->OrderID               = $this->owner->ID;
+                $subscriptionOrderPosition = OrderPosition::get()
+                        ->filter([
+                            'OrderID'       => $this->owner->ID,
+                            'Quantity'      => $subscriptionPosition->Quantity,
+                            'ProductNumber' => $subscriptionPosition->getProductNumberShop(),
+                        ])
+                        ->first();
+                if ($subscriptionOrderPosition !== null) {
+                    $orderPosition->SubscriptionPositionID = $subscriptionOrderPosition->ID;
+                }
+                $orderPosition->write();
+                unset($orderPosition);
             }
-            $orderPosition->write();
-            unset($orderPosition);
         }
     }
     

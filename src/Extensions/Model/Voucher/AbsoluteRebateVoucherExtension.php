@@ -3,7 +3,9 @@
 namespace SilverCart\Subscriptions\Extensions\Model\Vouchers;
 
 use SilverCart\Admin\Model\Config;
+use SilverCart\Model\Customer\Customer;
 use SilverCart\Model\Order\ShoppingCart;
+use SilverCart\Model\Order\ShoppingCartPosition;
 use SilverCart\Model\Order\ShoppingCartPositionNotice;
 use SilverCart\Model\Pages\CartPageController;
 use SilverCart\Model\Pages\CheckoutStepController;
@@ -14,7 +16,9 @@ use SilverCart\Voucher\Model\Voucher;
 use SilverCart\Voucher\View\VoucherPrice;
 use SilverStripe\Control\Controller;
 use SilverStripe\ORM\DataExtension;
+use SilverStripe\ORM\FieldType\DBHTMLText;
 use SilverStripe\ORM\FieldType\DBMoney;
+use SilverStripe\Security\Member;
 
 /**
  * Extension for the SilverCart AbsoluteRebateVoucher.
@@ -26,7 +30,7 @@ use SilverStripe\ORM\FieldType\DBMoney;
  * @copyright 2020 pixeltricks GmbH
  * @license see license file in modules root directory
  * 
- * @property \SilverCart\Voucher\Model\AbsoluteRebateVoucher $owner Owner
+ * @property Voucher\AbsoluteRebateVoucher $owner Owner
  */
 class AbsoluteRebateVoucherExtension extends DataExtension
 {
@@ -47,40 +51,18 @@ class AbsoluteRebateVoucherExtension extends DataExtension
                 $position = null;
                 return;
             }
-            $periods     = 0;
-            $remainder   = 0;
-            $firstPeriod = 0;
-            $discounted  = DBMoney::create()->setAmount($product->Price->getAmount())->setCurrency($position->Currency);
             $position->setPriceGrossAmount($this->owner->value->getAmount() * -1);
             $voucherValue = $position->getPrice()->getAmount() * -1;
             if ($product->Price->getAmount() > $voucherValue) {
-                $discounted->setAmount($product->Price->getAmount() - $voucherValue);
-                $billingPeriod = ucfirst($product->BillingPeriod);
-                $plus          = Config::PriceType() === Config::PRICE_TYPE_NET ? ' ' . _t(Page::class . '.EXCLUDING_TAX', 'plus VAT') : '';
-                $discountLine  = _t("SilverCart.Discount{$billingPeriod}First", 'Billing period {count} is discounted to {price}.', ['count' => 1, 'price' => $discounted->Nice()]);
+                $plus = Config::PriceType() === Config::PRICE_TYPE_NET ? ' ' . _t(Page::class . '.EXCLUDING_TAX', 'plus VAT') : '';
             } else {
-                if ($product->Price->getAmount() < $voucherValue) {
-                    $periods   = floor($voucherValue / $product->Price->getAmount());
-                    $remainder = $voucherValue - ($periods * $product->Price->getAmount());
-                    if ($remainder > 0) {
-                        $firstPeriod = $periods + 1;
-                        $discounted->setAmount($product->Price->getAmount() - $remainder);
-                    }
-                }
-                $billingPeriod = ucfirst($product->BillingPeriod);
-                $plus          = Config::PriceType() === Config::PRICE_TYPE_NET ? ' ' . _t(Page::class . '.EXCLUDING_TAX', 'plus VAT') : '';
-                $discountLine  = _t("SilverCart.Discount{$billingPeriod}", "The first billing period is for free.|The first {count} billing periods are for free.", ['count' => $periods]);
-                if ($firstPeriod > 0) {
-                    $discountLine .= ' ' . _t("SilverCart.Discount{$billingPeriod}First", 'Billing period {count} is discounted to {price}.', ['count' => $firstPeriod, 'price' => $discounted->Nice()]);
-                }
+                $plus = Config::PriceType() === Config::PRICE_TYPE_NET ? ' ' . _t(Page::class . '.EXCLUDING_TAX', 'plus VAT') : '';
             }
             $title = $this->owner->renderWith(Voucher\AbsoluteRebateVoucher::class . '_subscription_title', [
                 'Value'    => DBMoney::create()->setAmount($voucherValue)->setCurrency($position->Currency),
                 'plus'     => $plus,
             ]);
-            $description = $this->owner->renderWith(Voucher\AbsoluteRebateVoucher::class . '_subscription_description', [
-                'DiscountInfo' => $discountLine,
-            ]);
+            $description = $this->getVoucherDescription($subscriptionPosition, $voucherValue);
             $notice = $this->owner->renderWith(Voucher\AbsoluteRebateVoucher::class . '_subscription', [
                 'Position'           => $position,
                 'VoucherTitle'       => $title,
@@ -93,12 +75,65 @@ class AbsoluteRebateVoucherExtension extends DataExtension
                 ShoppingCartPositionNotice::setNotice($subscriptionPosition->ID, "subscription-voucher-{$this->owner->ID}");
                 $position = null;
                 $voucherShoppingCartPosition = VoucherShoppingCartPosition::getVoucherShoppingCartPosition($shoppingCart->ID, $this->owner->ID);
-                $voucherShoppingCartPosition->SubscriptionTitle       = (string) $title;
-                $voucherShoppingCartPosition->SubscriptionDescription = (string) $description;
-                $voucherShoppingCartPosition->SubscriptionPositionID  = $subscriptionPosition->ID;
+                $voucherShoppingCartPosition->SubscriptionTitle        = (string) $title;
+                $voucherShoppingCartPosition->SubscriptionDescription  = (string) $description;
+                $voucherShoppingCartPosition->SubscriptionPositionID   = $subscriptionPosition->ID;
+                $voucherShoppingCartPosition->SubscriptionVoucherValue = $voucherValue;
                 $voucherShoppingCartPosition->write();
             }
         }
+    }
+    
+    /**
+     * Returns the voucher description respecting the $subscriptionPosition and
+     * $voucherPrice context.
+     * 
+     * @param ShoppingCartPosition $subscriptionPosition Subscription shopping cart position
+     * @param float                $voucherValue         Voucher value
+     * 
+     * @return DBHTMLText
+     */
+    public function getVoucherDescription(ShoppingCartPosition $subscriptionPosition, float $voucherValue = null) : DBHTMLText
+    {
+        if ($voucherValue === null) {
+            $voucherValue = 0;
+            $member       = Customer::currentUser();
+            if ($member instanceof Member) {
+                $voucherShoppingCartPosition = VoucherShoppingCartPosition::getVoucherShoppingCartPosition($member->ShoppingCart()->ID, $this->owner->ID);
+                /* @var $voucherPrice VoucherPrice */
+                if ($voucherShoppingCartPosition !== null) {
+                    $voucherValue = $voucherShoppingCartPosition->SubscriptionVoucherValue;
+                }
+            }
+        }
+        $product     = $subscriptionPosition->Product();
+        $periods     = 0;
+        $remainder   = 0;
+        $firstPeriod = 0;
+        $discounted  = DBMoney::create()->setAmount($product->Price->getAmount())->setCurrency($product->Price->getCurrency());
+        if ($product->Price->getAmount() > $voucherValue) {
+            $discounted->setAmount($product->Price->getAmount() - $voucherValue);
+            $billingPeriod = ucfirst($product->BillingPeriod);
+            $discountLine  = _t("SilverCart.Discount{$billingPeriod}First", 'Billing period {count} is discounted to {price}.', ['count' => 1, 'price' => $discounted->Nice()]);
+        } else {
+            if ($product->Price->getAmount() < $voucherValue) {
+                $periods   = floor($voucherValue / $product->Price->getAmount());
+                $remainder = $voucherValue - ($periods * $product->Price->getAmount());
+                if ($remainder > 0) {
+                    $firstPeriod = $periods + 1;
+                    $discounted->setAmount($product->Price->getAmount() - $remainder);
+                }
+            }
+            $billingPeriod = ucfirst($product->BillingPeriod);
+            $discountLine  = _t("SilverCart.Discount{$billingPeriod}", "The first billing period is for free.|The first {count} billing periods are for free.", ['count' => $periods]);
+            if ($firstPeriod > 0) {
+                $discountLine .= ' ' . _t("SilverCart.Discount{$billingPeriod}First", 'Billing period {count} is discounted to {price}.', ['count' => $firstPeriod, 'price' => $discounted->Nice()]);
+            }
+        }
+        $description = $this->owner->renderWith(Voucher\AbsoluteRebateVoucher::class . '_subscription_description', [
+            'DiscountInfo' => $discountLine,
+        ]);
+        return $description;
     }
     
     /**

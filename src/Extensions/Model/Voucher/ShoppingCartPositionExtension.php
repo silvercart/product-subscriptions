@@ -25,8 +25,9 @@ class ShoppingCartPositionExtension extends DataExtension
      * @var array
      */
     private static $db = [
-        'SubscriptionTitle'       => 'Varchar',
-        'SubscriptionDescription' => 'Text',
+        'SubscriptionTitle'        => 'Varchar',
+        'SubscriptionDescription'  => 'Text',
+        'SubscriptionVoucherValue' => 'Float',
     ];
     /**
      * Has one relations.
