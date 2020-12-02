@@ -131,7 +131,8 @@ class AbsoluteRebateVoucherExtension extends DataExtension
             }
         }
         $description = $this->owner->renderWith(Voucher\AbsoluteRebateVoucher::class . '_subscription_description', [
-            'DiscountInfo' => $discountLine,
+            'SubscriptionProduct' => $product,
+            'DiscountInfo'        => $discountLine,
         ]);
         return $description;
     }

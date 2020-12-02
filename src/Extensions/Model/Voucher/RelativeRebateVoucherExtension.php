@@ -145,9 +145,10 @@ class RelativeRebateVoucherExtension extends DataExtension
         }
         $originalPrice = $subscriptionPosition->getPrice();
         $description   = $this->owner->renderWith(Voucher\RelativeRebateVoucher::class . '_subscription_description', [
-            'DiscountInfo'    => $discountLine,
-            'PriceOriginal'   => $originalPrice,
-            'PriceDiscounted' => DBMoney::create()->setAmount($originalPrice->getAmount() - ($originalPrice->getAmount() * ((int) $this->owner->valueInPercent / 100)))->setCurrency($originalPrice->getCurrency()),
+            'SubscriptionProduct' => $product,
+            'DiscountInfo'        => $discountLine,
+            'PriceOriginal'       => $originalPrice,
+            'PriceDiscounted'     => DBMoney::create()->setAmount($originalPrice->getAmount() - ($originalPrice->getAmount() * ((int) $this->owner->valueInPercent / 100)))->setCurrency($originalPrice->getCurrency()),
         ]);
         return $description;
     }
