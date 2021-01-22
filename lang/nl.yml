@@ -1,0 +1,83 @@
+nl:
+    SilverCart:
+        Once: Eenmalig
+        DiscountMonthly:
+            one: 'De eerste maand is gratis voor u.'
+            other: 'De eerste {count} maanden zijn gratis voor jou'
+        DiscountQuarterly:
+            one: 'Het eerste kwartaal is voor u gratis.'
+            other: "\nDe eerste {count} kwartalen zijn k voor jou"
+        DiscountYearly:
+            one: 'Het eerste jaar is gratis voor jou.'
+            other: 'De eerste {count} jaar zijn gratis voor jou.'
+        DiscountRelativeMonthly:
+            one: "\nDe eerste maand wordt voor u met {amount}% verlaagd."
+            other: 'De eerste {count} maanden worden voor u met {amount}% verminderd.'
+        DiscountRelativeQuarterly:
+            one: 'Het eerste kwartaal wordt voor u met {amount}% verlaagd.'
+            other: "\nDe eerste {count} kwartalen worden voor u met {amount}% verminderd"
+        DiscountRelativeYearly:
+            one: 'Het eerste jaar wordt voor u met {amount}% verlaagd.'
+            other: 'De eerste {count} jaar worden voor u met {amount}% verminderd.'
+        DiscountMonthlyFirst: 'De {telling}. Maand is gereduceerd tot {prijs}.'
+    SilverCart\Subscriptions\Extensions\OrderPositionExtension:
+        PriceConsequentialCosts: 'Prijsopvolgingskosten (individueel)'
+        PriceTotalConsequentialCosts: 'Prijs vervolgkosten (totaal)'
+        TaxConsequentialCosts: 'Fiscale opvolgingskosten (individueel)'
+        TaxTotalConsequentialCosts: 'Fiscale vervolgkosten (totaal)'
+        IsSubscriptionVoucher: 'Is een tegoedbon voor onderhoudsartikelen'
+    SilverCart\Subscriptions\Extensions\ProductExtension:
+        BillingPeriod: Factureringsperiode
+        BillingPeriodDesc: Leeg
+        BillingPeriodOnce: Eenmalig
+        BillingPeriodMonthly: 'per maand'
+        BillingPeriodQuarterly: 'per kwartaal'
+        BillingPeriodYearly: Jaarlijks
+        HasConsequentialCosts: 'Heeft vervolgkosten'
+        HasConsequentialCostsDesc: 'Activeer de functie "Heeft vervolgkosten" als dit artikel repetitieve follow-up kosten heeft naast de aankoopprijs (e.B. "29,99 € eenmaal, dan 4,99 € mtl." / "9,99 € mtl. in de eerste 6 maanden, daarna € 19,99 mtl.").'
+        IsSubscription: 'Is een onderhoudsartikel.'
+        IsSubscriptionDesc: 'Activeer het "onderhoudsartikel" functie als de artikelprijs met een bepaalde, regelmatige interval wordt gefactureerd.'
+        Once: Eenmalig
+        PriceGrossConsequentialCosts: 'Prijs Vervolgkosten (bruto)'
+        PriceGrossConsequentialCostsDesc: Leeg
+        PriceNetConsequentialCosts: 'Prijs Vervolgkosten (netto)'
+        PriceNetConsequentialCostsDesc: Leeg
+        SubscriptionDuration: Afrekenperiode
+        SubscriptionDurationValue: Leeg
+        SubscriptionDurationPeriod: Leeg
+        SubscriptionDurationPeriodMonths: maanden
+        SubscriptionDurationPeriodYears: Jaar
+        Then: daarna
+        BillingPeriodAdditionSingular: 'in de eerste {periode}'
+        BillingPeriodAdditionPlural: 'in de eerste {duration} {period}'
+        BillingPeriodMonthlyAbbr: maandelijks
+        BillingPeriodQuarterlyAbbr: 'per kwartaal'
+        BillingPeriodYearlyAbbr: j.
+        DurationPeriodAddPluralMonths: Maanden
+        DurationPeriodAddPluralYears: Jaren
+        DurationPeriodAddSingularMonths: maand
+        DurationPeriodAddSingularYears: Jaar
+    SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
+        oncePayments: 'Eenmalige kosten'
+        oncePrice: Eenmalig
+        monthlyPayments: 'Maandelijkse kosten'
+        monthlyPrice: 'per maand'
+        quarterlyPayments: Kwartaalkosten
+        quarterlyPrice: 'per kwartaal'
+        yearlyPayments: 'Jaarlijkse kosten'
+        yearlyPrice: Jaarlijks
+        once: Eenmalig
+        monthly: Maandelijkse
+        quarterly: 'Per kwartaal'
+        yearly: Jaarlijks
+    SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
+        BillingPeriodAdditionSingular: 'in de eerste {period} , daarna {price}'
+        BillingPeriodAdditionPlural: 'in de eerste {duration} {period} , daarna {price}'
+    SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
+        PeriodCount: Factureringsperioden
+        PeriodCountDesc: 'Aantal facturatieperiodes (maanden/kwartalen/jaren) die worden verdisconteerd. Geef 0 (nul) op voor een onbeperkte korting. Alleen effectief als "Toepassen op onderhoudsartikelen" is ingeschakeld.'
+    SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:
+        CantBeCombinedWith: 'Deze tegoedbon kan niet worden gecombineerd met een andere tegoedbon in uw winkelwagen.'
+    SilverCart\Voucher\Model\Voucher:
+        IsSubscriptionVoucher: 'Toepassen op onderhoud'
+        IsSubscriptionVoucherDesc: 'Indien geactiveerd, is deze coupon alleen van toepassing op onderhoudsartikelen (maandelijkse, per kwartaal of jaarlijkse facturering). Anders wordt de voucher toegepast op een vaste prijs (eenmalige facturering).'
