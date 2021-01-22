@@ -245,6 +245,7 @@ class ShoppingCartExtension extends DataExtension
         $billingPeriodsList  = ArrayList::create();
         $taxRates            = $this->owner->getBillingPeriodTaxRates();
         foreach ($this->owner->PositionsWithSubscription() as $position) {
+            /* @var $position \SilverCart\Model\Order\ShoppingCartPosition */
             $product = $position->Product();
             if ($product->HasConsequentialCosts
              && empty($product->BillingPeriod)
@@ -257,6 +258,7 @@ class ShoppingCartExtension extends DataExtension
                 $billingPeriod = $product->BillingPeriod;
                 $billingPeriodNice = $product->BillingPeriodNice;
             }
+            $position->extend('updatePriceAmountForBillingPeriods', $amount);
             if (!array_key_exists($billingPeriod, $billingPeriodsArray)) {
                 $billingPeriodsArray[$billingPeriod] = [
                     'BillingPeriod'     => $billingPeriod,
