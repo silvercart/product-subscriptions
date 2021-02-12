@@ -3,13 +3,13 @@ nl:
         Once: Eenmalig
         DiscountMonthly:
             one: 'De eerste maand is gratis voor u.'
-            other: 'De eerste {count} maanden zijn gratis voor jou'
+            other: 'De eerste {count} maanden zijn gratis voor u.'
         DiscountQuarterly:
             one: 'Het eerste kwartaal is voor u gratis.'
-            other: "\nDe eerste {count} kwartalen zijn k voor jou"
+            other: "\nDe eerste {count} kwartalen zijn gratis voor u"
         DiscountYearly:
-            one: 'Het eerste jaar is gratis voor jou.'
-            other: 'De eerste {count} jaar zijn gratis voor jou.'
+            one: 'Het eerste jaar is gratis voor u.'
+            other: 'De eerste {count} jaren zijn gratis voor u.'
         DiscountRelativeMonthly:
             one: "\nDe eerste maand wordt voor u met {amount}% verlaagd."
             other: 'De eerste {count} maanden worden voor u met {amount}% verminderd.'
@@ -18,10 +18,10 @@ nl:
             other: "\nDe eerste {count} kwartalen worden voor u met {amount}% verminderd"
         DiscountRelativeYearly:
             one: 'Het eerste jaar wordt voor u met {amount}% verlaagd.'
-            other: 'De eerste {count} jaar worden voor u met {amount}% verminderd.'
+            other: 'De eerste {count} jaren worden voor u met {amount}% verminderd.'
         DiscountMonthlyFirst: 'De {telling}. Maand is gereduceerd tot {prijs}.'
     SilverCart\Subscriptions\Extensions\OrderPositionExtension:
-        PriceConsequentialCosts: 'Prijsopvolgingskosten (individueel)'
+        PriceConsequentialCosts: 'Prijs opvolgingskosten (individueel)'
         PriceTotalConsequentialCosts: 'Prijs vervolgkosten (totaal)'
         TaxConsequentialCosts: 'Fiscale opvolgingskosten (individueel)'
         TaxTotalConsequentialCosts: 'Fiscale vervolgkosten (totaal)'
@@ -34,7 +34,7 @@ nl:
         BillingPeriodQuarterly: 'per kwartaal'
         BillingPeriodYearly: Jaarlijks
         HasConsequentialCosts: 'Heeft vervolgkosten'
-        HasConsequentialCostsDesc: 'Activeer de functie "Heeft vervolgkosten" als dit artikel repetitieve follow-up kosten heeft naast de aankoopprijs (e.B. "29,99 € eenmaal, dan 4,99 € mtl." / "9,99 € mtl. in de eerste 6 maanden, daarna € 19,99 mtl.").'
+        HasConsequentialCostsDesc: 'Activeer de functie "Heeft vervolgkosten" als dit artikel repetitieve follow-up kosten heeft naast de aankoopprijs (e.B. "29,99 € eenmaal, dan 4,99 € p/mnd." / "9,99 € p/mnd. in de eerste 6 maanden, daarna € 19,99 p/mnd.").'
         IsSubscription: 'Is een onderhoudsartikel.'
         IsSubscriptionDesc: 'Activeer het "onderhoudsartikel" functie als de artikelprijs met een bepaalde, regelmatige interval wordt gefactureerd.'
         Once: Eenmalig
@@ -42,13 +42,13 @@ nl:
         PriceGrossConsequentialCostsDesc: Leeg
         PriceNetConsequentialCosts: 'Prijs Vervolgkosten (netto)'
         PriceNetConsequentialCostsDesc: Leeg
-        SubscriptionDuration: Afrekenperiode
+        SubscriptionDuration: Abonnementsduur
         SubscriptionDurationValue: Leeg
         SubscriptionDurationPeriod: Leeg
-        SubscriptionDurationPeriodMonths: maanden
-        SubscriptionDurationPeriodYears: Jaar
+        SubscriptionDurationPeriodMonths: Maanden
+        SubscriptionDurationPeriodYears: Jaren
         Then: daarna
-        BillingPeriodAdditionSingular: 'in de eerste {periode}'
+        BillingPeriodAdditionSingular: 'in de eerste {period}'
         BillingPeriodAdditionPlural: 'in de eerste {duration} {period}'
         BillingPeriodMonthlyAbbr: maandelijks
         BillingPeriodQuarterlyAbbr: 'per kwartaal'
@@ -58,16 +58,16 @@ nl:
         DurationPeriodAddSingularMonths: maand
         DurationPeriodAddSingularYears: Jaar
     SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
-        oncePayments: 'Eenmalige kosten'
+        oncePayments: 'Eenmalige betalingen'
         oncePrice: Eenmalig
         monthlyPayments: 'Maandelijkse kosten'
         monthlyPrice: 'per maand'
-        quarterlyPayments: Kwartaalkosten
+        quarterlyPayments: 'Betalingen per kwartaal'
         quarterlyPrice: 'per kwartaal'
         yearlyPayments: 'Jaarlijkse kosten'
         yearlyPrice: Jaarlijks
         once: Eenmalig
-        monthly: Maandelijkse
+        monthly: Maandelijks
         quarterly: 'Per kwartaal'
         yearly: Jaarlijks
     SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
