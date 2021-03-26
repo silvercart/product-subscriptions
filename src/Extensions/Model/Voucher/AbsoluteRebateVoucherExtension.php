@@ -95,6 +95,20 @@ class AbsoluteRebateVoucherExtension extends DataExtension
      */
     public function getVoucherDescription(ShoppingCartPosition $subscriptionPosition, float $voucherValue = null) : DBHTMLText
     {
+        return $this->getVoucherDescriptionForProduct($subscriptionPosition->Product(), $voucherValue);
+    }
+    
+    /**
+     * Returns the voucher description respecting the $subscriptionPosition and
+     * $voucherPrice context.
+     * 
+     * @param Product $product      Subscription product
+     * @param float   $voucherValue Voucher value
+     * 
+     * @return DBHTMLText
+     */
+    public function getVoucherDescriptionForProduct(Product $product, float $voucherValue = null) : DBHTMLText
+    {
         if ($voucherValue === null) {
             $voucherValue = 0;
             $member       = Customer::currentUser();
@@ -106,7 +120,6 @@ class AbsoluteRebateVoucherExtension extends DataExtension
                 }
             }
         }
-        $product     = $subscriptionPosition->Product();
         $periods     = 0;
         $remainder   = 0;
         $firstPeriod = 0;

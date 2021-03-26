@@ -137,13 +137,28 @@ class RelativeRebateVoucherExtension extends DataExtension
      */
     public function getVoucherDescription(ShoppingCartPosition $subscriptionPosition) : DBHTMLText
     {
-        $product      = $subscriptionPosition->Product();
+        return $this->getVoucherDescriptionForProduct($subscriptionPosition->Product(), $subscriptionPosition->getPrice());
+    }
+    
+    /**
+     * Returns the voucher description respecting the $product and $originalPrice
+     * context.
+     * 
+     * @param Product $product       Subscription product
+     * @param DBMoney $originalPrice Original price
+     * 
+     * @return DBHTMLText
+     */
+    public function getVoucherDescriptionForProduct(Product $product, DBMoney $originalPrice = null) : DBHTMLText
+    {
         $discountLine = '';
+        if ($originalPrice === null) {
+            $originalPrice = $product->getPrice();
+        }
         if ($this->owner->PeriodCount > 0) {
             $billingPeriod = ucfirst($product->BillingPeriod);
             $discountLine  = _t("SilverCart.DiscountRelative{$billingPeriod}", "The first billing period is discounted by {amount}%.|The first {count} billing periods are discounted by {amount}%.", ['count' => $this->owner->PeriodCount, 'amount' => $this->owner->valueInPercent]);
         }
-        $originalPrice = $subscriptionPosition->getPrice();
         $description   = $this->owner->renderWith(Voucher\RelativeRebateVoucher::class . '_subscription_description', [
             'SubscriptionProduct' => $product,
             'DiscountInfo'        => $discountLine,
