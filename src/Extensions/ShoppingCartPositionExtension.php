@@ -94,17 +94,17 @@ class ShoppingCartPositionExtension extends DataExtension
     /**
      * price sum of this position
      *
-     * @param bool $forSingleProduct Indicates wether the price for the total
-     *                               quantity of products should be returned
-     *                               or for one product only.
-     * @param bool $priceType        'gross' or 'net'. If undefined it'll be automatically chosen.
+     * @param bool   $forSingleProduct Indicates wether the price for the total
+     *                                 quantity of products should be returned
+     *                                 or for one product only.
+     * @param string $priceType        'gross' or 'net'. If undefined it'll be automatically chosen.
      * 
      * @return DBMoney
      * 
      * @author Sebastian Diel <sdiel@pixeltricks.de>
      * @since 23.11.2018
      */
-    public function getPriceConsequentialCosts(bool $forSingleProduct = false, bool $priceType = false) : DBMoney
+    public function getPriceConsequentialCosts(bool $forSingleProduct = false, string $priceType = '') : DBMoney
     {
         $product = $this->owner->Product();
         $price   = 0;
@@ -122,7 +122,7 @@ class ShoppingCartPositionExtension extends DataExtension
         $priceObj = DBMoney::create();
         $priceObj->setAmount($price);
         $priceObj->setCurrency(Config::DefaultCurrency());
-
+        $this->owner->extend('updatePriceConsequentialCosts', $priceObj, $forSingleProduct, $priceType);
         return $priceObj;
     }
 
@@ -183,7 +183,9 @@ class ShoppingCartPositionExtension extends DataExtension
      */
     public function hasConsequentialCosts() : bool
     {
-        return (bool) $this->owner->Product()->HasConsequentialCosts;
+        $has = (bool) $this->owner->Product()->HasConsequentialCosts;
+        $this->owner->extend('updateHasConsequentialCosts', $has);
+        return $has;
     }
     
     /**
@@ -225,6 +227,7 @@ class ShoppingCartPositionExtension extends DataExtension
         } else {
             $price = $this->owner->getSinglePriceConsequentialCosts();
         }
+        $this->owner->extend('updateDisplayContextBillingPeriodPrice', $price);
         return $price;
     }
     
@@ -237,25 +240,65 @@ class ShoppingCartPositionExtension extends DataExtension
     {
         $addition       = '';
         $billingPeriod  = ucfirst($this->getDisplayContextBillingPeriod());
-        $durationPeriod = ucfirst($this->owner->Product()->SubscriptionDurationPeriod);
-        $product        = $this->owner->Product();
         if (!empty($billingPeriod)
-         && !empty($product->BillingPeriod)
+         && !empty($this->owner->Product()->BillingPeriod)
          && $this->owner->hasConsequentialCosts()
         ) {
-            if ((int) $product->SubscriptionDurationValue === 1) {
+            if ($this->getSubscriptionDurationValue() === 1) {
                 $addition = '<br/>' . _t(self::class . '.BillingPeriodAdditionSingular', 'in the first {period}, then {price}', [
-                    'period'   => $product->fieldLabel("DurationPeriodAddSingular{$durationPeriod}"),
+                    'period'   => $this->getDurationPeriodLabel(),
                     'price'    => $this->owner->getSinglePriceConsequentialCosts()->Nice(),
                 ]);
             } else {
                 $addition = '<br/>' . _t(self::class . '.BillingPeriodAdditionPlural', 'in the first {duration} {period}, then {price}', [
-                    'duration' => $product->SubscriptionDurationValue,
-                    'period'   => $product->fieldLabel("DurationPeriodAddPlural{$durationPeriod}"),
+                    'duration' => $this->getSubscriptionDurationValue(),
+                    'period'   => $this->getDurationPeriodLabel(),
                     'price'    => $this->owner->getSinglePriceConsequentialCosts()->Nice(),
                 ]);
             }
         }
         return DBHTMLText::create()->setValue($addition);
+    }
+    
+    /**
+     * Returns the subscription duration value.
+     * 
+     * @return int
+     */
+    public function getSubscriptionDurationValue() : int
+    {
+        $value = (int) $this->owner->Product()->SubscriptionDurationValue;
+        $this->owner->extend('updateSubscriptionDurationValue', $value);
+        return (int) $value;
+    }
+    
+    /**
+     * Returns the duration period label.
+     * 
+     * @return string
+     */
+    public function getDurationPeriodLabel() : string
+    {
+        $label          = '';
+        $durationPeriod = ucfirst($this->getSubscriptionDurationPeriod());
+        $product        = $this->owner->Product();
+        if ($this->getSubscriptionDurationValue() === 1) {
+            $label = $product->fieldLabel("DurationPeriodAddSingular{$durationPeriod}");
+        } else {
+            $label = $product->fieldLabel("DurationPeriodAddPlural{$durationPeriod}");
+        }
+        return $label;
+    }
+    
+    /**
+     * Returns the subscription duration period.
+     * 
+     * @return string
+     */
+    public function getSubscriptionDurationPeriod() : string
+    {
+        $period = (string) $this->owner->Product()->SubscriptionDurationPeriod;
+        $this->owner->extend('updateSubscriptionDurationPeriod', $period);
+        return (string) $period;
     }
 }

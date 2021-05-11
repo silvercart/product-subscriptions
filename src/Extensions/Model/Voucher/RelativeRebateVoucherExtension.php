@@ -137,7 +137,7 @@ class RelativeRebateVoucherExtension extends DataExtension
      */
     public function getVoucherDescription(ShoppingCartPosition $subscriptionPosition) : DBHTMLText
     {
-        return $this->getVoucherDescriptionForProduct($subscriptionPosition->Product(), $subscriptionPosition->getPrice());
+        return $this->getVoucherDescriptionForProduct($subscriptionPosition->Product(), $subscriptionPosition->Product()->getPrice());
     }
     
     /**

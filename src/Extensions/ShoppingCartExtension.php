@@ -250,12 +250,12 @@ class ShoppingCartExtension extends DataExtension
             if ($product->HasConsequentialCosts
              && empty($product->BillingPeriod)
             ) {
-                $amount = $product->getPriceConsequentialCosts()->getAmount() * $position->Quantity;
-                $billingPeriod = $product->BillingPeriodConsequentialCosts;
+                $amount            = $position->getPriceConsequentialCosts()->getAmount();
+                $billingPeriod     = $product->BillingPeriodConsequentialCosts;
                 $billingPeriodNice = $product->BillingPeriodConsequentialCostsNice;
             } else {
-                $amount = $product->getPrice()->getAmount() * $position->Quantity;
-                $billingPeriod = $product->BillingPeriod;
+                $amount            = $position->getPrice()->getAmount() * $position->Quantity;
+                $billingPeriod     = $product->BillingPeriod;
                 $billingPeriodNice = $product->BillingPeriodNice;
             }
             $position->extend('updatePriceAmountForBillingPeriods', $amount);

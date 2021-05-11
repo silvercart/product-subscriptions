@@ -41,8 +41,8 @@ class OrderExtension extends DataExtension
         if ($shoppingCartPosition->isSubscription()) {
             $product                                   = $shoppingCartPosition->Product();
             $orderPosition->BillingPeriod              = $product->BillingPeriod;
-            $orderPosition->SubscriptionDurationValue  = $product->SubscriptionDurationValue;
-            $orderPosition->SubscriptionDurationPeriod = $product->SubscriptionDurationPeriod;
+            $orderPosition->SubscriptionDurationValue  = $shoppingCartPosition->getSubscriptionDurationValue();
+            $orderPosition->SubscriptionDurationPeriod = $shoppingCartPosition->getSubscriptionDurationPeriod();
             if ($shoppingCartPosition->HasConsequentialCosts()) {
                 $orderPosition->PriceConsequentialCosts->setAmount($shoppingCartPosition->getPriceConsequentialCosts(true)->getAmount());
                 $orderPosition->PriceTotalConsequentialCosts->setAmount($shoppingCartPosition->getPriceConsequentialCosts()->getAmount());
