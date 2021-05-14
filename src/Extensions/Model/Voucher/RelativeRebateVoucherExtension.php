@@ -102,8 +102,10 @@ class RelativeRebateVoucherExtension extends DataExtension
                 /* @var $subscriptionPosition ShoppingCartPosition */
                 $product = $subscriptionPosition->Product();
                 if (!($product instanceof Product)) {
-                    $position = null;
-                    return;
+                    continue;
+                }
+                if ($subscriptionPosition->getOriginalPrice()->getAmount() == 0) {
+                    continue;
                 }
                 $title       = $this->owner->renderWith(Voucher\RelativeRebateVoucher::class . '_subscription_title');
                 $description = $this->getVoucherDescription($subscriptionPosition);

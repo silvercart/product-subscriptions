@@ -3,6 +3,7 @@
 namespace SilverCart\Subscriptions\Extensions\Model\Vouchers;
 
 use SilverCart\Voucher\Model\ShoppingCartPosition as VoucherShoppingCartPosition;
+use SilverCart\Voucher\Model\Voucher\RelativeRebateVoucher;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\ORM\FieldType\DBMoney;
 
@@ -28,7 +29,20 @@ class ShoppingCartPositionExtension extends DataExtension
     private static $belongs_to = [
         'SubscriptionVoucherPosition' => VoucherShoppingCartPosition::class,
     ];
-    
+    /**
+     * Set to true to skip this extensions @see $this->updatePrice() when calling
+     * @see $this->owner->getPrice().
+     * 
+     * @var bool
+     */
+    protected static $skipPriceUpdate = false;
+    /**
+     * List of already requested original prices.
+     * 
+     * @var DBMoney[]
+     */
+    protected $originalPrices = [];
+
     /**
      * Returns whether this position is a fully discounted subscription (without
      * period count limitation).
@@ -37,13 +51,25 @@ class ShoppingCartPositionExtension extends DataExtension
      */
     public function IsDiscountedSubscription() : bool
     {
-        $is       = false;
-        $position = $this->owner->SubscriptionVoucherPosition();
-        if ($position->exists()
-         && $position->Voucher()->exists()
-         && (int) $position->Voucher()->PeriodCount === 0
+        $is = false;
+        if ($this->owner->isSubscription()
+         && $this->owner->getOriginalPrice()->getAmount() > 0
         ) {
-            $is = true;
+            $position = $this->owner->SubscriptionVoucherPosition();
+            if ($position->exists()
+             && $position->Voucher()->exists()
+             && (int) $position->Voucher()->PeriodCount === 0
+            ) {
+                $is = true;
+            }
+            $multiPosition = $this->owner->MultipleSubscriptionVoucherPosition();
+            if ($multiPosition !== null
+             && $multiPosition->exists()
+             && $multiPosition->Voucher()->exists()
+             && (int) $multiPosition->Voucher()->PeriodCount === 0
+            ) {
+                $is = true;
+            }
         }
         return $is;
     }
@@ -56,15 +82,42 @@ class ShoppingCartPositionExtension extends DataExtension
      */
     public function IsTemporarilyDiscountedSubscription() : bool
     {
-        $is       = false;
-        $position = $this->owner->SubscriptionVoucherPosition();
-        if ($position->exists()
-         && $position->Voucher()->exists()
-         && (int) $position->Voucher()->PeriodCount > 0
+        $is = false;
+        if ($this->owner->isSubscription()
+         && $this->owner->getOriginalPrice()->getAmount() > 0
         ) {
-            $is = true;
+            $position = $this->owner->SubscriptionVoucherPosition();
+            if ($position->exists()
+             && $position->Voucher()->exists()
+             && (int) $position->Voucher()->PeriodCount > 0
+            ) {
+                $is = true;
+            }
+            $multiPosition = $this->owner->MultipleSubscriptionVoucherPosition();
+            if ($multiPosition !== null
+             && $multiPosition->exists()
+             && $multiPosition->Voucher()->exists()
+             && (int) $multiPosition->Voucher()->PeriodCount > 0
+            ) {
+                $is = true;
+            }
         }
         return $is;
+    }
+
+    /**
+     * Returns the owners price without calling this extensions updatePrice.
+     * 
+     * @return DBMoney
+     */
+    public function getOriginalPrice() : DBMoney
+    {
+        if (!array_key_exists($this->owner->ID, $this->originalPrices)) {
+            self::$skipPriceUpdate = true;
+            $this->originalPrices[$this->owner->ID] = $this->owner->getPrice();
+            self::$skipPriceUpdate = false;
+        }
+        return $this->originalPrices[$this->owner->ID];
     }
     
     /**
@@ -84,7 +137,7 @@ class ShoppingCartPositionExtension extends DataExtension
      */
     public function getSubscriptionPriceDiscounted() : DBMoney
     {
-        $voucher       = $this->owner->SubscriptionVoucherPosition()->Voucher();
+        $voucher       = $this->owner->ContextSubscriptionVoucherPosition()->Voucher();
         $originalPrice = $this->getSubscriptionPriceOriginal();
         return DBMoney::create()->setAmount($originalPrice->getAmount() - ($originalPrice->getAmount() * ((int) $voucher->valueInPercent / 100)))->setCurrency($originalPrice->getCurrency());
     }
@@ -113,6 +166,9 @@ class ShoppingCartPositionExtension extends DataExtension
      */
     public function updatePrice(DBMoney $priceObj, bool $forSingleProduct) : void
     {
+        if (self::$skipPriceUpdate) {
+            return;
+        }
         if ($this->owner->IsDiscountedSubscription()) {
             $quantity = $forSingleProduct ? 1 : $this->owner->Quantity;
             $priceObj->setAmount($this->owner->getSubscriptionPriceDiscounted()->getAmount() * $quantity);
@@ -160,7 +216,42 @@ class ShoppingCartPositionExtension extends DataExtension
     public function updateSubscriptionDurationValue(int &$value) : void
     {
         if ($this->IsTemporarilyDiscountedSubscription()) {
-            $value = (int) $this->owner->SubscriptionVoucherPosition()->Voucher()->PeriodCount;
+            $value = (int) $this->owner->ContextSubscriptionVoucherPosition()->Voucher()->PeriodCount;
         }
+    }
+    
+    /**
+     * Returns the related voucher position with the CanBeUsedForMultiplePositions 
+     * setting.
+     * 
+     * @return VoucherShoppingCartPosition|null
+     */
+    public function MultipleSubscriptionVoucherPosition() : ?VoucherShoppingCartPosition
+    {
+        $voucherTable  = RelativeRebateVoucher::config()->table_name;
+        $positionTable = VoucherShoppingCartPosition::config()->table_name;
+        return VoucherShoppingCartPosition::get()
+                ->leftJoin($voucherTable, "{$voucherTable}.ID = {$positionTable}.VoucherID")
+                ->filter([
+                    'ShoppingCartID' => $this->owner->ShoppingCartID,
+                    'CanBeUsedForMultiplePositions' => true,
+                ])->first();
+    }
+    
+    /**
+     * Returns either @see $this->owner->SubscriptionVoucherPosition() or
+     * @see $this->owner->MultipleSubscriptionVoucherPosition().
+     * 
+     * @return VoucherShoppingCartPosition|null
+     */
+    public function ContextSubscriptionVoucherPosition() : ?VoucherShoppingCartPosition
+    {
+        $position = $this->owner->SubscriptionVoucherPosition();
+        if (!$position->exists()
+         || !$position->Voucher()->exists()
+        ) {
+            $position = $this->owner->MultipleSubscriptionVoucherPosition();
+        }
+        return $position;
     }
 }
