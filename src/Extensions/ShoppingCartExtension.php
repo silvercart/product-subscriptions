@@ -254,7 +254,7 @@ class ShoppingCartExtension extends DataExtension
                 $billingPeriod     = $product->BillingPeriodConsequentialCosts;
                 $billingPeriodNice = $product->BillingPeriodConsequentialCostsNice;
             } else {
-                $amount            = $position->getPrice()->getAmount() * $position->Quantity;
+                $amount            = $position->getPrice()->getAmount();
                 $billingPeriod     = $product->BillingPeriod;
                 $billingPeriodNice = $product->BillingPeriodNice;
             }
@@ -298,7 +298,6 @@ class ShoppingCartExtension extends DataExtension
                 'TaxRates'           => $taxRatesByBillingPeriod,
                 'ShoppingCart'       => $this->owner,
             ]));
-            
         }
         return $billingPeriodsList;
     }
