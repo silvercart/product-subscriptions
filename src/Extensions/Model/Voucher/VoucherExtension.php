@@ -162,10 +162,12 @@ class VoucherExtension extends DataExtension
                     "Price{$priceType}Amount:GreaterThan" => 0,
                 ]);
                 if ($subscriptionProducts->exists()) {
-                    $productIDs      = $shoppingCart->ShoppingCartPositions()->map('ID', 'ProductID')->toArray();
-                    $matchingProduct = $subscriptionProducts->filter('ID', $productIDs)->first();
-                    if ($matchingProduct instanceof Product) {
-                        $position = $shoppingCart->ShoppingCartPositions()->filter('ProductID', $matchingProduct->ID)->first();
+                    $productIDs = $shoppingCart->ShoppingCartPositions()->map('ID', 'ProductID')->toArray();
+                    if (!empty($productIDs)) {
+                        $matchingProduct = $subscriptionProducts->filter('ID', $productIDs)->first();
+                        if ($matchingProduct instanceof Product) {
+                            $position = $shoppingCart->ShoppingCartPositions()->filter('ProductID', $matchingProduct->ID)->first();
+                        }
                     }
                 }
                 if ($position === null) {
