@@ -11,6 +11,7 @@ use SilverCart\Voucher\Model\ShoppingCartPosition as VoucherShoppingCartPosition
 use SilverStripe\Forms\FieldList;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\ORM\FieldType\DBBoolean;
+use SilverStripe\ORM\Filters\ExactMatchFilter;
 use SilverStripe\ORM\SS_List;
 use SilverStripe\Security\Member;
 
@@ -61,11 +62,33 @@ class VoucherExtension extends DataExtension
         $fields->dataFieldByName('IsSubscriptionVoucher')->setDescription($this->owner->fieldLabel('IsSubscriptionVoucherDesc'));
     }
     
-    public function updateFieldLabels(&$labels)
+    /**
+     * Updates the field labels.
+     * 
+     * @param array &$labels Labels
+     * 
+     * @return void
+     */
+    public function updateFieldLabels(&$labels) : void
     {
         $labels = array_merge($labels, [
             'CantBeCombinedWith' => _t(self::class . '.CantBeCombinedWith', 'This voucher cannot be combined with the voucher which is already in your cart.'),
         ]);
+    }
+    
+    /**
+     * Updates the searchable fields.
+     * 
+     * @param array &$fields Fields
+     * 
+     * @return void
+     */
+    public function updateSearchableFields(array &$fields) : void
+    {
+        $fields['IsSubscriptionVoucher'] = [
+            'title'  => $this->owner->fieldLabel('IsSubscriptionVoucher'),
+            'filter' => ExactMatchFilter::class,
+        ];
     }
     
     /**

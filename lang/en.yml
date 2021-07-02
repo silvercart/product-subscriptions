@@ -69,6 +69,8 @@ en:
         BillingPeriodAdditionSingular: 'in the first {period}, then {price}'
         BillingPeriodAdditionPlural: 'in the first {duration} {period}, then {price}'
     SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
+        CanBeUsedForMultiplePositions: 'Can be applied to multiple subscription articles at once'
+        CanBeUsedForMultiplePositionsDesc: 'If activated, this voucher can be applied to all subscription products in shopping cart at once.'
         PeriodCount: 'Accounting periods'
         PeriodCountDesc: 'Number of accounting periods (months/quarters/years) that are discounted. For an unlimited discount, specify 0 (zero). Only effective if "Apply to subscription items" is activated.'
     SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:
