@@ -28,7 +28,7 @@ nl_BE:
         IsSubscriptionVoucher: 'Is een voucher voor abonnementsartikelen'
     SilverCart\Subscriptions\Extensions\ProductExtension:
         BillingPeriod: Factureringsperiode
-        BillingPeriodOnce: uniek
+        BillingPeriodOnce: éénmalig
         BillingPeriodMonthly: maandelĳks
         BillingPeriodQuarterly: driemaandelijks
         BillingPeriodYearly: jaarlijks
@@ -36,7 +36,7 @@ nl_BE:
         HasConsequentialCostsDesc: 'Activeer de functie "Follow-upkosten zijn van toepassing" als voor dat artikel naast de eenmalige aankoopprijs ook herhaalde follow-upkosten van toepassing zijn.'
         IsSubscription: 'Is abonnementsartikel'
         IsSubscriptionDesc: 'Activeer de functie "Is abonnementsartikel" als de artikelprijs binnen een bepaald, regelmatig interval wordt gefactureerd.'
-        Once: uniek
+        Once: éénmalig
         PriceGrossConsequentialCosts: 'Prijs Follow-upkosten (bruto)'
         PriceNetConsequentialCosts: 'Prijs Follow-upkosten (netto)'
         SubscriptionDuration: Factureringstermijn

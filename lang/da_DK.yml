@@ -1,6 +1,6 @@
 da_DK:
     SilverCart:
-        Once: 'en gang'
+        Once: 'én gang'
         DiscountMonthlyFirst: '{count} . måned reduceres til {price} .'
     SilverCart\Subscriptions\Extensions\OrderPositionExtension:
         PriceConsequentialCosts: 'Prismæssige følgeomkostninger (enkelt)'
@@ -10,15 +10,15 @@ da_DK:
         IsSubscriptionVoucher: 'Er et værdibevis til abonnementsvarer'
     SilverCart\Subscriptions\Extensions\ProductExtension:
         BillingPeriod: Faktureringsperiode
-        BillingPeriodOnce: 'en gang'
+        BillingPeriodOnce: 'én gang'
         BillingPeriodMonthly: månedlig
         BillingPeriodQuarterly: Kvartalsvis
         BillingPeriodYearly: årlige
         HasConsequentialCosts: 'Har følgeomkostninger'
-        HasConsequentialCostsDesc: 'Aktivér funktionen "Har tilbagevendende omkostninger", hvis denne artikel har tilbagevendende omkostninger ud over købsprisen (f.eks. "29,99 € en gang, derefter 4,99 € månedligt" / "9,99 € månedligt i de første 6 måneder, derefter 19,99 € månedligt").'
+        HasConsequentialCostsDesc: 'Aktivér funktionen "Har tilbagevendende omkostninger", hvis denne artikel har tilbagevendende omkostninger ud over købsprisen (f.eks. "29,99 € én gang, derefter 4,99 € månedligt" / "9,99 € månedligt i de første 6 måneder, derefter 19,99 € månedligt").'
         IsSubscription: 'Er abonnement'
         IsSubscriptionDesc: 'Aktiver funktionen "Er abonnement", hvis denne artikel betales med et hyppigt interval.'
-        Once: 'en gang'
+        Once: 'én gang'
         PriceGrossConsequentialCosts: 'Pris Opfølgningsomkostninger (brutto)'
         PriceNetConsequentialCosts: 'Pris Opfølgningsomkostninger (netto)'
         SubscriptionDuration: 'Abonnementets varighed'
