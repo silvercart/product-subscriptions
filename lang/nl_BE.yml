@@ -19,8 +19,10 @@ nl_BE:
     DiscountYearly:
       one: 'Het eerste jaar is gratis voor u.'
       other: 'De eerste {count} jaren zijn gratis voor u.'
-    Once: eenmalig
+    Once: éénmalig
   SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
+    CanBeUsedForMultiplePositions: 'Kan op meerdere onderhoudsartikelen tegelijk worden toegepast'
+    CanBeUsedForMultiplePositionsDesc: 'Indien geactiveerd, kan deze voucher in één keer worden toegepast op alle onderhoudsproducten in het winkelwagentje.'
     PeriodCount: Factureringsperioden
     PeriodCountDesc: 'Aantal factureringsperioden (maanden / kwartalen / jaren) waarvoor korting wordt gegeven. Voer 0 (nul) in voor onbeperkte korting. Alleen van kracht als "Toepassen op abonnementsartikelen" is geactiveerd.'
   SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:
@@ -35,6 +37,7 @@ nl_BE:
     BillingPeriod: Factureringsperiode
     BillingPeriodAdditionPlural: 'in de eerste {duration} {period}'
     BillingPeriodAdditionSingular: 'in de eerste {period}'
+    BillingPeriodDesc: Leeg
     BillingPeriodMonthly: maandelĳks
     BillingPeriodMonthlyAbbr: maandelĳks
     BillingPeriodOnce: éénmalig
@@ -52,24 +55,28 @@ nl_BE:
     IsSubscriptionDesc: 'Activeer de functie "Is abonnementsartikel" als de artikelprijs binnen een bepaald, regelmatig interval wordt gefactureerd.'
     Once: éénmalig
     PriceGrossConsequentialCosts: 'Prijs Follow-upkosten (bruto)'
+    PriceGrossConsequentialCostsDesc: Leeg
     PriceNetConsequentialCosts: 'Prijs Follow-upkosten (netto)'
+    PriceNetConsequentialCostsDesc: Leeg
     SubscriptionDuration: Factureringstermijn
+    SubscriptionDurationPeriod: Leeg
     SubscriptionDurationPeriodMonths: Maanden
-    SubscriptionDurationPeriodYears: Jaar
+    SubscriptionDurationPeriodYears: Jaren
+    SubscriptionDurationValue: Leeg
     Then: daarna
   SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
     monthly: maandelĳks
     monthlyPayments: 'Maandelijkse betalingen'
-    monthlyPrice: 'Prijs maandelijks'
+    monthlyPrice: maandelĳks
     once: eenmalig
     oncePayments: 'Eenmalige betalingen'
-    oncePrice: 'Prijs eenmalig'
+    oncePrice: éénmalig
     quarterly: Driemaandelijks
     quarterlyPayments: 'Driemaandelijkse betalingen'
-    quarterlyPrice: 'Prijs driemaandelijks'
+    quarterlyPrice: driemaandelijks
     yearly: jaarlijks
     yearlyPayments: 'Jaarlijkse betalingen'
-    yearlyPrice: 'Prijs per jaar'
+    yearlyPrice: jaarlijks
   SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
     BillingPeriodAdditionPlural: 'in de eerste {duration} {period}, daarna {price}'
     BillingPeriodAdditionSingular: 'in de eerste {period}, daarna {price}'

@@ -1,8 +1,28 @@
 da_DK:
   SilverCart:
+    DiscountMonthly:
+      one: 'Den første måned er gratis for dig.'
+      other: 'De første {count} måneder er gratis for dig.'
     DiscountMonthlyFirst: '{count} . måned reduceres til {price} .'
+    DiscountQuarterly:
+      one: 'Det første kvartal er gratis for dig.'
+      other: 'De første {count} kvartaler er gratis for dig.'
+    DiscountRelativeMonthly:
+      one: 'Den første måned er reduceret med {beløb}% for dig.'
+      other: 'De første {count} måneder er reduceret med {amount}% for dig.'
+    DiscountRelativeQuarterly:
+      one: 'Det første kvartal er reduceret med {beløb}% for dig.'
+      other: 'De første {count} kvartaler er reduceret med {amount}% for dig.'
+    DiscountRelativeYearly:
+      one: 'Det første år er reduceret med {amount}% for dig.'
+      other: 'De første {count} år reduceres med {amount}% for dig.'
+    DiscountYearly:
+      one: 'Det første år er gratis for dig.'
+      other: 'De første {count} år er gratis for dig.'
     Once: 'én gang'
   SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
+    CanBeUsedForMultiplePositions: 'Anvend på flere abonnementsartikler'
+    CanBeUsedForMultiplePositionsDesc: 'Hvis denne indstilling er aktiveret i kombination med "Anvend på abonnementsvarer", er kuponen gyldig for alle abonnementsvarer i indkøbskurven. Denne mulighed kan begrænses yderligere via fanen "Bind til artikel".'
     PeriodCount: Regnskabsperioder
     PeriodCountDesc: 'Antal regnskabsperioder (måneder / kvartaler / år), der gives rabat. Angiv 0 (nul) for en ubegrænset rabat. Kun effektiv, hvis "Anvend på abonnementsartikler" er aktiveret.'
   SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:

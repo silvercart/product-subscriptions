@@ -21,6 +21,8 @@ nl:
       other: 'De eerste {count} jaren zijn gratis voor u.'
     Once: Eenmalig
   SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
+    CanBeUsedForMultiplePositions: 'Kan op meerdere onderhoudsartikelen tegelijk worden toegepast'
+    CanBeUsedForMultiplePositionsDesc: 'Indien geactiveerd, kan deze voucher in één keer worden toegepast op alle onderhoudsproducten in het winkelwagentje.'
     PeriodCount: Factureringsperioden
     PeriodCountDesc: 'Aantal facturatieperiodes (maanden/kwartalen/jaren) die worden verdisconteerd. Geef 0 (nul) op voor een onbeperkte korting. Alleen effectief als "Toepassen op onderhoudsartikelen" is ingeschakeld.'
   SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:
