@@ -1,78 +1,78 @@
 nl_BE:
-    SilverCart:
-        Once: eenmalig
-        DiscountMonthly:
-            one: 'De eerste maand is gratis voor u.'
-            other: 'De eerste {count} maanden zijn gratis voor u.'
-        DiscountQuarterly:
-            one: 'Het eerste kwartaal is gratis voor u.'
-            other: 'De eerste {count} kwartalen zijn gratis voor u.'
-        DiscountYearly:
-            one: 'Het eerste jaar is gratis voor u.'
-            other: 'De eerste {count} jaren zijn gratis voor u.'
-        DiscountRelativeMonthly:
-            one: 'De eerste maand werd voor u verlaagd met {amount}%.'
-            other: 'De eerste {count} maanden werden voor u verlaagd met {amount}%.'
-        DiscountRelativeQuarterly:
-            one: 'Het eerste kwartaal werd voor u verlaagd met {amount}%.'
-            other: 'De eerste {count} kwartalen werden voor u verlaagd met {amount}%.'
-        DiscountRelativeYearly:
-            one: 'Het eerste jaar werd voor u verlaagd met {amount}%.'
-            other: 'De eerste {count} jaren werden voor u verlaagd met {amount}%.'
-        DiscountMonthlyFirst: 'De {count} maand wordt verlaagd naar {price}.'
-    SilverCart\Subscriptions\Extensions\OrderPositionExtension:
-        PriceConsequentialCosts: 'Prijs Follow-upkosten (individueel)'
-        PriceTotalConsequentialCosts: 'Prijs Follow-upkosten (totaal)'
-        TaxConsequentialCosts: 'BTW Follow-upkosten  (individueel)'
-        TaxTotalConsequentialCosts: 'BTW Follow-upkosten (totaal)'
-        IsSubscriptionVoucher: 'Is een voucher voor abonnementsartikelen'
-    SilverCart\Subscriptions\Extensions\ProductExtension:
-        BillingPeriod: Factureringsperiode
-        BillingPeriodOnce: éénmalig
-        BillingPeriodMonthly: maandelĳks
-        BillingPeriodQuarterly: driemaandelijks
-        BillingPeriodYearly: jaarlijks
-        HasConsequentialCosts: 'Follow-upkosten zijn van toepassing'
-        HasConsequentialCostsDesc: 'Activeer de functie "Follow-upkosten zijn van toepassing" als voor dat artikel naast de eenmalige aankoopprijs ook herhaalde follow-upkosten van toepassing zijn.'
-        IsSubscription: 'Is abonnementsartikel'
-        IsSubscriptionDesc: 'Activeer de functie "Is abonnementsartikel" als de artikelprijs binnen een bepaald, regelmatig interval wordt gefactureerd.'
-        Once: éénmalig
-        PriceGrossConsequentialCosts: 'Prijs Follow-upkosten (bruto)'
-        PriceNetConsequentialCosts: 'Prijs Follow-upkosten (netto)'
-        SubscriptionDuration: Factureringstermijn
-        SubscriptionDurationPeriodMonths: Maanden
-        SubscriptionDurationPeriodYears: Jaar
-        Then: daarna
-        BillingPeriodAdditionSingular: 'in de eerste {period}'
-        BillingPeriodAdditionPlural: 'in de eerste {duration} {period}'
-        BillingPeriodMonthlyAbbr: maandelĳks
-        BillingPeriodQuarterlyAbbr: trimestrieel
-        BillingPeriodYearlyAbbr: jaarlijks
-        DurationPeriodAddPluralMonths: Maanden
-        DurationPeriodAddPluralYears: Jaren
-        DurationPeriodAddSingularMonths: Maand
-        DurationPeriodAddSingularYears: Jaar
-    SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
-        oncePayments: 'Eenmalige betalingen'
-        oncePrice: 'Prijs eenmalig'
-        monthlyPayments: 'Maandelijkse betalingen'
-        monthlyPrice: 'Prijs maandelijks'
-        quarterlyPayments: 'Driemaandelijkse betalingen'
-        quarterlyPrice: 'Prijs driemaandelijks'
-        yearlyPayments: 'Jaarlijkse betalingen'
-        yearlyPrice: 'Prijs per jaar'
-        once: eenmalig
-        monthly: maandelĳks
-        quarterly: Driemaandelijks
-        yearly: jaarlijks
-    SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
-        BillingPeriodAdditionSingular: 'in de eerste {period}, daarna {price}'
-        BillingPeriodAdditionPlural: 'in de eerste {duration} {period}, daarna {price}'
-    SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
-        PeriodCount: Factureringsperioden
-        PeriodCountDesc: 'Aantal factureringsperioden (maanden / kwartalen / jaren) waarvoor korting wordt gegeven. Voer 0 (nul) in voor onbeperkte korting. Alleen van kracht als "Toepassen op abonnementsartikelen" is geactiveerd.'
-    SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:
-        CantBeCombinedWith: 'Deze voucher kan niet worden gecombineerd met een andere voucher in uw winkelwagen.'
-    SilverCart\Voucher\Model\Voucher:
-        IsSubscriptionVoucher: 'Toepassen op abonnementsartikelen'
-        IsSubscriptionVoucherDesc: 'Indien geactiveerd, is deze voucher alleen van toepassing op abonnementsartikelen (maandelijkse, driemaandelijkse of jaarlijkse facturatie). Anders wordt de voucher toegepast op een vaste prijs (eenmalige facturatie).'
+  SilverCart:
+    DiscountMonthly:
+      one: 'De eerste maand is gratis voor u.'
+      other: 'De eerste {count} maanden zijn gratis voor u.'
+    DiscountMonthlyFirst: 'De {count} maand wordt verlaagd naar {price}.'
+    DiscountQuarterly:
+      one: 'Het eerste kwartaal is gratis voor u.'
+      other: 'De eerste {count} kwartalen zijn gratis voor u.'
+    DiscountRelativeMonthly:
+      one: 'De eerste maand werd voor u verlaagd met {amount}%.'
+      other: 'De eerste {count} maanden werden voor u verlaagd met {amount}%.'
+    DiscountRelativeQuarterly:
+      one: 'Het eerste kwartaal werd voor u verlaagd met {amount}%.'
+      other: 'De eerste {count} kwartalen werden voor u verlaagd met {amount}%.'
+    DiscountRelativeYearly:
+      one: 'Het eerste jaar werd voor u verlaagd met {amount}%.'
+      other: 'De eerste {count} jaren werden voor u verlaagd met {amount}%.'
+    DiscountYearly:
+      one: 'Het eerste jaar is gratis voor u.'
+      other: 'De eerste {count} jaren zijn gratis voor u.'
+    Once: eenmalig
+  SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
+    PeriodCount: Factureringsperioden
+    PeriodCountDesc: 'Aantal factureringsperioden (maanden / kwartalen / jaren) waarvoor korting wordt gegeven. Voer 0 (nul) in voor onbeperkte korting. Alleen van kracht als "Toepassen op abonnementsartikelen" is geactiveerd.'
+  SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:
+    CantBeCombinedWith: 'Deze voucher kan niet worden gecombineerd met een andere voucher in uw winkelwagen.'
+  SilverCart\Subscriptions\Extensions\OrderPositionExtension:
+    IsSubscriptionVoucher: 'Is een voucher voor abonnementsartikelen'
+    PriceConsequentialCosts: 'Prijs Follow-upkosten (individueel)'
+    PriceTotalConsequentialCosts: 'Prijs Follow-upkosten (totaal)'
+    TaxConsequentialCosts: 'BTW Follow-upkosten  (individueel)'
+    TaxTotalConsequentialCosts: 'BTW Follow-upkosten (totaal)'
+  SilverCart\Subscriptions\Extensions\ProductExtension:
+    BillingPeriod: Factureringsperiode
+    BillingPeriodAdditionPlural: 'in de eerste {duration} {period}'
+    BillingPeriodAdditionSingular: 'in de eerste {period}'
+    BillingPeriodMonthly: maandelĳks
+    BillingPeriodMonthlyAbbr: maandelĳks
+    BillingPeriodOnce: éénmalig
+    BillingPeriodQuarterly: driemaandelijks
+    BillingPeriodQuarterlyAbbr: trimestrieel
+    BillingPeriodYearly: jaarlijks
+    BillingPeriodYearlyAbbr: jaarlijks
+    DurationPeriodAddPluralMonths: Maanden
+    DurationPeriodAddPluralYears: Jaren
+    DurationPeriodAddSingularMonths: Maand
+    DurationPeriodAddSingularYears: Jaar
+    HasConsequentialCosts: 'Follow-upkosten zijn van toepassing'
+    HasConsequentialCostsDesc: 'Activeer de functie "Follow-upkosten zijn van toepassing" als voor dat artikel naast de eenmalige aankoopprijs ook herhaalde follow-upkosten van toepassing zijn.'
+    IsSubscription: 'Is abonnementsartikel'
+    IsSubscriptionDesc: 'Activeer de functie "Is abonnementsartikel" als de artikelprijs binnen een bepaald, regelmatig interval wordt gefactureerd.'
+    Once: éénmalig
+    PriceGrossConsequentialCosts: 'Prijs Follow-upkosten (bruto)'
+    PriceNetConsequentialCosts: 'Prijs Follow-upkosten (netto)'
+    SubscriptionDuration: Factureringstermijn
+    SubscriptionDurationPeriodMonths: Maanden
+    SubscriptionDurationPeriodYears: Jaar
+    Then: daarna
+  SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
+    monthly: maandelĳks
+    monthlyPayments: 'Maandelijkse betalingen'
+    monthlyPrice: 'Prijs maandelijks'
+    once: eenmalig
+    oncePayments: 'Eenmalige betalingen'
+    oncePrice: 'Prijs eenmalig'
+    quarterly: Driemaandelijks
+    quarterlyPayments: 'Driemaandelijkse betalingen'
+    quarterlyPrice: 'Prijs driemaandelijks'
+    yearly: jaarlijks
+    yearlyPayments: 'Jaarlijkse betalingen'
+    yearlyPrice: 'Prijs per jaar'
+  SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
+    BillingPeriodAdditionPlural: 'in de eerste {duration} {period}, daarna {price}'
+    BillingPeriodAdditionSingular: 'in de eerste {period}, daarna {price}'
+  SilverCart\Voucher\Model\Voucher:
+    IsSubscriptionVoucher: 'Toepassen op abonnementsartikelen'
+    IsSubscriptionVoucherDesc: 'Indien geactiveerd, is deze voucher alleen van toepassing op abonnementsartikelen (maandelijkse, driemaandelijkse of jaarlijkse facturatie). Anders wordt de voucher toegepast op een vaste prijs (eenmalige facturatie).'

@@ -1,80 +1,80 @@
 de:
-    SilverCart:
-        Once: einmalig
-        DiscountMonthly:
-            one: 'Der erste Monat ist für Sie kostenlos.'
-            other: 'Die ersten {count} Monate sind für Sie kostenlos.'
-        DiscountQuarterly:
-            one: 'Das erste Quartal ist für Sie kostenlos.'
-            other: 'Die ersten {count} Quartale sind für Sie kostenlos.'
-        DiscountYearly:
-            one: 'Das erste Jahr ist für Sie kostenlos.'
-            other: 'Die ersten {count} Jahre sind für Sie kostenlos.'
-        DiscountRelativeMonthly:
-            one: 'Der erste Monat ist für Sie um {amount}% reduziert.'
-            other: 'Die ersten {count} Monate sind für Sie um {amount}% reduziert.'
-        DiscountRelativeQuarterly:
-            one: 'Das erste Quartal ist für Sie um {amount}% reduziert.'
-            other: 'Die ersten {count} Quartale sind für Sie um {amount}% reduziert.'
-        DiscountRelativeYearly:
-            one: 'Das erste Jahr ist für Sie um {amount}% reduziert.'
-            other: 'Die ersten {count} Jahre sind für Sie um {amount}% reduziert.'
-        DiscountMonthlyFirst: 'Der {count}. Monat ist auf {price} reduziert.'
-    SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
-        CanBeUsedForMultiplePositions: 'Auf mehrere Abo-Artikel anwenden'
-        CanBeUsedForMultiplePositionsDesc: 'Wird diese Option in Kombination mit "Auf Abo-Artikel anwenden" aktiviert, ist der Gutschein auf alle Abo-Artikel, die sich im Warenkorb befinden, gültig. Über den Tab "An Artikel binden" kann diese Option weiter eingeschränkt werden.'
-        PeriodCount: Abrechnungsperioden
-        PeriodCountDesc: 'Anzahl der Abrechnungsperioden (Monate/Quartale/Jahre), die rabattiert werden. Für einen unbegrenzten Rabatt 0 (Null) angeben. Nur wirksam, wenn "Auf Abo-Artikel anwenden" aktiviert ist.'
-    SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:
-        CantBeCombinedWith: 'Dieser Gutschein ist nicht mit einem anderen Gutschein in Ihrem Warenkorb kombinierbar.'
-    SilverCart\Subscriptions\Extensions\OrderPositionExtension:
-        IsSubscriptionVoucher: 'Ist Gutschein für Abo-Artikel'
-        PriceConsequentialCosts: 'Preis Folgekosten (einzeln)'
-        PriceTotalConsequentialCosts: 'Preis Folgekosten (gesamt)'
-        TaxConsequentialCosts: 'Steuer Folgekosten (einzeln)'
-        TaxTotalConsequentialCosts: 'Steuer Folgekosten (gesamt)'
-    SilverCart\Subscriptions\Extensions\ProductExtension:
-        BillingPeriod: Abrechnungszeitraum
-        BillingPeriodAdditionSingular: 'im ersten {period}'
-        BillingPeriodAdditionPlural: 'in den ersten {duration} {period}'
-        BillingPeriodOnce: einmalig
-        BillingPeriodMonthly: monatlich
-        BillingPeriodMonthlyAbbr: mtl.
-        BillingPeriodQuarterly: vierteljährlich
-        BillingPeriodQuarterlyAbbr: vj.
-        BillingPeriodYearly: jährlich
-        BillingPeriodYearlyAbbr: j.
-        DurationPeriodAddPluralMonths: Monaten
-        DurationPeriodAddPluralYears: Jahren
-        DurationPeriodAddSingularMonths: Monat
-        DurationPeriodAddSingularYears: Jahr
-        HasConsequentialCosts: 'Hat Folgekosten'
-        HasConsequentialCostsDesc: 'Aktivieren Sie die Funktion "Hat Folgekosten", wenn dieser Artikel neben dem Kaufpreis sich wiederholende Folgekosten hat (z.B. "29,99 € einmalig, danach 4,99 € mtl." / "9,99 € mtl. in den ersten 6 Monaten, danach 19,99 € mtl.").'
-        IsSubscription: 'Ist Abo-Artikel'
-        IsSubscriptionDesc: 'Aktivieren Sie die Funktion "Ist Abo-Artikel", wenn der Artikelpreis in einem bestimmten, regelmäßigen Intervall abgerechnet wird.'
-        Once: einmalig
-        PriceGrossConsequentialCosts: 'Preis Folgekosten (Brutto)'
-        PriceNetConsequentialCosts: 'Preis Folgekosten (Netto)'
-        SubscriptionDuration: Abrechnungslaufzeit
-        SubscriptionDurationPeriodMonths: Monate
-        SubscriptionDurationPeriodYears: Jahre
-        Then: danach
-    SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
-        once: Einmalig
-        oncePayments: 'Einmalige Kosten'
-        oncePrice: einmalig
-        monthly: Monatlich
-        monthlyPayments: 'Monatliche Kosten'
-        monthlyPrice: monatlich
-        quarterly: Quartalsweise
-        quarterlyPayments: 'Vierteljährliche Kosten'
-        quarterlyPrice: vierteljährlich
-        yearly: Jährlich
-        yearlyPayments: 'Jährliche Kosten'
-        yearlyPrice: jährlich
-    SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
-        BillingPeriodAdditionSingular: 'im ersten {period}, danach {price}'
-        BillingPeriodAdditionPlural: 'in den ersten {duration} {period}, danach {price}'
-    SilverCart\Voucher\Model\Voucher:
-        IsSubscriptionVoucher: 'Auf Abo-Artikel anwenden'
-        IsSubscriptionVoucherDesc: 'Wenn aktiviert, ist dieser Gutschein ausschließlich auf Abo-Artikel (Abrechnung monatlich, quartalsweise oder jählich) anwendbar. Ansonsten wird der Gutschein auf Festpreis (einmalige Abrechnung) angewandt.'
+  SilverCart:
+    DiscountMonthly:
+      one: 'Der erste Monat ist für Sie kostenlos.'
+      other: 'Die ersten {count} Monate sind für Sie kostenlos.'
+    DiscountMonthlyFirst: 'Der {count}. Monat ist auf {price} reduziert.'
+    DiscountQuarterly:
+      one: 'Das erste Quartal ist für Sie kostenlos.'
+      other: 'Die ersten {count} Quartale sind für Sie kostenlos.'
+    DiscountRelativeMonthly:
+      one: 'Der erste Monat ist für Sie um {amount}% reduziert.'
+      other: 'Die ersten {count} Monate sind für Sie um {amount}% reduziert.'
+    DiscountRelativeQuarterly:
+      one: 'Das erste Quartal ist für Sie um {amount}% reduziert.'
+      other: 'Die ersten {count} Quartale sind für Sie um {amount}% reduziert.'
+    DiscountRelativeYearly:
+      one: 'Das erste Jahr ist für Sie um {amount}% reduziert.'
+      other: 'Die ersten {count} Jahre sind für Sie um {amount}% reduziert.'
+    DiscountYearly:
+      one: 'Das erste Jahr ist für Sie kostenlos.'
+      other: 'Die ersten {count} Jahre sind für Sie kostenlos.'
+    Once: einmalig
+  SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
+    CanBeUsedForMultiplePositions: 'Auf mehrere Abo-Artikel anwenden'
+    CanBeUsedForMultiplePositionsDesc: 'Wird diese Option in Kombination mit "Auf Abo-Artikel anwenden" aktiviert, ist der Gutschein auf alle Abo-Artikel, die sich im Warenkorb befinden, gültig. Über den Tab "An Artikel binden" kann diese Option weiter eingeschränkt werden.'
+    PeriodCount: Abrechnungsperioden
+    PeriodCountDesc: 'Anzahl der Abrechnungsperioden (Monate/Quartale/Jahre), die rabattiert werden. Für einen unbegrenzten Rabatt 0 (Null) angeben. Nur wirksam, wenn "Auf Abo-Artikel anwenden" aktiviert ist.'
+  SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:
+    CantBeCombinedWith: 'Dieser Gutschein ist nicht mit einem anderen Gutschein in Ihrem Warenkorb kombinierbar.'
+  SilverCart\Subscriptions\Extensions\OrderPositionExtension:
+    IsSubscriptionVoucher: 'Ist Gutschein für Abo-Artikel'
+    PriceConsequentialCosts: 'Preis Folgekosten (einzeln)'
+    PriceTotalConsequentialCosts: 'Preis Folgekosten (gesamt)'
+    TaxConsequentialCosts: 'Steuer Folgekosten (einzeln)'
+    TaxTotalConsequentialCosts: 'Steuer Folgekosten (gesamt)'
+  SilverCart\Subscriptions\Extensions\ProductExtension:
+    BillingPeriod: Abrechnungszeitraum
+    BillingPeriodAdditionPlural: 'in den ersten {duration} {period}'
+    BillingPeriodAdditionSingular: 'im ersten {period}'
+    BillingPeriodMonthly: monatlich
+    BillingPeriodMonthlyAbbr: mtl.
+    BillingPeriodOnce: einmalig
+    BillingPeriodQuarterly: vierteljährlich
+    BillingPeriodQuarterlyAbbr: vj.
+    BillingPeriodYearly: jährlich
+    BillingPeriodYearlyAbbr: j.
+    DurationPeriodAddPluralMonths: Monaten
+    DurationPeriodAddPluralYears: Jahren
+    DurationPeriodAddSingularMonths: Monat
+    DurationPeriodAddSingularYears: Jahr
+    HasConsequentialCosts: 'Hat Folgekosten'
+    HasConsequentialCostsDesc: 'Aktivieren Sie die Funktion "Hat Folgekosten", wenn dieser Artikel neben dem Kaufpreis sich wiederholende Folgekosten hat (z.B. "29,99 € einmalig, danach 4,99 € mtl." / "9,99 € mtl. in den ersten 6 Monaten, danach 19,99 € mtl.").'
+    IsSubscription: 'Ist Abo-Artikel'
+    IsSubscriptionDesc: 'Aktivieren Sie die Funktion "Ist Abo-Artikel", wenn der Artikelpreis in einem bestimmten, regelmäßigen Intervall abgerechnet wird.'
+    Once: einmalig
+    PriceGrossConsequentialCosts: 'Preis Folgekosten (Brutto)'
+    PriceNetConsequentialCosts: 'Preis Folgekosten (Netto)'
+    SubscriptionDuration: Abrechnungslaufzeit
+    SubscriptionDurationPeriodMonths: Monate
+    SubscriptionDurationPeriodYears: Jahre
+    Then: danach
+  SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
+    monthly: Monatlich
+    monthlyPayments: 'Monatliche Kosten'
+    monthlyPrice: monatlich
+    once: Einmalig
+    oncePayments: 'Einmalige Kosten'
+    oncePrice: einmalig
+    quarterly: Quartalsweise
+    quarterlyPayments: 'Vierteljährliche Kosten'
+    quarterlyPrice: vierteljährlich
+    yearly: Jährlich
+    yearlyPayments: 'Jährliche Kosten'
+    yearlyPrice: jährlich
+  SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
+    BillingPeriodAdditionPlural: 'in den ersten {duration} {period}, danach {price}'
+    BillingPeriodAdditionSingular: 'im ersten {period}, danach {price}'
+  SilverCart\Voucher\Model\Voucher:
+    IsSubscriptionVoucher: 'Auf Abo-Artikel anwenden'
+    IsSubscriptionVoucherDesc: 'Wenn aktiviert, ist dieser Gutschein ausschließlich auf Abo-Artikel (Abrechnung monatlich, quartalsweise oder jählich) anwendbar. Ansonsten wird der Gutschein auf Festpreis (einmalige Abrechnung) angewandt.'

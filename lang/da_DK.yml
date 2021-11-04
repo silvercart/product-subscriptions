@@ -1,60 +1,60 @@
 da_DK:
-    SilverCart:
-        Once: 'én gang'
-        DiscountMonthlyFirst: '{count} . måned reduceres til {price} .'
-    SilverCart\Subscriptions\Extensions\OrderPositionExtension:
-        PriceConsequentialCosts: 'Prismæssige følgeomkostninger (enkelt)'
-        PriceTotalConsequentialCosts: 'Prismæssige følgeomkostninger (i alt)'
-        TaxConsequentialCosts: 'Skattemæssige følgeomkostninger (enkelt)'
-        TaxTotalConsequentialCosts: 'Skattemæssige følgeomkostninger (i alt)'
-        IsSubscriptionVoucher: 'Er et værdibevis til abonnementsvarer'
-    SilverCart\Subscriptions\Extensions\ProductExtension:
-        BillingPeriod: Faktureringsperiode
-        BillingPeriodOnce: 'én gang'
-        BillingPeriodMonthly: månedlig
-        BillingPeriodQuarterly: Kvartalsvis
-        BillingPeriodYearly: årlige
-        HasConsequentialCosts: 'Har følgeomkostninger'
-        HasConsequentialCostsDesc: 'Aktivér funktionen "Har tilbagevendende omkostninger", hvis denne artikel har tilbagevendende omkostninger ud over købsprisen (f.eks. "29,99 € én gang, derefter 4,99 € månedligt" / "9,99 € månedligt i de første 6 måneder, derefter 19,99 € månedligt").'
-        IsSubscription: 'Er abonnement'
-        IsSubscriptionDesc: 'Aktiver funktionen "Er abonnement", hvis denne artikel betales med et hyppigt interval.'
-        Once: 'én gang'
-        PriceGrossConsequentialCosts: 'Pris Opfølgningsomkostninger (brutto)'
-        PriceNetConsequentialCosts: 'Pris Opfølgningsomkostninger (netto)'
-        SubscriptionDuration: 'Abonnementets varighed'
-        SubscriptionDurationPeriodMonths: Måneder
-        SubscriptionDurationPeriodYears: År
-        Then: 'efter det'
-        BillingPeriodAdditionSingular: 'i den første {periode}'
-        BillingPeriodAdditionPlural: 'i den første {varighed} {periode}'
-        BillingPeriodMonthlyAbbr: månedlig
-        BillingPeriodQuarterlyAbbr: Kvartalsvis
-        BillingPeriodYearlyAbbr: Årlig
-        DurationPeriodAddPluralMonths: Måneder
-        DurationPeriodAddPluralYears: År
-        DurationPeriodAddSingularMonths: Måned
-        DurationPeriodAddSingularYears: År
-    SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
-        oncePayments: Engangsudgifter
-        oncePrice: 'Pris én gang'
-        monthlyPayments: 'Månedlige omkostninger'
-        monthlyPrice: 'Pris månedligt'
-        quarterlyPayments: 'Kvartalsvise omkostninger'
-        quarterlyPrice: 'Pris kvartalsvis'
-        yearlyPayments: 'Årlige betalinger'
-        yearlyPrice: 'Pris årligt'
-        once: 'Enkelt gang'
-        monthly: Månedlig
-        quarterly: Kvartalsvis
-        yearly: Årlig
-    SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
-        BillingPeriodAdditionSingular: 'i den første {periode}, så {pris}'
-        BillingPeriodAdditionPlural: 'i den første {varighed} {periode}, så {pris}'
-    SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
-        PeriodCount: Regnskabsperioder
-        PeriodCountDesc: 'Antal regnskabsperioder (måneder / kvartaler / år), der gives rabat. Angiv 0 (nul) for en ubegrænset rabat. Kun effektiv, hvis "Anvend på abonnementsartikler" er aktiveret.'
-    SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:
-        CantBeCombinedWith: 'Dette værdibevis kan ikke kombineres med andre værdibeviser i din indkøbskurv.'
-    SilverCart\Voucher\Model\Voucher:
-        IsSubscriptionVoucher: 'Tilføj til abonnementsvarer'
-        IsSubscriptionVoucherDesc: 'Hvis aktiveret, gælder dette værdibevis kun for abonnementsgenstande (fakturering månedligt, kvartalsvis eller årligt). Ellers anvendes værdibeviset på den faste pris (engangsfakturering).'
+  SilverCart:
+    DiscountMonthlyFirst: '{count} . måned reduceres til {price} .'
+    Once: 'én gang'
+  SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
+    PeriodCount: Regnskabsperioder
+    PeriodCountDesc: 'Antal regnskabsperioder (måneder / kvartaler / år), der gives rabat. Angiv 0 (nul) for en ubegrænset rabat. Kun effektiv, hvis "Anvend på abonnementsartikler" er aktiveret.'
+  SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:
+    CantBeCombinedWith: 'Dette værdibevis kan ikke kombineres med andre værdibeviser i din indkøbskurv.'
+  SilverCart\Subscriptions\Extensions\OrderPositionExtension:
+    IsSubscriptionVoucher: 'Er et værdibevis til abonnementsvarer'
+    PriceConsequentialCosts: 'Prismæssige følgeomkostninger (enkelt)'
+    PriceTotalConsequentialCosts: 'Prismæssige følgeomkostninger (i alt)'
+    TaxConsequentialCosts: 'Skattemæssige følgeomkostninger (enkelt)'
+    TaxTotalConsequentialCosts: 'Skattemæssige følgeomkostninger (i alt)'
+  SilverCart\Subscriptions\Extensions\ProductExtension:
+    BillingPeriod: Faktureringsperiode
+    BillingPeriodAdditionPlural: 'i den første {varighed} {periode}'
+    BillingPeriodAdditionSingular: 'i den første {periode}'
+    BillingPeriodMonthly: månedlig
+    BillingPeriodMonthlyAbbr: månedlig
+    BillingPeriodOnce: 'én gang'
+    BillingPeriodQuarterly: Kvartalsvis
+    BillingPeriodQuarterlyAbbr: Kvartalsvis
+    BillingPeriodYearly: årlige
+    BillingPeriodYearlyAbbr: Årlig
+    DurationPeriodAddPluralMonths: Måneder
+    DurationPeriodAddPluralYears: År
+    DurationPeriodAddSingularMonths: Måned
+    DurationPeriodAddSingularYears: År
+    HasConsequentialCosts: 'Har følgeomkostninger'
+    HasConsequentialCostsDesc: 'Aktivér funktionen "Har tilbagevendende omkostninger", hvis denne artikel har tilbagevendende omkostninger ud over købsprisen (f.eks. "29,99 € én gang, derefter 4,99 € månedligt" / "9,99 € månedligt i de første 6 måneder, derefter 19,99 € månedligt").'
+    IsSubscription: 'Er abonnement'
+    IsSubscriptionDesc: 'Aktiver funktionen "Er abonnement", hvis denne artikel betales med et hyppigt interval.'
+    Once: 'én gang'
+    PriceGrossConsequentialCosts: 'Pris Opfølgningsomkostninger (brutto)'
+    PriceNetConsequentialCosts: 'Pris Opfølgningsomkostninger (netto)'
+    SubscriptionDuration: 'Abonnementets varighed'
+    SubscriptionDurationPeriodMonths: Måneder
+    SubscriptionDurationPeriodYears: År
+    Then: 'efter det'
+  SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
+    monthly: Månedlig
+    monthlyPayments: 'Månedlige omkostninger'
+    monthlyPrice: 'Pris månedligt'
+    once: 'Enkelt gang'
+    oncePayments: Engangsudgifter
+    oncePrice: 'Pris én gang'
+    quarterly: Kvartalsvis
+    quarterlyPayments: 'Kvartalsvise omkostninger'
+    quarterlyPrice: 'Pris kvartalsvis'
+    yearly: Årlig
+    yearlyPayments: 'Årlige betalinger'
+    yearlyPrice: 'Pris årligt'
+  SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
+    BillingPeriodAdditionPlural: 'i den første {varighed} {periode}, så {pris}'
+    BillingPeriodAdditionSingular: 'i den første {periode}, så {pris}'
+  SilverCart\Voucher\Model\Voucher:
+    IsSubscriptionVoucher: 'Tilføj til abonnementsvarer'
+    IsSubscriptionVoucherDesc: 'Hvis aktiveret, gælder dette værdibevis kun for abonnementsgenstande (fakturering månedligt, kvartalsvis eller årligt). Ellers anvendes værdibeviset på den faste pris (engangsfakturering).'
