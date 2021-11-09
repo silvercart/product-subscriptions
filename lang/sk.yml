@@ -1,0 +1,62 @@
+sk:
+  SilverCart:
+    DiscountMonthlyFirst: 'Počítadlo {count}. mesiac sa zníži na {cena}.'
+    Once: jedinečné
+  SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
+    CanBeUsedForMultiplePositions: 'Aplikovať na viacero predplatených článkov'
+    CanBeUsedForMultiplePositionsDesc: 'Ak je táto možnosť aktivovaná v kombinácii s možnosťou "Použiť na položky predplatného", poukážka platí pre všetky položky predplatného v nákupnom košíku. Túto možnosť možno ďalej obmedziť prostredníctvom karty "Viazanie na článok".'
+    PeriodCount: 'Účtovné obdobia'
+    PeriodCountDesc: 'Počet fakturačných období (mesiacov/štvrťrokov/rokov), ktoré sa majú zľavniť. Ak chcete získať neobmedzenú zľavu, zadajte 0 (nula). Platí len vtedy, ak je povolená možnosť "Použiť na položky predplatného".'
+  SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:
+    CantBeCombinedWith: 'Tento kupón nie je možné kombinovať s iným kupónom v nákupnom košíku.'
+  SilverCart\Subscriptions\Extensions\OrderPositionExtension:
+    IsSubscriptionVoucher: 'Je poukaz na predplatné článkov'
+    PriceConsequentialCosts: 'Cena následné náklady (jednorazové)'
+    PriceTotalConsequentialCosts: 'Cena Následné náklady (spolu)'
+    TaxConsequentialCosts: 'Následné daňové náklady (individuálne)'
+    TaxTotalConsequentialCosts: 'Následné daňové náklady (spolu)'
+  SilverCart\Subscriptions\Extensions\ProductExtension:
+    BillingPeriod: 'Účtovné obdobie'
+    BillingPeriodAdditionPlural: 'v prvom {dĺžke} {období}'
+    BillingPeriodAdditionSingular: 'v prvom {období}'
+    BillingPeriodMonthly: mesačne
+    BillingPeriodMonthlyAbbr: mthly
+    BillingPeriodOnce: jedinečné
+    BillingPeriodQuarterly: štvrťročne
+    BillingPeriodQuarterlyAbbr: vj.
+    BillingPeriodYearly: ročné
+    BillingPeriodYearlyAbbr: j.
+    DurationPeriodAddPluralMonths: Mesiace
+    DurationPeriodAddPluralYears: Roky
+    DurationPeriodAddSingularMonths: Mesiac
+    DurationPeriodAddSingularYears: Rok
+    HasConsequentialCosts: 'Má následné náklady'
+    HasConsequentialCostsDesc: 'Aktivácia funkcie "Má následné náklady", ak má táto položka okrem nákupnej ceny aj opakujúce sa následné náklady (napr. "29,99 € raz, potom 4,99 € mesačne" / "9,99 € mesačne počas prvých 6 mesiacov, potom 19,99 € mesačne").'
+    IsSubscription: 'Je predplatné článku'
+    IsSubscriptionDesc: 'Aktivácia funkcie "Je položka predplatného", ak sa cena položky účtuje v určitom pravidelnom intervale.'
+    Once: jedinečné
+    PriceGrossConsequentialCosts: 'Náklady na následnú kontrolu ceny (brutto)'
+    PriceNetConsequentialCosts: 'Následné náklady (netto)'
+    SubscriptionDuration: 'Obdobie zúčtovania'
+    SubscriptionDurationPeriodMonths: Mesiace
+    SubscriptionDurationPeriodYears: Roky
+    Then: potom
+  SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
+    monthly: Mesačne
+    monthlyPayments: 'Mesačné náklady'
+    monthlyPrice: mesačne
+    once: Jedinečné
+    oncePayments: 'Jednorazové náklady'
+    oncePrice: jedinečné
+    quarterly: Štvrťročne
+    quarterlyPayments: 'Štvrťročné náklady'
+    quarterlyPrice: štvrťročne
+    yearly: Ročný
+    yearlyPayments: 'Ročné náklady'
+    yearlyPrice: ročné
+  SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
+    BillingPeriodAdditionPlural: 'v prvom {dĺžke} {období}, potom {cena}'
+    BillingPeriodAdditionSingular: 'v prvom {období}, potom {cena}'
+  SilverCart\Voucher\Model\Voucher:
+    IsSubscriptionVoucher: 'Vzťahuje sa na články s predplatným'
+    IsSubscriptionVoucherDesc: 'Ak je táto poukážka aktivovaná, vzťahuje sa len na predplatené položky (mesačné, štvrťročné alebo ročné vyúčtovanie). V opačnom prípade sa poukaz uplatní na pevnú cenu (jednorazové vyúčtovanie).'

@@ -21,6 +21,8 @@ it:
       other: 'Per te gratis primi  {count}  anni.'
     Once: unico
   SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
+    CanBeUsedForMultiplePositions: 'Applicare a più articoli in abbonamento'
+    CanBeUsedForMultiplePositionsDesc: 'Se questa opzione è attivata in combinazione con "Applica agli articoli in abbonamento", il buono è valido per tutti gli articoli in abbonamento nel carrello. Questa opzione può essere ulteriormente limitata tramite la scheda "Bind to article".'
     PeriodCount: 'Periodi di fatturazione'
     PeriodCountDesc: 'Periodi di fatturazione (mensile/trimestrale/annuale) scontati. Immettere 0 (zero) per uno sconto illimitato. Efficace solamente se attiva la voce "Applica agli articoli in abbonamento".'
   SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:

@@ -1,0 +1,62 @@
+es:
+  SilverCart:
+    DiscountMonthlyFirst: 'La {cuenta}. mes se reduce a {precio}.'
+    Once: único
+  SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
+    CanBeUsedForMultiplePositions: 'Aplicar a los artículos de suscripción múltiple'
+    CanBeUsedForMultiplePositionsDesc: 'Si esta opción se activa en combinación con "Aplicar a los artículos de suscripción", el vale es válido para todos los artículos de suscripción de la cesta de la compra. Esta opción puede restringirse aún más a través de la pestaña "Vincular al artículo".'
+    PeriodCount: 'Períodos contables'
+    PeriodCountDesc: 'Número de periodos de facturación (meses/trimestres/años) a descontar. Para un descuento ilimitado, introduzca 0 (cero). Sólo es efectivo si está activada la opción "Aplicar a los artículos de la suscripción".'
+  SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:
+    CantBeCombinedWith: 'Este vale no puede combinarse con ningún otro vale en su cesta de la compra.'
+  SilverCart\Subscriptions\Extensions\OrderPositionExtension:
+    IsSubscriptionVoucher: 'Es un bono para artículos de suscripción'
+    PriceConsequentialCosts: 'Precio costes de seguimiento (individual)'
+    PriceTotalConsequentialCosts: 'Precio Costes de seguimiento (total)'
+    TaxConsequentialCosts: 'Costes de seguimiento fiscal (individual)'
+    TaxTotalConsequentialCosts: 'Costes de seguimiento fiscal (total)'
+  SilverCart\Subscriptions\Extensions\ProductExtension:
+    BillingPeriod: 'Período contable'
+    BillingPeriodAdditionPlural: 'en el primer {período de duración} {período}'
+    BillingPeriodAdditionSingular: 'en el primer {período}'
+    BillingPeriodMonthly: mensualmente
+    BillingPeriodMonthlyAbbr: mthly
+    BillingPeriodOnce: único
+    BillingPeriodQuarterly: trimestral
+    BillingPeriodQuarterlyAbbr: vj.
+    BillingPeriodYearly: anual
+    BillingPeriodYearlyAbbr: j.
+    DurationPeriodAddPluralMonths: Meses
+    DurationPeriodAddPluralYears: Años
+    DurationPeriodAddSingularMonths: Mes
+    DurationPeriodAddSingularYears: Año
+    HasConsequentialCosts: 'Tiene costes de seguimiento'
+    HasConsequentialCostsDesc: 'Active la función "Tiene costes de seguimiento" si este artículo tiene costes de seguimiento recurrentes además del precio de compra (por ejemplo, "29,99 € una vez, luego 4,99 € al mes" / "9,99 € al mes durante los primeros 6 meses, luego 19,99 € al mes").'
+    IsSubscription: 'Es un artículo de suscripción'
+    IsSubscriptionDesc: 'Active la función "Es artículo de suscripción" si el precio del artículo se factura en un intervalo específico y regular.'
+    Once: único
+    PriceGrossConsequentialCosts: 'Precio costes de seguimiento (bruto)'
+    PriceNetConsequentialCosts: 'Precio costes de seguimiento (neto)'
+    SubscriptionDuration: 'Periodo de liquidación'
+    SubscriptionDurationPeriodMonths: Meses
+    SubscriptionDurationPeriodYears: Años
+    Then: después
+  SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
+    monthly: Mensualmente
+    monthlyPayments: 'Costes mensuales'
+    monthlyPrice: mensualmente
+    once: Único
+    oncePayments: 'Costes puntuales'
+    oncePrice: único
+    quarterly: Trimestralmente
+    quarterlyPayments: 'Costes trimestrales'
+    quarterlyPrice: trimestral
+    yearly: Anual
+    yearlyPayments: 'Costes anuales'
+    yearlyPrice: anual
+  SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
+    BillingPeriodAdditionPlural: 'en el primer {periodo} {duración}, entonces {precio}'
+    BillingPeriodAdditionSingular: 'en el primer {período}, entonces el {precio}'
+  SilverCart\Voucher\Model\Voucher:
+    IsSubscriptionVoucher: 'Aplicar a los artículos de suscripción'
+    IsSubscriptionVoucherDesc: 'Si se activa, este vale sólo es aplicable a los artículos de suscripción (facturación mensual, trimestral o anual). En caso contrario, el vale se aplica a precio fijo (facturación única).'

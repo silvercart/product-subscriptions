@@ -1,0 +1,61 @@
+ro:
+  SilverCart:
+    DiscountMonthlyFirst: '{count}. luna este redusă la {preț}.'
+  SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
+    CanBeUsedForMultiplePositions: 'Se aplică la mai multe articole de abonament'
+    CanBeUsedForMultiplePositionsDesc: 'Dacă această opțiune este activată în combinație cu "Aplică la articole de abonament", voucherul este valabil pentru toate articolele de abonament din coșul de cumpărături. Această opțiune poate fi restricționată în continuare prin intermediul filei "Bind to article".'
+    PeriodCount: 'Perioade contabile'
+    PeriodCountDesc: 'Numărul perioadelor de facturare (luni/trimestre/an) care urmează să fie reduse. Pentru o reducere nelimitată, introduceți 0 (zero). Are efect numai dacă este activată opțiunea "Aplicare la articole de abonament".'
+  SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:
+    CantBeCombinedWith: 'Acest voucher nu poate fi combinat cu niciun alt voucher din coșul de cumpărături.'
+  SilverCart\Subscriptions\Extensions\OrderPositionExtension:
+    IsSubscriptionVoucher: 'Este voucher pentru articole de abonament'
+    PriceConsequentialCosts: 'Preț Costuri de urmărire (unic)'
+    PriceTotalConsequentialCosts: 'Preț Costuri de urmărire (total)'
+    TaxConsequentialCosts: 'Costuri de urmărire fiscală (persoane fizice)'
+    TaxTotalConsequentialCosts: 'Costuri de urmărire fiscală (total)'
+  SilverCart\Subscriptions\Extensions\ProductExtension:
+    BillingPeriod: 'Perioada contabilă'
+    BillingPeriodAdditionPlural: 'în prima {durată} {perioadă} {perioadă}.'
+    BillingPeriodAdditionSingular: 'în prima {perioadă}'
+    BillingPeriodMonthly: lunar
+    BillingPeriodMonthlyAbbr: lunar
+    BillingPeriodOnce: unic
+    BillingPeriodQuarterly: trimestrial
+    BillingPeriodQuarterlyAbbr: vj.
+    BillingPeriodYearly: anual
+    BillingPeriodYearlyAbbr: j.
+    DurationPeriodAddPluralMonths: Luni
+    DurationPeriodAddPluralYears: Ani
+    DurationPeriodAddSingularMonths: Luna
+    DurationPeriodAddSingularYears: Anul
+    HasConsequentialCosts: 'Are costuri de urmărire'
+    HasConsequentialCostsDesc: 'Activați funcția "Are costuri de urmărire" dacă acest articol are costuri de urmărire recurente în plus față de prețul de achiziție (de exemplu, "29,99 € o dată, apoi 4,99 € pe lună" / "9,99 € pe lună pentru primele 6 luni, apoi 19,99 € pe lună").'
+    IsSubscription: 'Este articolul de abonament'
+    IsSubscriptionDesc: 'Activați funcția "Este un articol de abonament" dacă prețul articolului este facturat la un anumit interval regulat.'
+    Once: unic
+    PriceGrossConsequentialCosts: 'Preț Costuri de monitorizare a prețurilor (brut)'
+    PriceNetConsequentialCosts: 'Costuri de urmărire a prețurilor (net)'
+    SubscriptionDuration: 'Perioada de decontare'
+    SubscriptionDurationPeriodMonths: Luni
+    SubscriptionDurationPeriodYears: Ani
+    Then: 'după aceea'
+  SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
+    monthly: Lunar
+    monthlyPayments: 'Costuri lunare'
+    monthlyPrice: lunar
+    once: Unic
+    oncePayments: 'Costuri unice'
+    oncePrice: unic
+    quarterly: Trimestrial
+    quarterlyPayments: 'Costuri trimestriale'
+    quarterlyPrice: trimestrial
+    yearly: Anual
+    yearlyPayments: 'Costuri anuale'
+    yearlyPrice: anual
+  SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
+    BillingPeriodAdditionPlural: 'în prima {durată} {perioadă}, atunci {prețul}'
+    BillingPeriodAdditionSingular: 'în prima {perioadă}, atunci {prețul}'
+  SilverCart\Voucher\Model\Voucher:
+    IsSubscriptionVoucher: 'Se aplică la articolele de abonament'
+    IsSubscriptionVoucherDesc: 'În cazul în care este activat, acest voucher se aplică numai la articolele de abonament (facturare lunară, trimestrială sau anuală). În caz contrar, voucherul se aplică la prețul fix (facturare unică).'

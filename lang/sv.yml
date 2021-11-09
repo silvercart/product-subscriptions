@@ -1,0 +1,62 @@
+sv:
+  SilverCart:
+    DiscountMonthlyFirst: '{räkning}. månad minskas till {pris}.'
+    Once: unik
+  SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
+    CanBeUsedForMultiplePositions: 'Tillämpas på flera prenumerationsartiklar'
+    CanBeUsedForMultiplePositionsDesc: 'Om det här alternativet är aktiverat i kombination med "Applicera på prenumerationsartiklar" gäller kupongen för alla prenumerationsartiklar i varukorgen. Detta alternativ kan begränsas ytterligare via fliken "Bind till artikel".'
+    PeriodCount: Redovisningsperioder
+    PeriodCountDesc: 'Antal faktureringsperioder (månader/kvartal/år) som ska rabatteras. För en obegränsad rabatt anger du 0 (noll). Endast effektiv om "Tillämpa på prenumerationsobjekt" är aktiverat.'
+  SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:
+    CantBeCombinedWith: 'Denna kupong kan inte kombineras med någon annan kupong i din varukorg.'
+  SilverCart\Subscriptions\Extensions\OrderPositionExtension:
+    IsSubscriptionVoucher: 'Är en kupong för prenumerationsartiklar'
+    PriceConsequentialCosts: 'Pris uppföljningskostnader (enkel)'
+    PriceTotalConsequentialCosts: 'Pris Uppföljningskostnader (totalt)'
+    TaxConsequentialCosts: 'Kostnader för skatteuppföljning (enskilda)'
+    TaxTotalConsequentialCosts: 'Kostnader för skatteuppföljning (totalt)'
+  SilverCart\Subscriptions\Extensions\ProductExtension:
+    BillingPeriod: Redovisningsperiod
+    BillingPeriodAdditionPlural: 'under den första {durationen} {perioden}'
+    BillingPeriodAdditionSingular: 'under den första {perioden}'
+    BillingPeriodMonthly: månadsvis
+    BillingPeriodMonthlyAbbr: månadsvis
+    BillingPeriodOnce: unik
+    BillingPeriodQuarterly: kvartalsvis
+    BillingPeriodQuarterlyAbbr: vj.
+    BillingPeriodYearly: Årlig
+    BillingPeriodYearlyAbbr: j.
+    DurationPeriodAddPluralMonths: Månader
+    DurationPeriodAddPluralYears: År
+    DurationPeriodAddSingularMonths: Månad
+    DurationPeriodAddSingularYears: År
+    HasConsequentialCosts: 'Har kostnader för uppföljning.'
+    HasConsequentialCostsDesc: 'Aktivera funktionen "Har uppföljningskostnader" om artikeln har återkommande uppföljningskostnader utöver inköpspriset (t.ex. "29,99 € en gång, därefter 4,99 € per månad" / "9,99 € per månad under de första 6 månaderna, därefter 19,99 € per månad").'
+    IsSubscription: 'Är prenumerationsartikel'
+    IsSubscriptionDesc: 'Aktivera funktionen "Är prenumerationsartikel" om artikelpriset faktureras med ett visst regelbundet intervall.'
+    Once: unik
+    PriceGrossConsequentialCosts: 'Pris uppföljningskostnader (brutto)'
+    PriceNetConsequentialCosts: 'Kostnader för prisuppföljning (netto)'
+    SubscriptionDuration: Avvecklingsperiod
+    SubscriptionDurationPeriodMonths: Månader
+    SubscriptionDurationPeriodYears: År
+    Then: efteråt
+  SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
+    monthly: Månadsvis
+    monthlyPayments: 'Månatliga kostnader'
+    monthlyPrice: månadsvis
+    once: Unik
+    oncePayments: 'Kostnader av engångskaraktär'
+    oncePrice: unik
+    quarterly: Kvartalsvis
+    quarterlyPayments: 'Kvartalsvisa kostnader'
+    quarterlyPrice: kvartalsvis
+    yearly: Årlig
+    yearlyPayments: 'Årliga kostnader'
+    yearlyPrice: Årlig
+  SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
+    BillingPeriodAdditionPlural: 'under den första {löptiden} {perioden}, då {priset}'
+    BillingPeriodAdditionSingular: 'under den första {perioden}, då {priset}'
+  SilverCart\Voucher\Model\Voucher:
+    IsSubscriptionVoucher: 'Tillämpas på prenumerationsartiklar'
+    IsSubscriptionVoucherDesc: 'Om den är aktiverad är den här kupongen endast tillämplig på prenumerationsartiklar (månads-, kvartals- eller årsfakturering). Annars tillämpas kupongen på fast pris (engångsfakturering).'

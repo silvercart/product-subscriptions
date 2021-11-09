@@ -1,0 +1,62 @@
+en_ZA:
+  SilverCart:
+    DiscountMonthlyFirst: 'The {count}. month is reduced to {price}.'
+    Once: unique
+  SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
+    CanBeUsedForMultiplePositions: 'Apply to multiple subscription articles'
+    CanBeUsedForMultiplePositionsDesc: 'If this option is activated in combination with "Apply to subscription items", the voucher is valid for all subscription items in the shopping basket. This option can be further restricted via the tab "Bind to article".'
+    PeriodCount: 'Accounting periods'
+    PeriodCountDesc: 'Number of billing periods (months/quarters/years) to be discounted. For an unlimited discount, enter 0 (zero). Only effective if "Apply to Subscription Items" is enabled.'
+  SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:
+    CantBeCombinedWith: 'This voucher cannot be combined with any other voucher in your shopping cart.'
+  SilverCart\Subscriptions\Extensions\OrderPositionExtension:
+    IsSubscriptionVoucher: 'Is voucher for subscription articles'
+    PriceConsequentialCosts: 'Price follow-up costs (single)'
+    PriceTotalConsequentialCosts: 'Price Follow-up costs (total)'
+    TaxConsequentialCosts: 'Tax follow-up costs (individual)'
+    TaxTotalConsequentialCosts: 'Tax follow-up costs (total)'
+  SilverCart\Subscriptions\Extensions\ProductExtension:
+    BillingPeriod: 'Accounting period'
+    BillingPeriodAdditionPlural: 'in the first {duration} {period}'
+    BillingPeriodAdditionSingular: 'in the first {period}'
+    BillingPeriodMonthly: monthly
+    BillingPeriodMonthlyAbbr: mthly
+    BillingPeriodOnce: unique
+    BillingPeriodQuarterly: quarterly
+    BillingPeriodQuarterlyAbbr: vj.
+    BillingPeriodYearly: annual
+    BillingPeriodYearlyAbbr: j.
+    DurationPeriodAddPluralMonths: Months
+    DurationPeriodAddPluralYears: Years
+    DurationPeriodAddSingularMonths: Month
+    DurationPeriodAddSingularYears: Year
+    HasConsequentialCosts: 'Has follow-up costs'
+    HasConsequentialCostsDesc: 'Activate the function "Has follow-up costs" if this item has recurring follow-up costs in addition to the purchase price (e.g. "29.99 € once, then 4.99 € per month" / "9.99 € per month for the first 6 months, then 19.99 € per month").'
+    IsSubscription: 'Is subscription article'
+    IsSubscriptionDesc: 'Activate the "Is subscription item" function if the item price is billed at a specific, regular interval.'
+    Once: unique
+    PriceGrossConsequentialCosts: 'Price follow-up costs (gross)'
+    PriceNetConsequentialCosts: 'Price follow-up costs (net)'
+    SubscriptionDuration: 'Settlement period'
+    SubscriptionDurationPeriodMonths: Months
+    SubscriptionDurationPeriodYears: Years
+    Then: afterwards
+  SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
+    monthly: Monthly
+    monthlyPayments: 'Monthly costs'
+    monthlyPrice: monthly
+    once: Unique
+    oncePayments: 'One-off costs'
+    oncePrice: unique
+    quarterly: Quarterly
+    quarterlyPayments: 'Quarterly costs'
+    quarterlyPrice: quarterly
+    yearly: Annual
+    yearlyPayments: 'Annual costs'
+    yearlyPrice: annual
+  SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
+    BillingPeriodAdditionPlural: 'in the first {duration} {period}, then {price}'
+    BillingPeriodAdditionSingular: 'in the first {period}, then {price}'
+  SilverCart\Voucher\Model\Voucher:
+    IsSubscriptionVoucher: 'Apply to subscription items'
+    IsSubscriptionVoucherDesc: 'If activated, this voucher is only applicable to subscription items (monthly, quarterly or yearly billing). Otherwise, the voucher is applied to fixed price (one-time billing).'

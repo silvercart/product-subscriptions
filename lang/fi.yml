@@ -1,0 +1,62 @@
+fi:
+  SilverCart:
+    DiscountMonthlyFirst: '{count}. kuukausi vähenee {hintaan}.'
+    Once: ainutlaatuinen
+  SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
+    CanBeUsedForMultiplePositions: 'Sovelletaan useisiin tilausartikkeleihin'
+    CanBeUsedForMultiplePositionsDesc: 'Jos tämä vaihtoehto on aktivoitu yhdessä "Sovelletaan tilauskohteisiin" -vaihtoehdon kanssa, kuponki on voimassa kaikkiin ostoskorissa oleviin tilauskohteisiin. Tätä vaihtoehtoa voidaan rajoittaa edelleen välilehdellä "Sitoutuminen artikkeliin".'
+    PeriodCount: Tilikaudet
+    PeriodCountDesc: 'Alennettavien laskutusjaksojen (kuukaudet/neljännekset/vuodet) lukumäärä. Jos haluat rajoittamattoman alennuksen, syötä 0 (nolla). Toimii vain, jos "Sovelletaan tilauskohteisiin" on käytössä.'
+  SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:
+    CantBeCombinedWith: 'Tätä arvoseteliä ei voi yhdistää ostoskorissasi oleviin muihin arvoseteleihin.'
+  SilverCart\Subscriptions\Extensions\OrderPositionExtension:
+    IsSubscriptionVoucher: 'Onko kuponki tilausartikkeleita varten'
+    PriceConsequentialCosts: 'Hinta seurantakustannukset (yhden hengen)'
+    PriceTotalConsequentialCosts: 'Hinta Seurantakustannukset (yhteensä)'
+    TaxConsequentialCosts: 'Verotuksen seurantakustannukset (yksityishenkilöt)'
+    TaxTotalConsequentialCosts: 'Verotuksen seurantakustannukset (yhteensä)'
+  SilverCart\Subscriptions\Extensions\ProductExtension:
+    BillingPeriod: Tilikausi
+    BillingPeriodAdditionPlural: 'ensimmäisellä {kestolla} {jaksolla}'
+    BillingPeriodAdditionSingular: 'ensimmäisellä {jaksolla}'
+    BillingPeriodMonthly: kuukausittain
+    BillingPeriodMonthlyAbbr: kuukausittain
+    BillingPeriodOnce: ainutlaatuinen
+    BillingPeriodQuarterly: neljännesvuosittain
+    BillingPeriodQuarterlyAbbr: vj.
+    BillingPeriodYearly: vuotuinen
+    BillingPeriodYearlyAbbr: j.
+    DurationPeriodAddPluralMonths: Kuukaudet
+    DurationPeriodAddPluralYears: Vuodet
+    DurationPeriodAddSingularMonths: Kuukausi
+    DurationPeriodAddSingularYears: Vuosi
+    HasConsequentialCosts: Seurantakustannukset
+    HasConsequentialCostsDesc: 'Aktivoi toiminto "On jatkokustannuksia", jos tuotteella on ostohinnan lisäksi toistuvia jatkokustannuksia (esim. "29,99 € kerran, sitten 4,99 € kuukaudessa" / "9,99 € kuukaudessa ensimmäiset 6 kuukautta, sitten 19,99 € kuukaudessa").'
+    IsSubscription: 'Onko tilausartikkeli'
+    IsSubscriptionDesc: 'Aktivoi "Onko tilauserä" -toiminto, jos erän hinta vahvistetaan tietyllä säännöllisellä aikavälillä.'
+    Once: ainutlaatuinen
+    PriceGrossConsequentialCosts: 'Hinta seurantakustannukset (brutto)'
+    PriceNetConsequentialCosts: 'Hinnan seurantakustannukset (netto)'
+    SubscriptionDuration: Selvitysjakso
+    SubscriptionDurationPeriodMonths: Kuukaudet
+    SubscriptionDurationPeriodYears: Vuodet
+    Then: 'sen jälkeen'
+  SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
+    monthly: Kuukausittain
+    monthlyPayments: 'Kuukausittaiset kustannukset'
+    monthlyPrice: kuukausittain
+    once: Ainutlaatuinen
+    oncePayments: 'Kertaluonteiset kustannukset'
+    oncePrice: ainutlaatuinen
+    quarterly: Neljännesvuosittain
+    quarterlyPayments: 'Neljännesvuosittaiset kustannukset'
+    quarterlyPrice: neljännesvuosittain
+    yearly: Vuosittainen
+    yearlyPayments: 'Vuotuiset kustannukset'
+    yearlyPrice: vuotuinen
+  SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
+    BillingPeriodAdditionPlural: 'ensimmäisellä {kestolla} {jaksolla}, niin {hinta}'
+    BillingPeriodAdditionSingular: 'ensimmäisellä {jaksolla}, niin {hinta}'
+  SilverCart\Voucher\Model\Voucher:
+    IsSubscriptionVoucher: 'Sovelletaan tilausartikkeleihin'
+    IsSubscriptionVoucherDesc: 'Jos tämä kuponki on aktivoitu, sitä voidaan soveltaa vain tilaustuotteisiin (kuukausittainen, neljännesvuosittainen tai vuosittainen laskutus). Muussa tapauksessa tositetta sovelletaan kiinteään hintaan (kertalaskutus).'

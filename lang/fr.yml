@@ -1,0 +1,62 @@
+fr:
+  SilverCart:
+    DiscountMonthlyFirst: 'Le {count}. mois est réduit à {prix}.'
+    Once: unique
+  SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
+    CanBeUsedForMultiplePositions: 'Appliquer à plusieurs articles d''abonnement'
+    CanBeUsedForMultiplePositionsDesc: 'Si cette option est activée en combinaison avec "Appliquer aux articles de l''abonnement", le bon d''achat est valable pour tous les articles de l''abonnement dans le panier. Cette option peut être restreinte davantage via l''onglet "Lier à l''article".'
+    PeriodCount: 'Périodes comptables'
+    PeriodCountDesc: 'Nombre de périodes de facturation (mois/trimestres/années) à actualiser. Pour une remise illimitée, entrez 0 (zéro). Ne fonctionne que si l''option "Appliquer aux éléments de l''abonnement" est activée.'
+  SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:
+    CantBeCombinedWith: 'Ce bon ne peut être combiné avec aucun autre bon dans votre panier.'
+  SilverCart\Subscriptions\Extensions\OrderPositionExtension:
+    IsSubscriptionVoucher: 'Est un bon pour les articles d''abonnement'
+    PriceConsequentialCosts: 'Prix coûts de suivi (simple)'
+    PriceTotalConsequentialCosts: 'Prix Coûts de suivi (total)'
+    TaxConsequentialCosts: 'Frais de suivi fiscal (particuliers)'
+    TaxTotalConsequentialCosts: 'Coûts du suivi fiscal (total)'
+  SilverCart\Subscriptions\Extensions\ProductExtension:
+    BillingPeriod: 'Période comptable'
+    BillingPeriodAdditionPlural: 'dans la première {durée} {période}.'
+    BillingPeriodAdditionSingular: 'dans la première {période}'
+    BillingPeriodMonthly: mensuel
+    BillingPeriodMonthlyAbbr: mensuel
+    BillingPeriodOnce: unique
+    BillingPeriodQuarterly: trimestrielle
+    BillingPeriodQuarterlyAbbr: vj.
+    BillingPeriodYearly: annuel
+    BillingPeriodYearlyAbbr: j.
+    DurationPeriodAddPluralMonths: Mois
+    DurationPeriodAddPluralYears: Années
+    DurationPeriodAddSingularMonths: Mois
+    DurationPeriodAddSingularYears: Année
+    HasConsequentialCosts: 'A des coûts de suivi'
+    HasConsequentialCostsDesc: 'Activez la fonction "A des frais de suivi" si cet article a des frais de suivi récurrents en plus du prix d''achat (par exemple "29,99 € une fois, puis 4,99 € par mois" / "9,99 € par mois pendant les 6 premiers mois, puis 19,99 € par mois").'
+    IsSubscription: 'L''article d''abonnement est-il'
+    IsSubscriptionDesc: 'Activez la fonction "Est un article d''abonnement" si le prix de l''article est facturé à un intervalle spécifique et régulier.'
+    Once: unique
+    PriceGrossConsequentialCosts: 'Prix coûts de suivi (brut)'
+    PriceNetConsequentialCosts: 'Coûts de suivi des prix (net)'
+    SubscriptionDuration: 'Période de règlement'
+    SubscriptionDurationPeriodMonths: Mois
+    SubscriptionDurationPeriodYears: Années
+    Then: ensuite
+  SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
+    monthly: Mensuel
+    monthlyPayments: 'Coûts mensuels'
+    monthlyPrice: mensuel
+    once: 'Unique en son genre'
+    oncePayments: 'Coûts non récurrents'
+    oncePrice: unique
+    quarterly: Trimestrielle
+    quarterlyPayments: 'Coûts trimestriels'
+    quarterlyPrice: trimestrielle
+    yearly: Annuel
+    yearlyPayments: 'Coûts annuels'
+    yearlyPrice: annuel
+  SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
+    BillingPeriodAdditionPlural: 'dans la première {durée} {période}, alors {prix}'
+    BillingPeriodAdditionSingular: 'dans la première {période}, alors {prix}'
+  SilverCart\Voucher\Model\Voucher:
+    IsSubscriptionVoucher: 'Appliquer aux articles d''abonnement'
+    IsSubscriptionVoucherDesc: 'S''il est activé, ce bon est uniquement applicable aux articles d''abonnement (facturation mensuelle, trimestrielle ou annuelle). Sinon, le bon est appliqué au prix fixe (facturation unique).'

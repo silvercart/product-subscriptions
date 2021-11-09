@@ -21,6 +21,8 @@ fr_BE:
       other: 'Les premières {count} années sont gratuites pour vous.'
     Once: unique
   SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
+    CanBeUsedForMultiplePositions: 'Appliquer à plusieurs articles d''abonnement'
+    CanBeUsedForMultiplePositionsDesc: 'Si cette option est activée en combinaison avec "Appliquer aux articles de l''abonnement", le bon d''achat est valable pour tous les articles de l''abonnement dans le panier. Cette option peut être restreinte davantage via l''onglet "Lier à l''article".'
     PeriodCount: 'Périodes de facturation'
     PeriodCountDesc: 'Nombre de périodes de facturation (mois/trimestres/années) pour lesquelles une réduction est accordée. Pour une réduction illimitée, indiquez 0 (zéro). Fonctionne seulement si "Appliquer aux articles d’abonnement" est activé.'
   SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:

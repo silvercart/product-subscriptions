@@ -1,0 +1,62 @@
+pl:
+  SilverCart:
+    DiscountMonthlyFirst: 'The {count}. miesiąc jest obniżony do {ceny}.'
+    Once: unikalny
+  SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
+    CanBeUsedForMultiplePositions: 'Zastosuj do wielu artykułów subskrypcji'
+    CanBeUsedForMultiplePositionsDesc: 'Jeśli ta opcja jest aktywowana w połączeniu z "Zastosuj do pozycji abonamentowych", bon jest ważny dla wszystkich pozycji abonamentowych w koszyku. Opcja ta może być dodatkowo ograniczona poprzez zakładkę "Bind to article".'
+    PeriodCount: 'Okresy obrachunkowe'
+    PeriodCountDesc: 'Liczba okresów rozliczeniowych (miesiące/kwartały/roki), które mają być zdyskontowane. Aby uzyskać nieograniczony rabat, wpisz 0 (zero). Obowiązuje tylko wtedy, gdy włączona jest opcja "Zastosuj do pozycji subskrypcji".'
+  SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:
+    CantBeCombinedWith: 'Ten kupon nie może być łączony z żadnym innym kuponem w koszyku.'
+  SilverCart\Subscriptions\Extensions\OrderPositionExtension:
+    IsSubscriptionVoucher: 'Jest voucherem na artykuły do prenumeraty'
+    PriceConsequentialCosts: 'Cena Koszty następcze (pojedyncze)'
+    PriceTotalConsequentialCosts: 'Cena Koszty działań następczych (ogółem)'
+    TaxConsequentialCosts: 'Podatkowe koszty następcze (indywidualne)'
+    TaxTotalConsequentialCosts: 'Podatkowe koszty następcze (ogółem)'
+  SilverCart\Subscriptions\Extensions\ProductExtension:
+    BillingPeriod: 'Okres rozliczeniowy'
+    BillingPeriodAdditionPlural: 'w pierwszym {czasie} {okresie}'
+    BillingPeriodAdditionSingular: 'w pierwszym {okresie}'
+    BillingPeriodMonthly: miesięcznie
+    BillingPeriodMonthlyAbbr: miesięcznik
+    BillingPeriodOnce: unikalny
+    BillingPeriodQuarterly: kwartalnik
+    BillingPeriodQuarterlyAbbr: vj.
+    BillingPeriodYearly: coroczny
+    BillingPeriodYearlyAbbr: j.
+    DurationPeriodAddPluralMonths: Miesiące
+    DurationPeriodAddPluralYears: Lata
+    DurationPeriodAddSingularMonths: Miesiąc
+    DurationPeriodAddSingularYears: Rok
+    HasConsequentialCosts: 'Ma koszty następcze'
+    HasConsequentialCostsDesc: 'Aktywuj funkcję "Ma koszty kontynuacji", jeśli ten artykuł ma oprócz ceny zakupu powtarzające się koszty kontynuacji (np. "29,99 € jednorazowo, potem 4,99 € miesięcznie" / "9,99 € miesięcznie przez pierwsze 6 miesięcy, potem 19,99 € miesięcznie").'
+    IsSubscription: 'Czy artykuł subskrypcyjny'
+    IsSubscriptionDesc: 'Aktywuj funkcję "Czy pozycja abonamentowa", jeśli cena pozycji jest rozliczana w określonym, regularnym odstępie czasu.'
+    Once: unikalny
+    PriceGrossConsequentialCosts: 'Cena koszty następcze (brutto)'
+    PriceNetConsequentialCosts: 'Koszty monitorowania cen (netto)'
+    SubscriptionDuration: 'Okres rozliczeniowy'
+    SubscriptionDurationPeriodMonths: Miesiące
+    SubscriptionDurationPeriodYears: Lata
+    Then: następnie
+  SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
+    monthly: Miesięcznie
+    monthlyPayments: 'Koszty miesięczne'
+    monthlyPrice: miesięcznie
+    once: Wyjątkowa
+    oncePayments: 'Koszty jednorazowe'
+    oncePrice: unikalny
+    quarterly: Kwartalnik
+    quarterlyPayments: 'Koszty kwartalne'
+    quarterlyPrice: kwartalnik
+    yearly: Corocznie
+    yearlyPayments: 'Koszty roczne'
+    yearlyPrice: coroczny
+  SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
+    BillingPeriodAdditionPlural: 'w pierwszym {czasie} {okresie}, to {cena}'
+    BillingPeriodAdditionSingular: 'w pierwszym {okresie}, to {cena}'
+  SilverCart\Voucher\Model\Voucher:
+    IsSubscriptionVoucher: 'Dotyczy pozycji objętych subskrypcją'
+    IsSubscriptionVoucherDesc: 'W przypadku aktywacji, kupon ten ma zastosowanie wyłącznie do produktów abonamentowych (rozliczanych miesięcznie, kwartalnie lub rocznie). W przeciwnym razie bon jest stosowany do ceny stałej (rozliczenie jednorazowe).'

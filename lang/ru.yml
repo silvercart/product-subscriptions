@@ -1,0 +1,62 @@
+ru:
+  SilverCart:
+    DiscountMonthlyFirst: '{счет}. месяц снижается до {цена}.'
+    Once: уникальный
+  SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
+    CanBeUsedForMultiplePositions: 'Применять к нескольким статьям подписки'
+    CanBeUsedForMultiplePositionsDesc: 'Если эта опция активирована в сочетании с "Применить к пунктам подписки", ваучер действителен для всех пунктов подписки в корзине. Этот параметр можно дополнительно ограничить с помощью вкладки "Привязка к статье".'
+    PeriodCount: 'Отчетные периоды'
+    PeriodCountDesc: 'Количество расчетных периодов (месяцев/кварталов/годов), на которые необходимо сделать скидку. Для неограниченной скидки введите 0 (ноль). Действует, только если включен параметр "Применять к элементам подписки".'
+  SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:
+    CantBeCombinedWith: 'Этот ваучер не может быть объединен с любым другим ваучером в вашей корзине покупок.'
+  SilverCart\Subscriptions\Extensions\OrderPositionExtension:
+    IsSubscriptionVoucher: 'Является ваучером на подписные статьи'
+    PriceConsequentialCosts: 'Цена Последующие расходы (разовые)'
+    PriceTotalConsequentialCosts: 'Цена Расходы на последующее наблюдение (всего)'
+    TaxConsequentialCosts: 'Расходы на последующее налогообложение (индивидуальное)'
+    TaxTotalConsequentialCosts: 'Расходы на последующее налогообложение (всего)'
+  SilverCart\Subscriptions\Extensions\ProductExtension:
+    BillingPeriod: 'Отчетный период'
+    BillingPeriodAdditionPlural: 'в первый {длительность} {период}'
+    BillingPeriodAdditionSingular: 'в первый {период}'
+    BillingPeriodMonthly: ежемесячно
+    BillingPeriodMonthlyAbbr: ежемесячно
+    BillingPeriodOnce: уникальный
+    BillingPeriodQuarterly: ежеквартально
+    BillingPeriodQuarterlyAbbr: vj.
+    BillingPeriodYearly: ежегодный
+    BillingPeriodYearlyAbbr: j.
+    DurationPeriodAddPluralMonths: Месяцы
+    DurationPeriodAddPluralYears: Годы
+    DurationPeriodAddSingularMonths: Месяц
+    DurationPeriodAddSingularYears: Год
+    HasConsequentialCosts: 'Имеет последующие расходы'
+    HasConsequentialCostsDesc: 'Активируйте функцию "Имеет последующие расходы", если данный товар имеет повторяющиеся последующие расходы в дополнение к цене покупки (например, "29,99 € один раз, затем 4,99 € в месяц" / "9,99 € в месяц в течение первых 6 месяцев, затем 19,99 € в месяц").'
+    IsSubscription: 'Является ли статья по подписке'
+    IsSubscriptionDesc: 'Активируйте функцию "Является предметом подписки", если счет за предмет выставляется через определенный, регулярный интервал времени.'
+    Once: уникальный
+    PriceGrossConsequentialCosts: 'Цена Расходы на последующую деятельность (брутто)'
+    PriceNetConsequentialCosts: 'Расходы на последующее наблюдение за ценами (нетто)'
+    SubscriptionDuration: 'Расчетный период'
+    SubscriptionDurationPeriodMonths: Месяцы
+    SubscriptionDurationPeriodYears: Годы
+    Then: 'после этого'
+  SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
+    monthly: Ежемесячно
+    monthlyPayments: 'Ежемесячные расходы'
+    monthlyPrice: ежемесячно
+    once: Уникальный
+    oncePayments: 'Разовые затраты'
+    oncePrice: уникальный
+    quarterly: Ежеквартально
+    quarterlyPayments: 'Ежеквартальные расходы'
+    quarterlyPrice: ежеквартально
+    yearly: Ежегодно
+    yearlyPayments: 'Годовые затраты'
+    yearlyPrice: ежегодный
+  SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
+    BillingPeriodAdditionPlural: 'в первый {длительность} {период}, то {цена}'
+    BillingPeriodAdditionSingular: 'в первый {период}, то {цена}'
+  SilverCart\Voucher\Model\Voucher:
+    IsSubscriptionVoucher: 'Применять к статьям по подписке'
+    IsSubscriptionVoucherDesc: 'Если ваучер активирован, он применим только к подписке (ежемесячная, ежеквартальная или ежегодная тарификация). В противном случае ваучер применяется к фиксированной цене (единовременная тарификация).'

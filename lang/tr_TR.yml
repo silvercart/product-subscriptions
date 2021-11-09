@@ -1,0 +1,62 @@
+tr_TR:
+  SilverCart:
+    DiscountMonthlyFirst: '{count} . Ay, {price} düşürüldü.'
+    Once: benzersiz
+  SilverCart\Subscriptions\Extensions\Model\Vouchers\RelativeRebateVoucherExtension:
+    CanBeUsedForMultiplePositions: 'Birden çok abonelik öğesine uygula'
+    CanBeUsedForMultiplePositionsDesc: 'Bu seçenek "Abonelik öğelerine uygula" ile birlikte etkinleştirilirse, kupon alışveriş sepetindeki tüm abonelik öğeleri için geçerlidir. Bu seçenek, "Makaleye bağla" sekmesi aracılığıyla daha da kısıtlanabilir.'
+    PeriodCount: 'Fatura dönemleri'
+    PeriodCountDesc: 'İndirimli fatura dönemlerinin sayısı (ay/çeyrek/yıl). Sınırsız indirim için 0 (sıfır) belirtin. Yalnızca "Abonelik öğelerine uygula" etkinleştirildiğinde etkilidir.'
+  SilverCart\Subscriptions\Extensions\Model\Vouchers\VoucherExtension:
+    CantBeCombinedWith: 'Bu kupon, alışveriş sepetinizdeki başka bir kuponla birleştirilemez.'
+  SilverCart\Subscriptions\Extensions\OrderPositionExtension:
+    IsSubscriptionVoucher: 'Abonelik öğeleri için bir fiştir'
+    PriceConsequentialCosts: 'Fiyat takip maliyetleri (bireysel)'
+    PriceTotalConsequentialCosts: 'Fiyat takip maliyetleri (toplam)'
+    TaxConsequentialCosts: 'Vergi takip maliyetleri (bireysel)'
+    TaxTotalConsequentialCosts: 'Vergi takip maliyetleri (toplam)'
+  SilverCart\Subscriptions\Extensions\ProductExtension:
+    BillingPeriod: 'Fatura donemi'
+    BillingPeriodAdditionPlural: 'ilk {duration} {period}'
+    BillingPeriodAdditionSingular: 'ilk {period}'
+    BillingPeriodMonthly: aylık
+    BillingPeriodMonthlyAbbr: aylık
+    BillingPeriodOnce: benzersiz
+    BillingPeriodQuarterly: 'üç ayda bir'
+    BillingPeriodQuarterlyAbbr: vj.
+    BillingPeriodYearly: yıllık
+    BillingPeriodYearlyAbbr: J.
+    DurationPeriodAddPluralMonths: ay
+    DurationPeriodAddPluralYears: yıllar
+    DurationPeriodAddSingularMonths: ay
+    DurationPeriodAddSingularYears: yıl
+    HasConsequentialCosts: 'Takip maliyetleri var'
+    HasConsequentialCostsDesc: 'Bu öğenin satın alma fiyatına ek olarak yinelenen takip maliyetleri varsa "İzleme maliyetleri var" işlevini etkinleştirin (örneğin, ilk 6''da "bir kerelik 29,99 €, ardından ayda 4,99 €" / "ayda 9,99 €" ay, bundan sonra ayda 19.99 € ").'
+    IsSubscription: 'Abonelik makalesidir'
+    IsSubscriptionDesc: 'Ürün fiyatı belirli, düzenli aralıklarla faturalandırılıyorsa "Abonelik öğesidir" işlevini etkinleştirin.'
+    Once: benzersiz
+    PriceGrossConsequentialCosts: 'Fiyat takip maliyetleri (brüt)'
+    PriceNetConsequentialCosts: 'Fiyat takip maliyetleri (net)'
+    SubscriptionDuration: 'Faturalandırma dönemi'
+    SubscriptionDurationPeriodMonths: aylar
+    SubscriptionDurationPeriodYears: yıllar
+    Then: 'bundan sonra'
+  SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
+    monthly: Aylık
+    monthlyPayments: 'Aylık maaş'
+    monthlyPrice: aylık
+    once: Benzersiz
+    oncePayments: 'Tek seferlik maliyetler'
+    oncePrice: benzersiz
+    quarterly: 'üç ayda bir'
+    quarterlyPayments: 'Üç aylık maliyetler'
+    quarterlyPrice: 'üç ayda bir'
+    yearly: Yıllık
+    yearlyPayments: 'yıllık maliyetler'
+    yearlyPrice: yıllık
+  SilverCart\Subscriptions\Extensions\ShoppingCartPositionExtension:
+    BillingPeriodAdditionPlural: 'ilk {duration} {period} , ardından {price}'
+    BillingPeriodAdditionSingular: 'ilk {period} , ardından {price}'
+  SilverCart\Voucher\Model\Voucher:
+    IsSubscriptionVoucher: 'Abonelik öğelerine uygula'
+    IsSubscriptionVoucherDesc: 'Etkinleştirilirse, bu kupon yalnızca abonelik öğeleri için kullanılabilir (aylık, üç aylık veya yıllık faturalandırma). Aksi takdirde, kupon sabit bir fiyat için kullanılacaktır (tek seferlik faturalama).'
