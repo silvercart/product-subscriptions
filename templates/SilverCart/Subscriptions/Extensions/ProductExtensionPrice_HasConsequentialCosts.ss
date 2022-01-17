@@ -1,2 +1,2 @@
-{$BeforePriceNiceContent}{$Price.Nice} <small>{$BillingPeriodNice}{$BillingPeriodAddition}</small><br/>
-<small>{$Then} {$PriceConsequentialCosts.Nice} {$BillingPeriodConsequentialCostsNice}</small>{$AfterPriceNiceContent}
+{$BeforePriceNiceContent}<small>{$BillingPeriodNice}{$BillingPeriodAddition}</small>{$Price.Nice}<br/>
+<small>{$Then} {$BillingPeriodConsequentialCostsNice} {$PriceConsequentialCosts.Nice}</small>{$AfterPriceNiceContent}
