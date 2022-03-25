@@ -101,6 +101,9 @@ class ShoppingCartPositionExtension extends DataExtension
             ) {
                 $is = true;
             }
+            if (!$this->owner->Product()->HasConsequentialCosts) {
+                $this->owner->Product()->BillingPeriodConsequentialCosts = $this->owner->Product()->BillingPeriod;
+            }
         }
         return $is;
     }
