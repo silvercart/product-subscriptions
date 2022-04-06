@@ -223,6 +223,38 @@ class ProductExtension extends DataExtension
     }
     
     /**
+     * Returns the product prices as a JSON string.
+     * 
+     * @return string
+     */
+    public function updatePricesJSON(array &$prices) : void
+    {
+        if (!$this->owner->HidePrices()
+         && $this->owner->IsSubscription
+        ) {
+            $prices   = [];
+            $price    = $this->owner->getPrice();
+            $prices[] = [
+                'Amount'   => $price->getAmount(),
+                'Currency' => $price->getCurrency(),
+                'Symbol'   => $price->getSymbol(),
+                'Nice'     => $price->Nice(),
+                'Interval' => $this->owner->BillingPeriod,
+            ];
+            if ($this->owner->HasConsequentialCosts) {
+                $price2   = $this->owner->getPriceConsequentialCosts();
+                $prices[] = [
+                    'Amount'   => $price2->getAmount(),
+                    'Currency' => $price2->getCurrency(),
+                    'Symbol'   => $price2->getSymbol(),
+                    'Nice'     => $price2->Nice(),
+                    'Interval' => $this->owner->BillingPeriodConsequentialCosts,
+                ];
+            }
+        }
+    }
+    
+    /**
      * Returns the billing period i18n.
      * 
      * @return string
