@@ -31,12 +31,15 @@ de:
     IsSubscriptionVoucher: 'Ist Gutschein für Abo-Artikel'
     PriceConsequentialCosts: 'Preis Folgekosten (einzeln)'
     PriceTotalConsequentialCosts: 'Preis Folgekosten (gesamt)'
+    SubscriptionPosition: 'Dazugehörige Abo-Position'
+    SubscriptionPositionDesc: 'Hat ein Artikel sowohl einmalige, alsauch monatliche (oder andere Abrechnungszeiträume) Kosten, wird dieser nach der BEstellung in zwei Positionen aufgeteilt. Diese zweite Position wird hier als dazugehörige Abo-Position hinterlegt.'
     TaxConsequentialCosts: 'Steuer Folgekosten (einzeln)'
     TaxTotalConsequentialCosts: 'Steuer Folgekosten (gesamt)'
   SilverCart\Subscriptions\Extensions\ProductExtension:
     BillingPeriod: Abrechnungszeitraum
     BillingPeriodAdditionPlural: 'in den ersten {duration} {period}'
     BillingPeriodAdditionSingular: 'im ersten {period}'
+    BillingPeriodConsequentialCosts: 'Abrechnungszeitraum Folgekosten'
     BillingPeriodMonthly: monatlich
     BillingPeriodMonthlyAbbr: mtl.
     BillingPeriodOnce: einmalig
@@ -56,8 +59,12 @@ de:
     PriceGrossConsequentialCosts: 'Preis Folgekosten (Brutto)'
     PriceNetConsequentialCosts: 'Preis Folgekosten (Netto)'
     SubscriptionDuration: Abrechnungslaufzeit
+    SubscriptionDurationPeriod: 'Abrechnungslaufzeit (Einheit)'
+    SubscriptionDurationPeriodConsequentialCosts: 'Abrechnungslaufzeit Folgekosten (Einheit)'
     SubscriptionDurationPeriodMonths: Monate
     SubscriptionDurationPeriodYears: Jahre
+    SubscriptionDurationValue: 'Abrechnungslaufzeit (Wert)'
+    SubscriptionDurationValueConsequentialCosts: 'Abrechnungslaufzeit Folgekosten (Wert)'
     Then: danach
   SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
     monthly: Monatlich

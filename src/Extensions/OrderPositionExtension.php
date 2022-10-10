@@ -2,14 +2,18 @@
 
 namespace SilverCart\Subscriptions\Extensions;
 
+use Moo\HasOneSelector\Form\Field as HasOneSelector;
 use SilverCart\Dev\Tools;
 use SilverCart\Model\Order\OrderPosition;
 use SilverCart\ORM\FieldType\DBMoney;
 use SilverCart\Subscriptions\Extensions\ProductExtension;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\GridField\GridFieldDeleteAction;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\ORM\FieldType\DBFloat;
 use SilverStripe\ORM\FieldType\DBHTMLText;
 use SilverStripe\ORM\FieldType\DBInt;
+use Symbiote\GridFieldExtensions\GridFieldTitleHeader;
 
 /**
  * Extension for SilverCart OrderPosition.
@@ -113,6 +117,29 @@ class OrderPositionExtension extends DataExtension
             $positionWithOneTimePrice->SubscriptionDurationValue                    = 0;
             $positionWithOneTimePrice->SubscriptionDurationPeriod                   = null;
             $positionWithOneTimePrice->write();
+        }
+    }
+    
+    /**
+     * Updates the CMS fields.
+     * 
+     * @param FieldList $fields Fields to update
+     * 
+     * @return void
+     */
+    public function updateCMSFields(FieldList $fields) : void
+    {
+        if (class_exists(HasOneSelector::class)) {
+            $spField = HasOneSelector::create('SubscriptionPosition', $this->owner->fieldLabel('SubscriptionPosition'), $this->owner, OrderPosition::class)
+                    ->setLeftTitle($this->owner->fieldLabel('SubscriptionPosition'))
+                    ->removeLinkable()
+                    ->setDescription($this->owner->fieldLabel('SubscriptionPositionDesc'));
+            $spField->getConfig()->removeComponentsByType(GridFieldDeleteAction::class);
+            if ($this->owner->SubscriptionPosition()->exists()) {
+                $spField->removeAddable();
+                $spField->getConfig()->addComponent(new GridFieldTitleHeader());
+            }
+            $fields->replaceField('SubscriptionPositionID', $spField);
         }
     }
     

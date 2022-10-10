@@ -31,12 +31,15 @@ en:
     IsSubscriptionVoucher: 'Is a voucher for subscription articles'
     PriceConsequentialCosts: 'Price consequential costs (single)'
     PriceTotalConsequentialCosts: 'Price consequential costs (total)'
+    SubscriptionPosition: 'Related Subscription Position'
+    SubscriptionPositionDesc: 'If a product has both, one-time and monthly (or other billing periods) costs, the product will be split into two positions after order. This second position is related as a subscription position here.'
     TaxConsequentialCosts: 'Tax consequential costs (single)'
     TaxTotalConsequentialCosts: 'Tax consequential costs (total)'
   SilverCart\Subscriptions\Extensions\ProductExtension:
     BillingPeriod: 'Billing period'
     BillingPeriodAdditionPlural: 'in the first {duration} {period}'
     BillingPeriodAdditionSingular: 'in the first {period}'
+    BillingPeriodConsequentialCosts: 'Billing period consequential costs'
     BillingPeriodMonthly: monthly
     BillingPeriodMonthlyAbbr: mo.
     BillingPeriodOnce: once
@@ -56,8 +59,12 @@ en:
     PriceGrossConsequentialCosts: 'Price consequential costs (gross)'
     PriceNetConsequentialCosts: 'Price consequential costs (net)'
     SubscriptionDuration: 'Subscription duration'
+    SubscriptionDurationPeriod: 'Subscription duration (period)'
+    SubscriptionDurationPeriodConsequentialCosts: 'Subscription duration consequential costs (period)'
     SubscriptionDurationPeriodMonths: Months
     SubscriptionDurationPeriodYears: Years
+    SubscriptionDurationValue: 'Subscription duration (value)'
+    SubscriptionDurationValueConsequentialCosts: 'Subscription duration consequential costs (value)'
     Then: then
   SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
     monthly: Monthly
