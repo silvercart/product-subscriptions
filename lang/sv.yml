@@ -12,7 +12,7 @@ sv:
   SilverCart\Subscriptions\Extensions\OrderPositionExtension:
     IsSubscriptionVoucher: 'Är en kupong för prenumerationsartiklar'
     PriceConsequentialCosts: 'Pris uppföljningskostnader (enkel)'
-    PriceTotalConsequentialCosts: 'Pris Uppföljningskostnader (totalt)'
+    PriceTotalConsequentialCosts: 'Pris följdkostnader (totalt)'
     TaxConsequentialCosts: 'Kostnader för skatteuppföljning (enskilda)'
     TaxTotalConsequentialCosts: 'Kostnader för skatteuppföljning (totalt)'
   SilverCart\Subscriptions\Extensions\ProductExtension:

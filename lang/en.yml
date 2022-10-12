@@ -29,17 +29,17 @@ en:
     CantBeCombinedWith: 'This voucher cannot be combined with any other voucher in your shopping cart.'
   SilverCart\Subscriptions\Extensions\OrderPositionExtension:
     IsSubscriptionVoucher: 'Is a voucher for subscription articles'
-    PriceConsequentialCosts: 'Price consequential costs (single)'
-    PriceTotalConsequentialCosts: 'Price consequential costs (total)'
-    SubscriptionPosition: 'Related Subscription Position'
-    SubscriptionPositionDesc: 'If a product has both, one-time and monthly (or other billing periods) costs, the product will be split into two positions after order. This second position is related as a subscription position here.'
-    TaxConsequentialCosts: 'Tax consequential costs (single)'
-    TaxTotalConsequentialCosts: 'Tax consequential costs (total)'
+    PriceConsequentialCosts: 'Price Follow-up costs (single)'
+    PriceTotalConsequentialCosts: 'Price Follow-up costs (total)'
+    SubscriptionPosition: 'Associated subscription item'
+    SubscriptionPositionDesc: 'If an item has both one-off and monthly (or other billing periods) costs, it is split into two items after ordering. This second item is stored here as the associated subscription item.'
+    TaxConsequentialCosts: 'Tax Follow-up costs (single)'
+    TaxTotalConsequentialCosts: 'Tax Follow-up costs (total)'
   SilverCart\Subscriptions\Extensions\ProductExtension:
     BillingPeriod: 'Billing period'
     BillingPeriodAdditionPlural: 'in the first {duration} {period}'
     BillingPeriodAdditionSingular: 'in the first {period}'
-    BillingPeriodConsequentialCosts: 'Billing period consequential costs'
+    BillingPeriodConsequentialCosts: 'Billing period Follow-up costs'
     BillingPeriodMonthly: monthly
     BillingPeriodMonthlyAbbr: mo.
     BillingPeriodOnce: once
@@ -51,20 +51,20 @@ en:
     DurationPeriodAddPluralYears: years
     DurationPeriodAddSingularMonths: month
     DurationPeriodAddSingularYears: year
-    HasConsequentialCosts: 'Has consequential costs'
-    HasConsequentialCostsDesc: 'Activate the function "Has consequential costs" if this article has consequential costs together with its onetime purchase price.'
+    HasConsequentialCosts: 'Has Follow-up costs'
+    HasConsequentialCostsDesc: 'Activate the function "Has Follow-up costs" if this article has Follow-up costs together with its onetime purchase price.'
     IsSubscription: 'Is subscription'
     IsSubscriptionDesc: 'Activate the function "Is subscription" if this article is payed in a frequent interval.'
     Once: once
-    PriceGrossConsequentialCosts: 'Price consequential costs (gross)'
-    PriceNetConsequentialCosts: 'Price consequential costs (net)'
+    PriceGrossConsequentialCosts: 'Price Follow-up costs (gross)'
+    PriceNetConsequentialCosts: 'Price Follow-up costs (net)'
     SubscriptionDuration: 'Subscription duration'
     SubscriptionDurationPeriod: 'Subscription duration (period)'
-    SubscriptionDurationPeriodConsequentialCosts: 'Subscription duration consequential costs (period)'
+    SubscriptionDurationPeriodConsequentialCosts: 'Subscription duration Follow-up costs (unit)'
     SubscriptionDurationPeriodMonths: Months
     SubscriptionDurationPeriodYears: Years
     SubscriptionDurationValue: 'Subscription duration (value)'
-    SubscriptionDurationValueConsequentialCosts: 'Subscription duration consequential costs (value)'
+    SubscriptionDurationValueConsequentialCosts: 'Subscription duration Follow-up costs (value)'
     Then: then
   SilverCart\Subscriptions\Extensions\ShoppingCartExtension:
     monthly: Monthly
