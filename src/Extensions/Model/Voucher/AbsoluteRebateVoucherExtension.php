@@ -120,19 +120,21 @@ class AbsoluteRebateVoucherExtension extends DataExtension
                 }
             }
         }
-        $periods     = 0;
-        $remainder   = 0;
-        $firstPeriod = 0;
-        $discounted  = DBMoney::create()->setAmount($product->Price->getAmount())->setCurrency($product->Price->getCurrency());
+        $voucherValue = round($voucherValue, 2);
+        $periods      = 0;
+        $remainder    = 0;
+        $firstPeriod  = 0;
+        $discounted   = DBMoney::create()->setAmount($product->Price->getAmount())->setCurrency($product->Price->getCurrency());
         if ($product->Price->getAmount() > $voucherValue) {
             $discounted->setAmount($product->Price->getAmount() - $voucherValue);
             $billingPeriod = ucfirst($product->BillingPeriod);
             $discountLine  = _t("SilverCart.Discount{$billingPeriod}First", 'Billing period {count} is discounted to {price}.', ['count' => 1, 'price' => $discounted->Nice()]);
         } else {
             if ($product->Price->getAmount() < $voucherValue) {
-                $periods   = floor($voucherValue / $product->Price->getAmount());
-                $remainder = $voucherValue - ($periods * $product->Price->getAmount());
+                $periods   = floor(($voucherValue * 100) / ($product->Price->getAmount() * 100));
+                $remainder = ($voucherValue * 100) - ($periods * ($product->Price->getAmount() * 100));
                 if ($remainder > 0) {
+                    $remainder = $remainder / 100;
                     $firstPeriod = $periods + 1;
                     $discounted->setAmount($product->Price->getAmount() - $remainder);
                 }
