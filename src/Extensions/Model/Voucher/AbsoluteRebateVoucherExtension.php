@@ -134,8 +134,8 @@ class AbsoluteRebateVoucherExtension extends DataExtension
             $discountLine  = _t("SilverCart.Discount{$billingPeriod}First", 'Billing period {count} is discounted to {price}.', ['count' => 1, 'price' => $discounted->Nice()]);
         } else {
             if ($product->Price->getAmount() < $voucherValue) {
-                $periods   = floor($voucherValue / $product->Price->getAmount());
-                $remainder = $voucherValue - ($periods * $product->Price->getAmount());
+                $periods   = floor((int) ($voucherValue * 100) / (int) ($product->Price->getAmount() * 100));
+                $remainder = (int) ($voucherValue * 100) - ($periods * (int) ($product->Price->getAmount() * 100));
                 if ($remainder > 0) {
                     $firstPeriod = $periods + 1;
                     $discounted->setAmount($product->Price->getAmount() - $remainder);
