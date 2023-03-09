@@ -95,15 +95,16 @@ class OrderExtension extends DataExtension
                 $subscriptionPositions->push($voucher->getSubscriptionPosition());
             }
             foreach ($subscriptionPositions as $subscriptionPosition) {
-                if ($subscriptionPosition !== null) {
-                    $currency = $subscriptionPosition->getPrice()->getCurrency();
+                if ($subscriptionPosition === null) {
+                    continue;
                 }
+                $currency      = $subscriptionPosition->getPrice()->getCurrency();
                 $orderPosition = OrderPosition::create();
                 $orderPosition->ProductNumber         = $voucher->ProductNumber;
                 $orderPosition->VoucherCode           = $voucher->code;
                 $orderPosition->IsSubscriptionVoucher = true;
                 $orderPosition->Title                 = $voucherPosition->SubscriptionTitle;
-                $orderPosition->ProductDescription    = (string) $voucher->getVoucherDescription($subscriptionPosition);//$voucherPosition->SubscriptionDescription;
+                $orderPosition->ProductDescription    = (string) $voucher->getVoucherDescription($subscriptionPosition);
                 $orderPosition->TaxRate               = $voucher->Tax()->Rate;
                 $orderPosition->Price->setAmount(0);
                 $orderPosition->Price->setCurrency($currency);
