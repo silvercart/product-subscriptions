@@ -261,7 +261,7 @@ class ProductExtension extends DataExtension
      */
     public function getBillingPeriodNice() : string
     {
-        $billingPeriod = ucfirst($this->owner->BillingPeriod);
+        $billingPeriod = ucfirst((string) $this->owner->BillingPeriod);
         if (empty($billingPeriod)) {
             $billingPeriod = 'Once';
         }
