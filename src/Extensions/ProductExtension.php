@@ -276,8 +276,8 @@ class ProductExtension extends DataExtension
     public function getBillingPeriodAddition() : DBHTMLText
     {
         $addition       = '';
-        $billingPeriod  = ucfirst($this->owner->BillingPeriod);
-        $durationPeriod = ucfirst($this->owner->SubscriptionDurationPeriod);
+        $billingPeriod  = ucfirst((string) $this->owner->BillingPeriod);
+        $durationPeriod = ucfirst((string) $this->owner->SubscriptionDurationPeriod);
         if (!empty($billingPeriod)
          && $this->owner->HasConsequentialCosts
         ) {
