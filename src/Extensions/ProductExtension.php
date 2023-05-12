@@ -55,7 +55,13 @@ class ProductExtension extends DataExtension
         'IsSubscription'        => false,
         'HasConsequentialCosts' => false,
     ];
-    
+    /**
+     * Returns whether the method getCMSFields is called currently.
+     * 
+     * @var bool
+     */
+    protected $getCMSFieldsIsCalled = false;
+
     /**
      * Updates the field labels.
      * 
@@ -104,6 +110,7 @@ class ProductExtension extends DataExtension
      */
     public function updateFieldsForPrices(FieldGroup $pricesGroup, FieldList $fields) : void
     {
+        $this->getCMSFieldsIsCalled = true;
         $billingPeriodSource = [
             ''          => '',
             'monthly'   => $this->owner->fieldLabel('BillingPeriodMonthly'),
@@ -252,6 +259,22 @@ class ProductExtension extends DataExtension
                 ];
             }
         }
+    }
+    
+    /**
+     * Returns the billing period.
+     * 
+     * @return string
+     */
+    public function getBillingPeriod() : string
+    {
+        $billingPeriod = $this->owner->getField('BillingPeriod');
+        if (!$this->owner->IsSubscription
+         && !$this->getCMSFieldsIsCalled
+        ) {
+            $billingPeriod = '';
+        }
+        return (string) $billingPeriod;
     }
     
     /**
