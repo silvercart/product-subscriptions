@@ -13,6 +13,7 @@ use SilverStripe\Forms\LiteralField;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\ORM\FieldType\DBHTMLText;
 use SilverStripe\ORM\FieldType\DBInt;
+use SilverStripe\Security\Member;
 
 /**
  * Extension for SilverCart Product.
@@ -185,7 +186,8 @@ class ProductExtension extends DataExtension
     public function onBeforeWrite() : void
     {
         parent::onBeforeWrite();
-        if (array_key_exists('SubscriptionDurationValue', $_POST)
+        if ($this->owner->isRequestedItem()
+         && array_key_exists('SubscriptionDurationValue', $_POST)
          && array_key_exists('SubscriptionDurationPeriod', $_POST)
          && array_key_exists('SubscriptionDurationValueConsequentialCosts', $_POST)
          && array_key_exists('SubscriptionDurationPeriodConsequentialCosts', $_POST)
